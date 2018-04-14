@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		/*初始化*/
+		body,ul,li,p,h1,h2,h3,h4,h5,h6,dl,dt,dd,input{
+			margin:0px;
+			padding:0px;
+			font:12px simsun;
+		}
+		img{
+			border:0 none;
+		}
+		li{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+		input{
+			border:0 none;
+			outline-style: none; 
+		}
+		.clearfix:after{
+			content: "88888888888888888888888";
+			display: block;
+			height: 0;
+			line-height: 0;
+			visibility: hidden;
+			clear:both;
+		}
+
+		/*头部开始*/
+		.fl{
+			float: left;
+		}
+		.fr{
+			float: right;
+		}
+		.header{
+			width: 980px;
+			height: 39px;
+			margin:20px auto 0px;
+		}
+		.logo{
+			width: 179px;
+			height: 39px;
+		}
+		.search{
+			width: 195px;
+			height: 30px;
+			border:1px solid #ECECEC;
+		}
+		.search input[type="text"]{
+			width: 165px;
+			height: 30px;
+		} 
+		.search input[type="button"]{
+			width: 30px;
+			height: 30px;
+			background: url("pic1/images/search2.jpg");
+		}
+		.nav{
+			height: 55px;
+			background: url("pic1/images/nav_bg.png");
+			border-top: 1px solid #eee;
+		}
+		.nav-con{
+			width: 980px;
+			height: 55px;
+			margin:0 auto;
+		}
+		.nav-con li{
+			float: left;
+		}
+		.nav-con li a{
+			display: inline-block;
+			/*height: 55px;*/
+			font:700 12px/55px 宋体;
+			color:#000;
+			padding:0 30px;
+			background: url("pic1/images/nav_bg-line.png") no-repeat right;
+		}
+		.nav-con li a:hover{
+			color:#7cb609/*yellowgreen*/;
+		}
+		/*头部结束*/
+
+		/*banner 开始*/
+		.banner{
+			width: 980px;
+			height: 597px;
+			margin: 0 auto;
+		}
+		/*banner 结束*/
+
+		/*细横框开始*/
+		.message{
+			height: 32px;
+			background: #fbfbfb;
+			border-top: 1px solid #efefef;
+			border-bottom: 1px solid #efefef;
+			margin-bottom: 15px;
+			margin-top: 15px;
+		}
+		.mes-con{
+			width: 980px;
+			height: 32px;
+			margin:0 auto;
+		}
+		.mes-con-l{
+			/*左浮动*/
+			line-height: 32px;
+		}
+		.mes-con-r{
+			/*右浮动*/
+			margin-top: 8px;
+		}
+		.mes-con-r img{
+			margin-right: 5px;
+		}
+		/*细横框结束*/
+
+		/*三框开始*/
+		.news{
+			width: 980px;
+			margin:15px auto;
+		}
+		.news-l,.news-c,.news-r{
+			border:1px solid #E4E4E4;
+		}
+		.news-l{
+			width: 310px;
+			height: 224px;
+			position: relative;
+		}
+		.news-c{
+			width: 373px;
+			height: 224px;
+			margin-left: 12px;
+		}
+		.news-r{
+			width: 268px;
+			height: 224px;
+		}
+		/*左盒子*/
+		.news-l-top{
+			margin:14px 0 0 6px;
+			color: #7AB800;
+		}
+		.news-l-top img{
+			vertical-align: middle;
+		}
+		.news-l-pic{
+			position: absolute;
+			left:55px;
+			top:55px;
+		}
+		.news-l-sjl{
+			position: absolute;
+			left: 25px;
+			top:110px;
+		}
+		.news-l-sjr{
+			position: absolute;
+			right: 25px;
+			top:110px;
+		}
+		/*左盒子结束*/
+		/*中间盒子*/
+		.news-c ul{
+			margin:10px 17px 0;
+		}
+		.news-c ul li{
+			height: 27px;
+			line-height: 27px;
+			border-bottom: 1px dashed #DCDCDC; 
+		}
+		.news-c ul li a{
+			color: #000;
+		}
+		.news-c ul li a.sorry{
+			color: red;
+			font-weight: 700;
+		}
+		/*中间盒子结束*/
+		/*右盒子*/
+		.news-r .liebiao{
+			margin-top: 10px;
+			margin-left:10px;
+		}
+		.news-r .liebiao ul li{
+			line-height: 10px;
+			margin-top: 15px;
+			border-left: 3px solid #7AB800;
+			padding-left: 5px;
+		}
+		/*右盒子结束*/
+		/*三框结束*/
+		/*底部开始*/
+		.foot{
+			height: 280px;
+			background: #2d2d2d;
+			border-bottom: 3px dashed #414141;
+		}
+		.foot-con{
+			width: 980px;
+			margin:0 auto;
+		}
+		.foot-con dl{
+			float: left;
+			color: white;
+			margin: 30px 100px 100px 0;
+
+		}
+		.foot-con dl dt{
+			color:white;
+		}
+		.foot-con dl dd{
+			color:#707070;
+			margin-top: 20px;
+		}
+		.foot-ft{
+			height:100px;
+			background: #2d2d2d;
+			text-align: center;
+			padding-top: 20px;
+		}
+	</style>
+</head>
+
+
+
+<body>
+	<!-- 头部部分 -->
+	<div class="header">
+		<div class="logo fl">
+			<img src="pic1/images/logo.jpg" alt="">
+		</div>
+		<div class="search fr">
+			<input type="text" value=" 请输入……" class="fl">
+			<input type="button" class="fr">
+		</div>
+	</div>
+	<div class="nav">
+		<div class="nav-con">
+			<ul>
+				<li><a href="#">首页</a></li>
+				<li><a href="#">智能手机</a></li>
+				<li><a href="#">平板电脑</a></li>
+				<li><a href="#">配件</a></li>
+				<li><a href="#">服务支持</a></li>
+				<li><a href="#">关于上合</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- 头部部分结束 -->
+
+	<!-- banner 开始 -->
+	<div class="banner">
+		<img src="pic1/images/banner.jpg" alt="">
+	</div>
+	<!-- banner 结束 -->
+
+	<!-- 信息框开始 -->
+		<!-- 细横框开始 -->
+	<div class="message">
+		<div class="mes-con">
+			<div class="mes-con-l fl">最新公告：上合Aone智能手机入网证以已 获取工信部门审批下发——上合官网</div>
+			<div class="mes-con-r fr">
+				<img src="pic1/images/zone.png" alt="">
+				<img src="pic1/images/weibo.png" alt="">
+				<img src="pic1/images/xinlang.png" alt="">
+				<img src="pic1/images/renren.png" alt="">
+			</div>
+		</div>
+	</div>
+		<!-- 细横框结束 -->
+		<!-- 三框开始 -->
+	<div class="news clearfix">
+		<!-- 左盒子 -->
+		<div class="news-l fl">
+			<div class="news-l-top">
+				<img src="pic1/images/o.jpg" alt="">
+				<span>新品发布</span>
+			</div>
+			<div class="news-l-pic">
+				<img src="pic1/images/home_hot_01.png" alt="">
+			</div>
+			<div class="news-l-sjl">
+				<img src="pic1/images/left.png" alt="">
+			</div>
+			<div class="news-l-sjr">
+				<img src="pic1/images/right.png" alt="">
+			</div>
+		</div>
+		<!-- 左盒子结束 -->
+		<!-- 中间盒子 -->
+		<div class="news-c fl">
+			<div class="news-l-top">
+				<img src="pic1/images/o.jpg" alt="">
+				<span>新闻中心</span>
+			</div>
+			<ul>
+				<li><a href="#" class="sorry">致歉公告</a></li>
+				<li><a href="#">首批啦啦啦啦啦</a></li>
+				<li><a href="#">第二哈哈哈哈哈</a></li>
+				<li><a href="#">第三嘿嘿嘿嘿嘿嘿</a></li>
+				<li><a href="#">第四呵呵呵呵</a></li>
+				<li><a href="#">第五呜呜呜呜呜呜</a></li>
+			</ul>
+		</div>
+		<!-- 中间盒子结束 -->
+		<!-- 右盒子 -->
+		<div class="news-r fr">
+			<div class="news-l-top">
+				<img src="pic1/images/o.jpg" alt="">
+				<span>技术支持</span>
+			</div>
+			<div class="liebiao">
+				<ul>
+					<li>售后建议</li>
+					<li>投诉通道</li>
+					<li>联保网点</li>
+					<li>常见问题FAQ</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 右盒子结束 -->
+	</div>
+		<!-- 三框结束 -->
+    	<!-- 底部内容 -->
+    	<div class="foot">
+    		<div class="foot-con">
+    			<dl>
+    				<dt>上合首页</dt>
+    				<dd>dldtdd</dd>
+    			</dl>
+    			<dl>
+    				<dt>上合首页</dt>
+    				<dd>dldtdd</dd>
+    			</dl>
+    			<dl>
+    				<dt>上合首页</dt>
+    				<dd>dldtdd</dd>
+    			</dl>
+    			<dl>
+    				<dt>上合首页</dt>
+    				<dd>dldtdd</dd>
+    			</dl>
+    		</div>
+    	</div>
+    	<div class="foot-ft">
+    		 腾讯公司腾讯公司腾讯公司腾讯公司腾讯公司腾讯公司
+    	</div>
+</body>
+</html>

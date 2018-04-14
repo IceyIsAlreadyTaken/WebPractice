@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body,ul,li{
+			margin:0px;
+			padding:0px;
+		}
+		li{
+			list-style: none;
+		}
+		.box{
+			width: 1259px;
+			height: 472px;
+			margin:0px auto;
+			position: relative;
+		}
+		.box1{
+			height: 60px;
+			width: 960px;
+			background: #333;/*深灰色*/
+			position: absolute;
+			bottom: 0px;
+			left:50%;
+			margin-left: -480px;
+		}
+		li{
+			float: left;
+		}
+		a{
+			display: inline-block;
+			width: 160px;
+			height: 60px;
+			line-height: 60px;
+			text-align: center;
+			color: #fff;/*白色*/
+		}
+		ul li a:hover{
+			background: #fff;
+			color: #000;
+		}
+		ul li a.one:hover{
+			background: #333;
+			color: #fff;
+		}
+		.login{
+			position: absolute;
+			left:149px;
+			bottom:57px;
+		}
+		.sj{
+			position:absolute;
+			left: 225px;
+			bottom:49px;
+			z-index: 10;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="img"><img src="pic1/sf.png" alt=""></div>
+		<div class="box1">
+			<ul>
+				<li><a href="#" class="one">搜索查询</a></li>
+				<li><a href="#">搜索查询</a></li>
+				<li><a href="#">搜索查询</a></li>
+				<li><a href="#">搜索查询</a></li>
+				<li><a href="#">搜索查询</a></li>
+				<li><a href="#">搜索查询</a></li>
+			</ul>
+		</div>
+		<div class="sj"><img src="pic1/4.png" alt=""></div>
+		<div class="login"><img src="pic1/3.png" alt=""></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表格表单</title>
+</head>
+<body>
+	<table border="1"  width="500" height="300" cellspacing="50" cellpadding="20" bgcolor="red ">
+	<caption> 表头</caption>
+		<tr>
+			<td>1行1列</td>
+			<td>1行2列</td>
+			<td>1行3列</td>
+		</tr>
+		 <tr>
+		 	<td>2行1列</td>
+		 	<td>2行2列</td>
+		 </tr>
+	</table>
+
+	边框 border
+	宽   width
+	长   height
+	单元格与单元格的距离  cellspacing
+	内容到边框的距离     cellpadding
+	内容水平  align-left right center
+	内容垂直  valign-top middle bottom
+	背景颜色 bgcolor
+
+	<!-- 表格的标准结构 -->
+	<table border="1" height="300" width="300">
+	<!-- 头部 -->
+		<thead>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</thead>
+	<!-- 身体 -->
+		<tbody>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	<!-- 脚部 -->
+		<tfoot>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tfoot>
+	</table>
+
+	<!-- 简写 -->
+	table>tr*3>td*5  +table
+	
+	单元格合并 行合并 colspan
+			 列合并 rowspan
+
+	表格标题 <td></td> ----<th>	</th>
+
+	边框颜色 bordercolor
+
+	<!-- 细线表格 -->
+	<table width="300" height="500" bgcolor="green"  cellspacing="10">
+		<tr bgcolor="white" >
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr bgcolor="red">
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr bgcolor="yellow">
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr bgcolor="white">
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+
+	<!-- 表单 -->
+	<form action="1234.php" method="get">
+		<input type="text" maxlength="8" readonly="readonly" > <br>
+		<!-- maxlength="8" --> 最大长度
+		<!-- readonly="readonly" --> 只读状态  <br>
+		<input type="text" maxlength="8" disabled="disabled" ><br>
+		<!-- disabled="disabled" -->
+		<input type="text" maxlength="8" name="username" value="daqianduan">
+		密码 <input type="password">
+	</form>
+	method=get post 
+	get 通过地址栏传输信息，安全性差
+	post 通过1234.php  来传输信息，安全性高
+
+	单选框
+	<input type="radio" name="gender" checked="checked"> 男
+	<input type="radio" name="gender"> 女
+	只有name值相同时才能实现单选效果
+	checked 设置默认选项
+    <br><br><br>
+	下拉列表
+
+	<select name="下拉列表" id="">
+		<option value="">1</option>
+		<option value="">2</option>
+		<option value="">3</option>
+		<option value="" selected="selected">4</option>
+	</select>
+    多选
+	<select multiple="multiple">
+		<option>111111</option>
+		<option>22222</option>
+		<option>3333</option>
+		<option>4</option>
+		<option>5</option>
+		<option>6</option>
+		<option>7</option>
+	</select>
+    分组
+    <select multiple="multiple">
+    	<optgroup label="数字">
+		<option>111111</option>
+		<option>22222</option>
+		<option>3333</option>
+		</optgroup>
+		<optgroup label="字幕">
+		<option>111111</option>
+		<option>22222</option>
+		<option>3333</option>
+		</optgroup>
+		<optgroup label="字母">
+		<option>111111</option>
+		<option>22222</option>
+		<option>3333</option>
+		</optgroup>
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

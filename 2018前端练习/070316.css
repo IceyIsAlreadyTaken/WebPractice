@@ -1,0 +1,16 @@
+div{
+	font:italic 700 66px microsoft yahei;
+}
+
+a:link{
+	color:red;
+}
+a:visited{
+	color: green;
+}
+a:hover{
+	color:pink;
+}
+a:active{
+	color: yellow;
+}
