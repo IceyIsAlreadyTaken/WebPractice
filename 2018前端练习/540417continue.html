@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		//continue 跳出本循环（一次循环）
+		//打印1-10 不打印6
+		// for (var i = 1; i <=10; i++) {
+		// 	if (i==6) {
+		// 		continue;
+		// 	}else{
+		// 		document.write(i);
+		// 	}
+		// }
+
+		//输出1-100 3的倍数不输出
+		// for (var i = 1; i <=100; i++) {
+		// 	if (i%3==0) {
+		// 		continue;
+		// 	}else{
+		// 		document.write(i+"<br>");
+		// 	}
+		// }
+
+		//输入用户名和密码，如果用户名不是 admin 或者密码不是888就一直提示用户输入，如果用户名和密码都正确，则立即停止
+
+		var user=prompt("输入用户名");
+		var password=prompt("输入密码");
+		while(user!="admin"||password!="888"){
+			var user=prompt("输入用户名");
+			var password=prompt("输入密码");
+		}
+		alert("账号密码正确，登录成功！");
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

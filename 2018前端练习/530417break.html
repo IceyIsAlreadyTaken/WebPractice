@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		//break 跳出当前循环体
+
+		//找到1-100之间的质数
+		var flag=0;
+		for (var i = 1; i <=100; i++) {
+			for (var j = 2; j < i; j++) {
+				if(i%j==0){
+					flag=1;
+					break;
+				}else{
+					flag=0;
+				}
+			}
+			if (flag==0&&i!=1) {
+				console.log(i);
+			}
+			
+		}
+
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
