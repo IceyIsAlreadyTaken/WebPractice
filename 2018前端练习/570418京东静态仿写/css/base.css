@@ -80,7 +80,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 100%;
 }
 
-s, i, em {  /*s-删除线 i-下划线 em-加粗线*/
+s, i, em {  /*s-删除线 i-文本倾斜 em-加粗线*/
     font-style: normal;
     text-decoration: none;
 }
@@ -127,6 +127,38 @@ s, i, em {  /*s-删除线 i-下划线 em-加粗线*/
     height: 30px;
     line-height: 30px;
     background-color: #F1F1F1;
+}
+.site-nav-send{
+    padding:0 25px 0 10px;
+    position: relative;
+}
+.site-nav-send:hover{
+    background-color: #FFF;
+}
+.site-nav-send i{
+    position: absolute;
+    top: 11px;
+    right: 8px;
+    width: 13px;
+    height: 7px;
+    font: 400 13px/15px "consolas";
+    /*background-color: red;*/
+    overflow: hidden;
+}
+.site-nav-send s{  /*行内元素*/
+    position: absolute;
+    top:-7px;
+}
+.site-nav-r li{
+    padding:0 10px;
+    float: left;
+}
+.site-nav-r .line{
+    width: 1px;
+    height: 12px;
+    background-color: #DDD;
+    margin-top: 9px;
+    padding:0;
 }
 /*site-nav 部分 end*/
 
