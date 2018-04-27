@@ -91,7 +91,7 @@ s, i, em {  /*s-删除线 i-文本倾斜 em-加粗线*/
 
 /*公共类*/
 .w {
-    /*版心 提取 */
+     /*版心 提取 */
     width: 1210px;
     margin: 0 auto;
 }
@@ -128,14 +128,16 @@ s, i, em {  /*s-删除线 i-文本倾斜 em-加粗线*/
     line-height: 30px;
     background-color: #F1F1F1;
 }
-.site-nav-send{
+.site-nav-send,
+.site-nav-r .fore{
     padding:0 25px 0 10px;
     position: relative;
 }
 .site-nav-send:hover{
     background-color: #FFF;
 }
-.site-nav-send i{
+.site-nav-send i,
+.fore i{
     position: absolute;
     top: 11px;
     right: 8px;
@@ -145,7 +147,8 @@ s, i, em {  /*s-删除线 i-文本倾斜 em-加粗线*/
     /*background-color: red;*/
     overflow: hidden;
 }
-.site-nav-send s{  /*行内元素*/
+.site-nav-send s,
+.fore s{  /*行内元素*/
     position: absolute;
     top:-7px;
 }
@@ -160,9 +163,39 @@ s, i, em {  /*s-删除线 i-文本倾斜 em-加粗线*/
     margin-top: 9px;
     padding:0;
 }
+.site-nav-r .jd-tel{
+    padding-left: 25px;
+}
+.jd-tel span{
+    position: absolute;
+    top: 4px;
+    left: 7px;
+    height: 20px;
+    width: 15px;
+    background: url("../images/tel.png") no-repeat;
+}
 /*site-nav 部分 end*/
 
-
+/*top-banner 部分 star*/
+.top-banner{
+    background-color: #37c2fb;
+}
+.tb{
+    position: relative;
+}
+.close-banner{
+    position: absolute;
+    top:5px;
+    right:5px;
+    width: 19px;
+    height: 19px;
+    background: url("../images/close-banner.png");
+}
+.close-banner:hover{
+    background-position:bottom; 
+    /*background-position:0 19px;*/
+}
+/*top-banner 部分 end*/
 
 
 
