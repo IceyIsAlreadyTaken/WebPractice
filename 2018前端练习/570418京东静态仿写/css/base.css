@@ -257,6 +257,22 @@ s, i, em {  /*s-删除线 i-文本倾斜 em-加粗线*/
     height: 16px;
     background: url("../images/tel.png") no-repeat 0 -58px;
 }
+.icon2{
+    position: absolute;
+    right: 10px;
+    color:#999;
+    font: 13px/34px "SimSun";
+}
+.icon3{
+    position: absolute;
+    top:-5px;
+    width: 16px;
+    height: 14px;
+    background-color: #C81623;
+    line-height: 14px;
+    text-align: center;
+    color: #fff;
+}
 .search-moreAlink{
     float: left;
     width: 530px;
