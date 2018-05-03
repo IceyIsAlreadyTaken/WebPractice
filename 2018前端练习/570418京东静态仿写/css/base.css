@@ -197,6 +197,74 @@ s, i, em {  /*s-删除线 i-文本倾斜 em-加粗线*/
 }
 /*top-banner 部分 end*/
 
+/*search 部分 star*/ 
+.search-logo{
+    float: left;
+    width: 362px;
+    height: 60px;
+    padding:20px 0; 
+}  
+.search-logo a{
+    display: block;
+    width: 270px;
+    height: 60px;
+    text-indent: -999px;
+    background: url("../images/logo.png") no-repeat;
+}    
+.search-input{
+    float: left;
+    width: 538px;
+    height: 36px;
+    padding-top: 25px;
+    /*background-color: blue;*/
+}   
+.search-input input{
+    float: left;
+    width: 450px;
+    height: 32px;
+    padding-left: 4px;
+    font:400 14px/32px "microsoft yahei";
+    color:rgb(153,153,153);
+    border: 2px solid #B61D1D;
+    cursor:text; /*鼠标变输入杠*/
+}
+.search-input button{
+    width: 80px;
+    height: 36px;
+    color: #fff;
+    font:400 16px/36px "微软雅黑";
+    background-color: #B61D1D;
+    cursor:pointer; /*鼠标变小手*/
+    /*cursor:move; 鼠标变 移动符号*/
+    /*cursor:default; 鼠标变小白*/
+}
+.search-car{
+    float: right;
+    width: 114px;
+    height: 34px;
+    line-height: 34px;
+    position: relative;
+    margin:25px 65px 0 0;
+    border: 1px solid #DFDFDF;
+    background-color: #F9F9F9;
+    padding-left: 35px;
+}   
+.icon1{
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    width: 18px;
+    height: 16px;
+    background: url("../images/tel.png") no-repeat 0 -58px;
+}
+.search-moreAlink{
+    float: left;
+    width: 530px;
+    height: 28px;
+    background-color: red;
+}   
+/*search 部分 end */
+
 
 
 
