@@ -266,19 +266,25 @@ s, i, em {  /*s-删除线 i-文本倾斜 em-加粗线*/
 .icon3{
     position: absolute;
     top:-5px;
+    right: 25px;
     width: 16px;
     height: 14px;
     background-color: #C81623;
     line-height: 14px;
     text-align: center;
     color: #fff;
+    border-radius: 8px 8px 8px 0; /*圆角*/
 }
 .search-moreAlink{
     float: left;
     width: 530px;
     height: 28px;
-    background-color: red;
+   /* background-color: red;*/
+    line-height: 28px;
 }   
+.search-moreAlink a{
+    margin-right: 8px;
+}
 /*search 部分 end */
 
 
