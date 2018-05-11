@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="1.php" method="post">
+		<fieldset>
+			<legend>账户信息</legend>
+			<font color="red" size="2">*</font> 用户名：<input type="text" name=""><br><br>
+			<font color="red" size="2">*</font> 密   码：<input type="password" name=""><br>	<br>
+			性别：
+			<input type="radio" checked="checked"> 男
+			<input type="redio" checked="">女
+		</fieldset>
+		<fieldset>
+			<legend>公司信息</legend>
+			公司名称：<input type="text"><br>
+			公司所在地址：
+			    <select>
+					<option>---请选择---</option>	
+					<option>河南</option>
+					<option>北京</option>
+					<option>上海</option>
+					<option>广州</option> 
+				</select>
+				<select>
+					<option>---请选择---</option>	
+					<optgroup label="北京">
+					<option>朝阳区</option>
+					<option>什么区</option>
+					<option>上海</option>
+					<option>广州</option> 
+					</optgroup>
+				</select>
+				<br><br>
+			<input type="checkbox" checked="checked">IT
+			<input type="checkbox" checked="checked">家电
+			<input type="checkbox" checked="checked">办公素材
+			<input type="checkbox" checked="checked">生活百货
+			<br><br>	
+			<select multiple="multiple">
+					<option>---请选择---</option>	
+					<option>河南</option>
+					<option>北京</option>
+					<option>上海</option>
+					<option>广州</option> 
+				</select>
+				公司介绍：<textarea cols="30" rows="10"></textarea>
+				营业执照上传：<input type="file" >
+				<br><br>
+				<input type="image" src="">
+		</fieldset>
+
+	</form>
+</body>
+</html>
