@@ -8,7 +8,7 @@ React is a JavaScript library for building user interfaces.
 [Learn how to use React in your own project.](https://reactjs.org/docs/getting-started.html)
 
 ## Installation
-***
+
 React has been designed for gradual adoption from the start, and you can use as little or as much React as you need:
 
 * Use [Online Playgrounds](https://reactjs.org/docs/getting-started.html#online-playgrounds) to get a taste of React.
@@ -24,17 +24,17 @@ Check out the [Getting Started](https://reactjs.org/docs/getting-started.html) p
 
 The documentation is divided into several sections:
 
-* Tutorial
-* Main Concepts
-* Advanced Guides
-* API Reference
-* Where to Get Support
-* Contributing Guide
+* [Tutorial](https://reactjs.org/tutorial/tutorial.html)
+* [Main Concepts](https://reactjs.org/docs/hello-world.html)
+* [Advanced Guides](https://reactjs.org/docs/jsx-in-depth.html)
+* [API Reference](https://reactjs.org/docs/react-api.html)
+* [Where to Get Support](https://reactjs.org/community/support.html)
+* [Contributing Guide](https://reactjs.org/docs/how-to-contribute.html)
  You can improve it by sending pull requests to [this repository](https://github.com/reactjs/reactjs.org).
 
 ## Examples
 
-We have several examples on the website. Here is the first one to get you started:
+We have several examples [on the website](https://reactjs.org/). Here is the first one to get you started:
 ```js
 class HelloMessage extends React.Component {
   render() {
@@ -54,7 +54,7 @@ You'll notice that we used an HTML-like syntax; [we call it JSX](https://reactjs
 ## Contributing
 The main purpose of this repository is to continue to evolve React core, making it faster and easier to use. Development of React happens in the open on GitHub, and we are grateful to the community for contributing bugfixes and improvements. Read below to learn how you can take part in improving React.
 
-## [Code of Conduct](https://code.facebook.com/codeofconduct)
+### [Code of Conduct](https://code.facebook.com/codeofconduct)
 Facebook has adopted a Code of Conduct that we expect project participants to adhere to. Please read [the full text](https://code.facebook.com/codeofconduct) so that you can understand what actions will and will not be tolerated.
 
 ## [Contributing Guide](https://reactjs.org/contributing/how-to-contribute.html)
