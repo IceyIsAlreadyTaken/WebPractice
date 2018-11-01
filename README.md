@@ -1,2 +1,3 @@
-# webstudy
- Putting some practice code on it. ^o^
+# Web Practice
+ Put some bullshit demo in it. 
+
