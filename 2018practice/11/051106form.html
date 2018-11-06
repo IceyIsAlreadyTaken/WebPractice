@@ -17,16 +17,16 @@
     <input type="checkbox" name="food">可乐</input><br>
     
     <!-- file  MIME多用途Internet邮件扩展（MIME）类型-->
-    <input type="file" name="" id="" accept="image/*,text/*"  title="只能接受imagetext格式文本" value="文件"><br>
+    <input type="file"  accept="image/*,text/*"  title="只能接受imagetext格式文本" value="文件"><br>
     <!-- 只能接受image  text 格式文本 -->
-    <input type="file" name="" id="" accept="image/jpg"><br>
+    <input type="file"  accept="image/jpg"><br>
     <!-- 只接受jpg   -->
-    <input type="file" name="" id="" accept=".png" multiple><br>
+    <input type="file"  accept=".png" multiple><br>
     <!-- 只接受png,multiple多选  -->
-    <input type="file" name="" id="" accept=".png,.jpg,.gif,.jpeg,.exe" hidden><br>
+    <input type="file"  accept=".png,.jpg,.gif,.jpeg,.exe" hidden><br>
     <!-- webp 有些厂商不支持  隐藏-->
     <p>disabled</p>
-    <input type="text" name="" id="" disabled><br>
+    <input type="text" disabled><br>
     <progress value="0.6"></progress>
     <input type="submit"><br>
     <input type="image" src="https://www.zhihu.com/favicon.ico" alt="" width="100">
@@ -35,19 +35,43 @@
     <!-- 滑动条 -->
     <input type="range" min="0" max="20" step=10><br>
     <!-- 数字输入 -->
-    <input type="number" name="" id="" step="5" value="90"> <br>
+    <input type="number"  step="5" value="90"> <br>
     <!-- 邮件地址 -->
-    <input type="email" name="" id=""><br>
+    <input type="email" ><br>
     <p>网址输入</p>
-    <input type="url" name="" id="">
+    <input type="url" >
     <p>日期输入</p>  
     <input type="date"><br>
-    <input type="datetime-local" name="" id=""> 
+    <input type="datetime-local" > 
     <p>周</p> 
-    <input type="week" name="" id="">
-    <input type="color" name="" id=""><br>
-  
+    <input type="week" >
+    <input type="color" ><br>
+    <p>required必填值</p>
+    <input type="text" maxlength="10" minlength="5" required placeholder="required" autofocus>
+    <input autofocus type="text">   
   </form>
-  <input type="color" name="" id="">
+  <input type="color">
+
+  <form action="https://www.google.com/search" target="_blank">
+    <input type="text" name="q">
+    <input type="submit" value=" 谷歌一下">
+    <button> 默认属性为submit</button>
+  </form>
+  <form action="">  
+    <label for=""><input type="radio" name="gender">男 a a a</label>
+    <label for=""><input type="radio" name="gender" id="">女</label>
+    <label for=""><input type="checkbox" name="fruit" id="">苹果</label>
+    <label for=""><input type="checkbox" name="fruit" id="">香蕉</label>
+    <label>Click me <input type="text" id="User" name="Name" /></label>
+    <label for="button">labelwowowowowo</label>
+    <button id="button">lalal</button>
+  </form>
+  <p>选择</p>
+  <select name="" id="">
+    <option value="a">aaa</option>
+    <option value="a">aaa</option>
+    <option value="a">aaa</option>
+  </select>
+
 </body>
 </html>
