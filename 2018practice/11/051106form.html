@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+ 
+   <form action="https://www.google.com/search" method="get" target="_blank">
+    <input type="text" name="search" value="">text</input><br>
+    <input type="password">password</input><br>
+    <input type="radio" name="gender">男</input>
+    <input type="radio" name="gender">女</input><br>
+    <input type="checkbox" name="food">汉堡</input><br>
+    <input type="checkbox" name="food">冰淇淋</input><br>
+    <input type="checkbox" name="food">薯条</input><br>
+    <input type="checkbox" name="food">可乐</input><br>
+    
+    <!-- file  MIME多用途Internet邮件扩展（MIME）类型-->
+    <input type="file" name="" id="" accept="image/*,text/*"  title="只能接受imagetext格式文本" value="文件"><br>
+    <!-- 只能接受image  text 格式文本 -->
+    <input type="file" name="" id="" accept="image/jpg"><br>
+    <!-- 只接受jpg   -->
+    <input type="file" name="" id="" accept=".png" multiple><br>
+    <!-- 只接受png,multiple多选  -->
+    <input type="file" name="" id="" accept=".png,.jpg,.gif,.jpeg,.exe" hidden><br>
+    <!-- webp 有些厂商不支持  隐藏-->
+    <p>disabled</p>
+    <input type="text" name="" id="" disabled><br>
+    <progress value="0.6"></progress>
+    <input type="submit"><br>
+    <input type="image" src="https://www.zhihu.com/favicon.ico" alt="" width="100">
+    <!-- 重置 -->
+    <input type="reset" value="重置"><br>
+    <!-- 滑动条 -->
+    <input type="range" min="0" max="20" step=10><br>
+    <!-- 数字输入 -->
+    <input type="number" name="" id="" step="5" value="90"> <br>
+    <!-- 邮件地址 -->
+    <input type="email" name="" id=""><br>
+    <p>网址输入</p>
+    <input type="url" name="" id="">
+    <p>日期输入</p>  
+    <input type="date"><br>
+    <input type="datetime-local" name="" id=""> 
+    <p>周</p> 
+    <input type="week" name="" id="">
+    <input type="color" name="" id=""><br>
+  
+  </form>
+  <input type="color" name="" id="">
+</body>
+</html>
