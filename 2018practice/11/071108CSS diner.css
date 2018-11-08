@@ -1,0 +1,197 @@
+/* level 1 Select the plates */
+plate{}
+
+/* level 2 Select the bento boxes */
+bento{}
+
+/* level 3 Select the fancy plate */
+/* ID Selector
+Select elements with an ID
+#id
+*/
+#fancy{}
+
+/* level 4 Select the apple on the plate */
+/* Descendant Selector
+A B */
+plate apple{}
+
+/* level 5 Select the pickle on the fancy plate */
+/* Combine the Descendant & ID Selectors
+#id  A */
+#fancy pickle{}
+
+/* level 6 Select the small apples
+Class Selector
+Select elements by their class
+.classname */
+.small{}
+
+/* level 7 Select the small oranges
+Combine the Class Selector
+A.className
+交集选择器 */
+orange.small{}
+
+/* level 8 Select the small oranges in the bentos */
+bento orange.small{}
+
+/* level 9 Select all the plates and bentos
+Comma Combinator
+Combine, selectors, with... commas!
+A, B */
+plate,bento{}
+
+/* level 10 Select all the things!
+The Universal Selector
+You can select everything!
+* */
+*{}
+
+/* level 11 Select everything on a plate
+Combine the Universal Selector
+A  *
+This selects all elements inside of A */
+plate *{}
+
+/* level 12 Select every apple that's next to a plate
+Adjacent Sibling Selector
+Select an element that directly follows another element
+A + B */
+plate+apple{}
+
+/* level 13 Select the pickles beside the bento
+General Sibling Selector
+Select elements that follows another element
+A ~ B */
+pickle~pickle{}
+
+/* level 14 Select the apple directly on a plate
+Child Selector
+Select direct children of an element
+A > B  */
+plate>apple{}
+
+/* level 15 Select the top orange
+First Child Pseudo-selector
+Select a first child element inside of another element
+:first-child */
+orange:first-child{}
+
+/* level 16 Select the apple and the pickle on the plates
+Only Child Pseudo-selector
+Select an element that are the only element inside of another one.
+:only-child */
+apple:only-child, plate pickle:only-chile{}
+
+/* level 17 Select the small apple and the pickle
+Last Child Pseudo-selector
+Select the last element inside of another element
+:last-child */
+apple,pickle{}
+/* 
+level 18 Select the 3rd plate
+Nth Child Pseudo-selector
+Select an element by its order in another element
+:nth-child(A) */
+plate:nth-child(3){}
+
+/* level 19 Select the 1st bento
+Nth Last Child Selector
+Select an element by its order in another element, counting from the back
+:nth-last-child(A) */
+bento:first-of-type{} /* 19题用第20题的写法，出题人智障 */
+
+/* level 20 Select first apple
+First of Type Selector
+Select the first element of a specific type
+:first-of-type */
+apple:first-of-type{}
+
+/* level 21 Select all even plates
+Nth of Type Selector
+:nth-of-type(A)
+Selects a specific element based on its type and order in another element - or even or odd instances of that element.
+ */
+plate:nth-of-type(2n){}
+
+/* level 22 Select every 2nd plate, starting from the 3rd
+Nth-of-type Selector with Formula
+:nth-of-type(An+B)
+The nth-of-type formula selects every nth element, starting the count at a specific instance of that element. */
+plate:nth-of-type(2n+3){}
+
+/* level 23 Select the apple on the middle plate
+Only of Type Selector
+Select elements that are the only ones of their type within of their parent element
+:only-of-type
+Selects the only element of its type within another element. */
+plate apple:only-of-type{}
+
+/* level 24 Select the last apple and orange
+Last of Type Selector
+Select the last element of a specific type
+:last-of-type
+Selects each last element of that type within another element. Remember type refers the kind of tag, so p and span are different types. 
+ */
+ orange:last-of-type,apple:last-of-type{}
+
+ /* level 25 Select the empty bentos
+ Empty Selector
+Select elements that don't have children
+:empty
+Selects elements that don't have any other elements inside of them.
+ */
+ bento:empty{}
+
+ /* level 26 Select the big apples
+Negation Pseudo-class
+Select all elements that don't match the negation selector
+:not(X)
+You can use this to select all elements that do not match selector "X".
+ */
+apple:not(.smell){}
+
+/* level 27 Select the items for someone
+Attribute Selector
+Select all elements that have a specific attribute
+[attribute]
+Attributes appear inside the opening tag of an element, like this: span attribute="value". An attribute does not always have a value, it can be blank!
+ */
+[for]{}
+ 
+/*level 28 Select the plates for someone
+Attribute Selector
+Select all elements that have a specific attribute
+A[attribute]
+Combine the attribute selector with another selector (like the tag name selector) by adding it to the end.
+ */
+ plate[for]{}
+
+ /* level 29 Select Vitaly's meal
+ Attribute Value Selector
+Select all elements that have a specific attribute value
+[attribute="value"]
+Attribute selectors are case sensitive, each character must match exactly.
+ */
+[for="Vitaly"]{}
+
+/* level 30 Select the items for names that start with 'Sa'
+Attribute Starts With Selector
+Select all elements with an attribute value that starts with specific characters
+[attribute^="value"] */
+[for^="Sam"]{}
+
+/* level 31 Select the items for names that end with 'ato'
+Attribute Ends With Selector
+Select all elements with an attribute value that ends with specific characters
+[attribute$="value"] */
+[for$="ato"]{}
+
+/* level 32 Select the meals for names that contain 'obb'
+Attribute Wildcard Selector
+Select all elements with an attribute value that contains specific characters anywhere
+[attribute*="value"]
+A useful selector if you can identify a common pattern in things like class, href or src attributes.
+ */
+[for*="obb"]{}
