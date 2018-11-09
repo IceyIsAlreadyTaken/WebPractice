@@ -1,3 +1,4 @@
+@import url(xxx.css);/* 一般不用，会使浏览器加载速度变慢  串行下载加载css 文件，不是并行 */
 /* level 1 Select the plates */
 plate{}
 
@@ -179,13 +180,13 @@ Attribute selectors are case sensitive, each character must match exactly.
 /* level 30 Select the items for names that start with 'Sa'
 Attribute Starts With Selector
 Select all elements with an attribute value that starts with specific characters
-[attribute^="value"] */
+[attribute^="value"] 选择for 属性中所有以 Sam开头的元素*/
 [for^="Sam"]{}
 
 /* level 31 Select the items for names that end with 'ato'
 Attribute Ends With Selector
 Select all elements with an attribute value that ends with specific characters
-[attribute$="value"] */
+[attribute$="value"] 选择for 属性中所有以 ato结尾的元素*/
 [for$="ato"]{}
 
 /* level 32 Select the meals for names that contain 'obb'
@@ -193,5 +194,8 @@ Attribute Wildcard Selector
 Select all elements with an attribute value that contains specific characters anywhere
 [attribute*="value"]
 A useful selector if you can identify a common pattern in things like class, href or src attributes.
- */
+ 选择for 属性中所有子串包含 obb的元素*/
 [for*="obb"]{}
+
+/* 选择title属性中包含figure 的所有图像 */
+img[title~="figure"]{}
