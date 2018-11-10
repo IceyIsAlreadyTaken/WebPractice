@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    a:link{
+      color: yellow;
+    }
+    a:visited{
+      color: pink;
+    }
+    a:focus{
+      color: red;
+    }
+    a:hover{
+      color: blue;
+    }
+    a:active{
+      color: green;
+    }
+    /* 顺序为link,visited,focus,hover,active
+    鼠标移动到链接上，点击链接，触发 active hover focus，active>hover>focus>link
+    点击完毕鼠标还在链接上，触发 hover visited focus，hover>focus>visited>link */
+    input{
+      border: solid 5px;
+    }
+    input:focus{
+      border-color: red;
+    }
+  </style>
+</head>
+<body>
+  <a href="xhttps://www.baidu.com"> 从没有访问过的链接</a>
+  <input type="text" >
+</body>
+</html>

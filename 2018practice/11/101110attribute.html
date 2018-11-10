@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    [class^="app"]{
+      background-color: red;
+      width: 300px;
+      height: 60px;
+    }
+    /* 必须是属性第一个值的开头 */
+    [class$="ana"]{
+      background-color: yellow;
+      width: 200px;
+      height: 60px;
+    }
+    [class*="ea"]{
+      background-color: blue;
+      width: 20px;
+      height: 30px;
+    }
+    [class~="man"]{
+      background-color: pink;
+      width: 66px;
+      height: 66px;
+    }
+  </style>
+</head>
+<body>
+  <div class="apple">apple</div>
+  <div class="banana">banbana</div>
+  <div class="pear">superman</div>
+  <div class="woman apple man"></div>
+</body>
+</html>
