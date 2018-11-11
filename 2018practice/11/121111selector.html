@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    li+li{
+      color: blue;
+      /* 选择紧接在li 后的一个li 元素，li与 li要有相同的父元素 */
+      /* 用一个结合符稚嫩恶搞选择两个相邻兄弟中的第二个元素 */
+    }
+    ol+ul{
+      color: green;
+    }
+    /* 继承没有优先级 */
+    li+li+li{
+      color: yellow;
+    }
+    li+li+li+li{
+      color: orange;
+    }
+    li:first-child:first-letter{
+      font-size: 200%;
+    }
+    li:before{
+      content: "P";
+      color: pink;
+    }
+    .no:visited{
+      color: red;
+    }
+    .yes:link{
+      color: blue;
+    }
+    .silver:link{
+      color: silver;
+    }
+
+    .tai:link{
+      color: blue;
+    }
+    .tai:visited{
+      color: red;
+    }
+    .tai:focus{
+      color: green;
+    }
+    .tai:hover{
+      color: yellow;
+    }
+    .tai:active{
+      color: pink;
+    }
+    
+  </style>
+</head>
+<body>
+  <div>
+    <ol>
+      <li>li1</li>
+      <li>li2</li>
+      <li>li3</li>
+    </ol>
+    <ul>
+      <li>ull1</li>
+      <li>ull11</li>
+      <li>ull111</li>
+      <li>ull1111</li>
+      <li>ull11111</li>
+    </ul>
+  </div>
+  <a href="https://www.baidu.com" class="no">已访问过的为红色</a>
+  <a href="https://asdadacdsd.com" class="yes">未为访问过的为蓝色</a>
+  <a href="htfda" class="silver">silver 银色的锚是什么样的</a>
+  <div class="dong">
+    <a href="https://www.baidu.com" class="tai">动态伪类</a>
+  </div>
+</body>
+</html>
