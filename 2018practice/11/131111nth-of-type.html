@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+        /* 奇数段 */
+    p:nth-of-type(2n+1) {
+      color: red;
+    }
+
+    /* 偶数段 */
+    p:nth-of-type(2n) {
+      color: blue;
+    }
+
+    /* 第一段 */
+    p:nth-of-type(1) {
+      font-weight: bold;
+    }
+    a:only-of-type{
+      color: yellow;
+    }
+    div:empty {
+      background: lime;
+    }
+
+    .box {
+      background: pink;
+      height: 80px;
+      width: 80px;
+    }
+
+    .box:empty {
+      background: lime;
+    }
+
+  </style>
+</head>
+<body>
+  <div>
+  <div>这段不参与计数。</div>
+  <p>这是第一段。</p>
+  <p>这是第二段。</p>
+  <div>这段不参与计数。</div>
+  <p>这是第三段。</p>
+  <p>这是第四段。</p>
+  <a href="">only-of-type</a>
+
+  <div class="box"><!-- I will be lime --></div>
+  <div class="box">I will be pink</div>
+  <div class="box">
+    <!-- I will be red because of the whitespace around this comment -->
+  </div>
+</div>
+</body>
+</html>
