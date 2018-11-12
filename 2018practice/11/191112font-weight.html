@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <style>
+    *{
+      background-color:rgba(0,0,0,0.08);
+    }
     p{
       font-weight: 200;
       font-size: 30px;
@@ -29,7 +32,11 @@
     p.five{font-size: large;}
     p.six{font-size: x-large;}
     p.seven{font-size: xx-large;}
-
+    
+    .a,.b,.c,.d,.e{
+      font-size: 150%;
+      /* font-size: 1.5em; */
+    }
   </style>
 </head>
 <body>
@@ -40,6 +47,17 @@
           <span class="p5">5P 字体加粗</span>
         </span>
       </span> 
+    </span>
+
+    <span class="a">a
+      <span class="b">b
+        <span class="c">c
+          <span class="d">d
+            <span class="e">e
+            </span>
+          </span>
+        </span>
+      </span>
     </span>
   </p>
   <p class="one">Lorem ipsum dolor sit amet.</p>
