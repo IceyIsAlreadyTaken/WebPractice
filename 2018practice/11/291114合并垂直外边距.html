@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    *{
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+    li{
+      margin-top: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 30px;
+    }
+    ul{
+      background-color: hotpink;
+      margin-bottom: 0px;
+    }
+    h1{
+      margin-top: 0px;
+    }
+    p{
+      width: 300px;
+      margin-bottom: 30px;
+      margin-top: 20px;
+      border: 2px solid black;
+    }
+    p.noborder{
+      border: 0px;
+    }
+  </style>
+</head>
+<body>
+  <p>li的margin 也会和ul 的margin 合并</p>
+  <ul>
+    <li>Lorem ipsum dolor sit amet.</li>
+    <li>Lorem ipsum dolor sit.</li>
+    <li>Lorem ipsum dolor.</li>
+    <li>Lorem ipsum dolor sit amet.</li>
+    <li>Lorem ipsum dolor sit.</li>
+  </ul>
+  <h1>Lorem ipsum dolor.</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis rem, eligendi id autem quas, beatae dolorum blanditiis officiis qui consectetur molestias iusto quaerat, enim aliquam nobis quam eos ullam necessitat |margin-bottom: 30px| 下面有个空 P</p>
+  <p></p>
+  <p> 上面有个有边框的空P |margin-top: 20px|Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis rem, eligendi id autem quas, beatae dolorum blanditiis officiis qui consectetur molestias iusto quaerat, enim aliquam nobis quam eos ullam necessitatibus!</p>
+  <p class="noborder"></p>
+  <p> 上面有个无边框的空P |margin-top: 20px|上，中，下 P 无边框时则上 P 的下边距和中 P 的上下边距以及下 P 的上边距全部会重合。所以上 P 和下 P 的距离为30px; ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis rem, eligendi id autem quas, beatae dolorum blanditiis officiis qui consectetur molestias iusto quaerat, enim aliquam nobis quam eos ullam necessitatibus!</p>
+
+</body>
+</html>
