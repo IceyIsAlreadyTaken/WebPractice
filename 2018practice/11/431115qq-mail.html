@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      box-sizing: border-box;    
+    }
+    html,body{
+      height: 100%;
+    }
+    div{
+      height: calc(100% - 100px);
+    }
+    header{
+      height: 100px;
+      background-color: green;
+      border-bottom: 1px solid;
+    }
+    main{
+      font-size: 0;
+      height: 100%;
+    }
+    main > *{
+      display: inline-block;
+      font-size: 16px;
+      vertical-align: top;
+    }
+    aside{
+      background-color: violet;
+      width: 120px;
+      height: 100%;
+      border-right: 1px solid;
+    }
+    section{
+      background-color: yellow;
+      width: calc(100% - 120px);
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <header>header</header>
+    <main>
+      <aside>aside</aside>
+      <section>section</section>
+    </main>
+ </div>
+</body>
+</html>

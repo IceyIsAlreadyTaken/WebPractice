@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    *{
+      box-sizing: border-box;
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+    body{
+      margin: 0;
+      padding: 100px;
+    }
+    ul{
+      list-style-type:none;
+      /* background-color: #512; */
+      padding: 0px;
+      margin: 0px;
+    }
+    li{
+      /* padding: 0px;
+      margin: 0px;  */
+      width: 100px;
+      height: 100px;
+      xborder: 1px solid;
+    }
+    li:nth-of-type(n+4){
+      margin-left: 100px;
+    }
+    li:nth-of-type(n+7){
+      margin-left: 200px;
+    }
+    li:nth-of-type(3n+4){
+      margin-top: -300px;
+    }
+    div{
+      height: 100%;
+    }
+    div:hover{
+      position: relative;
+      z-index: 2;
+      background-color: red;
+      /* background-color: rgba(100, 0, 0, 0.3 ); */
+      margin-left: -20px;
+      margin-right: -20px;
+      height: calc(100% + 40px);
+      margin-top: -20px;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li><div></div></li>
+    <li><div></div></li> <!-- div 继承了 li的宽高 -->
+    <li><div></div></li>
+    <li><div></div></li>
+    <li><div></div></li>
+    <li><div></div></li>
+    <li><div></div></li>
+    <li><div></div></li>
+    <li><div></div></li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    html,body{
+      margin: 0;
+      height: 100%;
+      box-sizing: border-box;
+    }
+    div{
+      height: 100%;
+    }
+    header{
+      height: 100px;
+      background-color: blue;
+    }
+    main{
+      height: calc(100% - 100px);
+      background-color: green;
+    }
+    aside{
+      background-color: pink;
+      width: 100px;
+      height: 100%;
+    }
+    section{
+      margin-left: 100px;
+      background-color: yellow;
+      height: 100%;
+      margin-top:calc(-100vh + 100px);
+    }
+  </style>
+</head>
+<body>
+   <div>
+    <header>header</header>
+    <main>
+      <aside>aside</aside>
+      <section>section</section>
+    </main>
+ </div>
+</body>
+</html>
