@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    div{
+      height: 300px;
+      width: 200px;
+      background-color: brown;
+      position: relative;
+      overflow: hidden;
+    }
+    div:hover section{
+      bottom: 0px;
+    }
+    section{
+      height: 50px;
+      width: 200px;
+      position: absolute;
+      background-color: rgba(255, 140, 0, 0.7);
+      bottom: -50px;
+      transition: bottom .5s;
+    }
+  </style>
+</head>
+<body>
+  <div><section> 弹出</section></div>
+</body>
+</html>

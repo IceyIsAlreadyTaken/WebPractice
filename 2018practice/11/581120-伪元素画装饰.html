@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    div{
+      display: inline-block;
+      position: relative;
+      /* border: 2px solid green; */
+      background-color: blue;
+      color: white;
+      margin-top: 200px;
+    }
+    div::after{
+      content: "自己变色";
+      /* color: white; */
+      font-size: 12px;
+      display: block;
+      position: absolute;
+      background-color: hotpink;
+      bottom: 100%;
+      right: 10px;
+    }
+    div::before{
+      content: '';
+      border: 5px solid hotpink;
+      position: absolute;
+      border-color: hotpink transparent transparent;
+      right: 35px;
+    }
+    /* 伪元素只能出现在选择器最末尾 */
+    div:hover::after{
+      background-color: red;
+    }
+    div:hover::before{
+      border-top-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div> 右上角有个小标志</div>
+<!-- 伪元素：
+所有非自闭合标签都可以有一前一后两个伪元素
+它们是所属元素的第一个和最后一个子元素
+before之前和after之后是没有任何内容的
+需要通过content属性触发其出现
+默认为行内元素
+内容无法被鼠标选中
+一般用来做装饰性效果
+伪元素选择器必须是一个选择器的最后一部分，即伪元素不能应用hover效果
+但是可以在父元素hover时候给其伪元素添加样式
+其它方面几乎跟任意的子元素一样
+无法被js操作 -->
+</body>
+</html>
