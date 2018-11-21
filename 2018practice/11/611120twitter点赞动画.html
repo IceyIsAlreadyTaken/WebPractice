@@ -4,14 +4,24 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <style>
-    div{
+    .like{
       margin-top: 200px;
       margin-right: 200px;
+      width: 100px;
+      height: 100px;
+      border: 0px solid;
+      background-image:url(./img/web_heart_animation_edge.png);
+      background-position: 0px 0px;
       
+    }
+    .like:focus{
+      background-position: -2800px 0px;
+      transition: .3s steps(28,end);
     }
   </style>
 </head>
 <body>
-  <div><img src="https://abs.twimg.com/a/1542244373/img/animations/web_heart_animation_edge.png" alt=""></div>
+  <div></div>
+  <input type="button" class="like">
 </body>
 </html>
