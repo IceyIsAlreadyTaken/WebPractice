@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+    }
+    .bg{
+      position: absolute;
+      width: 600px;
+      height: 300px;
+      background-color: #eee;
+      border-radius: 150px 150px ;
+    }
+    .ball{
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      width: 260px;
+      height: 260px;
+      background-color: #fffdef;
+      border-radius: 130px 130px;
+      z-index: 5;
+    }
+    /* .bg:hover{
+      background-color: green;
+      transition: .6s linear;
+    } */
+    /* .ball:hover{
+      left: 320px;
+      transition: .6s linear;
+    }
+ */ input:checked + .ball{
+      left: 320px;
+      transition: .6s linear;
+    }
+    input:checked + .ball +.bg{
+      background-color: #54d16b;
+      transition: .6s cubic-bezier(.38,.09,.86,.13);
+    }
+  </style>
+</head>
+<body> 
+  <div>
+    <input type="checkbox" id="check" hidden>
+    <label class="ball" for="check"></label>
+    <div class="bg" for="check"></div>
+  </div>
+   
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .a{
+      height: 500px;
+      width: 800px;
+      line-height: 500px;
+      border: 1px solid;
+      font-size: 0;
+      text-align: center;
+      font-size: 0;/* 百分之百居中 */
+    }
+    .a > img{
+      vertical-align: middle;
+    }
+    .b{
+      height: 500px;
+      width: 500px;
+      border: 1px solid;
+      text-align: center;
+    }
+    .b >img{
+      height: 100%;
+    }
+    .c{
+      height: 600px;
+      width: 600px;
+      border: 1px solid;
+      text-align: center;
+      line-height: 600px;
+    }
+    .c > img{
+      max-height: 100%;
+      max-width: 100%;
+      vertical-align: middle;
+      /* 最大百分之百意为最大值为div 的高,实际高度小于div 的高的话则显示实际高度 */
+    }
+  </style>
+</head>
+<body>
+  <!-- img 元素在div 中 img 的行高有什么作用,div 的行高有什么作用 -->
+  <!-- 使用div里套img实现img标签的object-fit:contain效果
+文件名：div-img-contain.html -->
+  <div class="a">
+    <!-- <span>zxcpgtt</span> -->
+    <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1250088175,1825151141&fm=26&gp=0.jpg" alt="">
+  </div>
+  <div class="b">
+    <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3223676937,1032882842&fm=11&gp=0.jpg" alt="">
+  </div>
+  <div class="c">
+    <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4170617430,4869768&fm=11&gp=0.jpg" alt="">
+  </div>
+</body>
+</html>

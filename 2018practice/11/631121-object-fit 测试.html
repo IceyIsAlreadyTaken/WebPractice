@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .b{
+      border: 1px solid;
+    }
+    /* 取元素正中间的东西 */
+    .cover{
+      width: 300px;
+      height: 300px;
+      border: 1px solid;
+      /* xbackground-repeat: no-repeat; */
+      object-fit: cover;
+    }
+    .contain{
+      width: 300px;
+      height: 300px;
+      border: 1px solid;
+      object-fit: contain;
+    }
+    .fill{
+      width: 300px;
+      height: 300px;
+      border: 1px solid;
+      object-fit: fill;
+    }
+    div{
+      width: 300px;
+      height: 300px;
+      border: 1px solid;
+      line-height: 3000px; 
+
+    }
+    div img{
+      width: 100%;
+      xdisplay: block;
+      line-height: 3100px;
+      /* img里的行高？ */
+    }
+  </style>
+</head>
+<body>
+  <img class="cover" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1250088175,1825151141&fm=26&gp=0.jpg" alt="">
+  <img class="b"src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1250088175,1825151141&fm=26&gp=0.jpg" alt="">
+  <img class="contain"src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1250088175,1825151141&fm=26&gp=0.jpg" alt="">
+  <img class="fill"src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1250088175,1825151141&fm=26&gp=0.jpg" alt="">
+  <div>
+    <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1250088175,1825151141&fm=26&gp=0.jpg" alt="">
+  </div>
+</body>
+</html>
