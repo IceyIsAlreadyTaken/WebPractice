@@ -8,8 +8,11 @@
       margin: 0;
     }
     img{
+      position: absolute;
       height: 350px;
-      display: none;
+      top: 30px;
+      left: 0px;
+      opacity: 0;
     }
     input[type="radio"]{
       position: fixed;
@@ -28,7 +31,9 @@
       left: 80px;
     }
     input[type="radio"]:checked+img{
-      display: block;
+      transition: 0.5s linear;
+      /* display: block;  */
+      opacity: 1;
     }
   </style>
 </head>
