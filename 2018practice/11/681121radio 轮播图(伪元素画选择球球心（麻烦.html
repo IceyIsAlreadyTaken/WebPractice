@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    x*{
+      background-color:rgba(0,0,0,0.08);
+      box-sizing: border-box;
+    }
+    body{
+      margin: 0;
+    }
+    .father {
+      position: relative;
+      height: 300px;
+      width: 800px;
+      border: 1px solid;
+    }
+    .father  img{
+      height:300px;
+      /* opacity: 0; */
+    }
+    .father > div {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+    }
+    input{
+      position: relative;
+      top: 300px;
+      xdisplay: none;
+    }
+    input:checked +*+*+*+*+div{
+      opacity: 1;
+    }
+    input[id="a"]:checked ~ section > label[for="a"]::before,
+    input[id="b"]:checked ~ section > label[for="b"]::before,
+    input[id="c"]:checked ~ section > label[for="c"]::before,
+    input[id="d"]:checked ~ section > label[for="d"]::before,
+    input[id="e"]:checked ~ section > label[for="e"]::before{
+      border-color: #f5f7fd;
+    }
+    label{
+      display: inline-block;
+      font-size: 0;
+      bottom:10px;
+      height: 0;
+      width: 0;
+      border: 10px solid #b0b1b5;
+      border-radius: 99px;
+      margin-left: 10px;
+      position: relative;
+      cursor: pointer;
+    }
+    label::before{
+      position: absolute;
+      content: "0";
+      border: 5px solid #8e9095;
+      border-radius: 99px;
+      right: -5px;
+      top: -5px;
+    }
+    label:hover::before{
+      border-color: #f5f7fd;
+    }
+    section{
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      width: 180px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="father">
+    <input type="radio" name="choice" id="a">
+    <input type="radio" name="choice" id="b">
+    <input type="radio" name="choice" id="c">
+    <input type="radio" name="choice" id="d">
+    <input type="radio" name="choice" id="e">
+    <div>
+      <img src="https://i1.mifile.cn/a4/xmad_15427181908339_moblU.jpg" alt="">
+    </div>
+    <div>
+      <img src="https://i1.mifile.cn/a4/xmad_15427030673006_kxsPA.jpg" alt="">
+    </div>
+    <div>
+      <img src="https://i1.mifile.cn/a4/xmad_15425931208271_yKAHi.jpg" alt="">
+    </div>
+    <div>
+      <img src="https://i1.mifile.cn/a4/xmad_15427625003613_ueNoB.jpg" alt="">
+    </div>
+    <div>
+      <img src="https://i1.mifile.cn/a4/xmad_15427183351942_nUlys.jpg " alt="">
+    </div>
+    <section>
+      <label for="a"></label>
+      <label for="b"></label>
+      <label for="c"></label>
+      <label for="d"></label>
+      <label for="e"></label>
+    </section>
+  </div>
+</body>
+</html>

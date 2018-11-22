@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+    }
+    input{
+      display: none;
+    }
+    .bg{
+      position: absolute;
+      width: 600px;
+      height: 300px;
+      background-color: #eee;
+      border-radius: 150px;
+      transition: .6s cubic-bezier(.38,.09,.86,.13);
+    }
+    label > div{
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      width: 260px;
+      height: 260px;
+      background-color: #fffdef;
+      border-radius: 130px;
+      z-index: 5;
+      transition: .6s linear;
+    }
+    label > em{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      border: 0px solid #6edd5e;
+      border-radius: 150px;
+      box-sizing: border-box;
+      transition: border-width .4s;
+    }
+    input:checked +.bg > div{
+      left: 320px;
+    }
+    input:checked +.bg >em {
+      border-width: 150px;
+    }
+  </style>
+</head>
+<body> 
+  <div>
+    <input type="checkbox" id="check">
+      <label class="bg" for="check">
+        <div></div>
+        <em></em>
+      </label>
+  </div>
+   
+</body>
+</html>

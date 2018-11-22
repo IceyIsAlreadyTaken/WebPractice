@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    x*{
+      background-color:rgba(0,0,0,0.08);
+      box-sizing: border-box;
+    }
+    body{
+      margin: 0;
+    }
+    .father {
+      position: relative;
+      height: 300px;
+      width: 800px;
+      border: 1px solid;
+    }
+    .father img{
+      height:300px;
+    }
+    .father > div {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transition: 1s linear;
+    }
+    input{
+      position: relative;
+      top: 300px;
+      xdisplay: none;
+    }
+    input:checked +*+*+*+*+div{
+      opacity: 1;
+      z-index: 4
+    }
+    section > label{
+      display: inline-block;
+      bottom:10px;
+      height: 5px;
+      width: 5px;
+      border: 3px solid #b0b1b5;
+      border-radius: 99px;
+      margin-left: 10px;
+      position: relative;
+      cursor: pointer;
+      background-color: #382c51;
+      z-index: 6;
+    }
+    input[id="a"]:checked ~ section > label[for="a"],
+    input[id="b"]:checked ~ section > label[for="b"],
+    input[id="c"]:checked ~ section > label[for="c"],
+    input[id="d"]:checked ~ section > label[for="d"],
+    input[id="e"]:checked ~ section > label[for="e"],sectioin > label:hover
+    {
+      background-color: #f8f8f8;
+      border-color: #909090;
+    }
+    section{
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      width: 180px;
+      margin: auto;
+    }
+    /* 左右箭头 */
+    div > label{
+      position: absolute;
+      width: 40px;
+      height: 60px;
+      background-color: rgba(255,255,255,0.5);
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      line-height: 60px;
+      text-align: center;
+    }
+    div > label:nth-child(2){
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="father">
+    <input type="radio" name="choice" id="a" checked>
+    <input type="radio" name="choice" id="b">
+    <input type="radio" name="choice" id="c">
+    <input type="radio" name="choice" id="d">
+    <input type="radio" name="choice" id="e">
+    <div>
+      <label for="e">&lt;</label>
+      <label for="b">&gt;</label>
+      <img src="https://i1.mifile.cn/a4/xmad_15427181908339_moblU.jpg" alt="">
+    </div>
+    <div>
+      <label for="a">&lt;</label>
+      <label for="c">&gt;</label>
+      <img src="https://i1.mifile.cn/a4/xmad_15427030673006_kxsPA.jpg" alt="">
+    </div>
+    <div>
+      <label for="b">&lt;</label>
+      <label for="d">&gt;</label>
+      <img src="https://i1.mifile.cn/a4/xmad_15425931208271_yKAHi.jpg" alt="">
+    </div>
+    <div>
+      <label for="c">&lt;</label>
+      <label for="e">&gt;</label>
+      <img src="https://i1.mifile.cn/a4/xmad_15427625003613_ueNoB.jpg" alt="">
+    </div>
+    <div>
+      <label for="d">&lt;</label>
+      <label for="a">&gt;</label>
+      <img src="https://i1.mifile.cn/a4/xmad_15427183351942_nUlys.jpg " alt="">
+    </div>
+    <section>
+      <label for="a"></label>
+      <label for="b"></label>
+      <label for="c"></label>
+      <label for="d"></label>
+      <label for="e"></label>
+    </section>
+  </div>
+</body>
+</html>

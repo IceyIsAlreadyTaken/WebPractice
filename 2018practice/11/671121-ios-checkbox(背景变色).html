@@ -7,46 +7,42 @@
     body{
       margin: 0;
     }
+    input{
+      display: none;
+    }
     .bg{
       position: absolute;
       width: 600px;
       height: 300px;
       background-color: #eee;
-      border-radius: 150px 150px ;
+      border-radius: 150px;
+      transition: .6s cubic-bezier(.38,.09,.86,.13);
     }
-    .ball{
+    label > div{
       position: absolute;
       left: 20px;
       top: 20px;
       width: 260px;
       height: 260px;
       background-color: #fffdef;
-      border-radius: 130px 130px;
+      border-radius: 130px;
       z-index: 5;
-    }
-    /* .bg:hover{
-      background-color: green;
       transition: .6s linear;
-    } */
-    /* .ball:hover{
+    }
+    input:checked +.bg > div{
       left: 320px;
-      transition: .6s linear;
     }
- */ input:checked + .ball{
-      left: 320px;
-      transition: .6s linear;
-    }
-    input:checked + .ball +.bg{
+    input:checked +.bg{
       background-color: #54d16b;
-      transition: .6s cubic-bezier(.38,.09,.86,.13);
     }
   </style>
 </head>
 <body> 
   <div>
-    <input type="checkbox" id="check" hidden>
-    <label class="ball" for="check"></label>
-    <div class="bg" for="check"></div>
+    <input type="checkbox" id="check">
+      <label class="bg" for="check">
+        <div></div>
+      </label>
   </div>
    
 </body>
