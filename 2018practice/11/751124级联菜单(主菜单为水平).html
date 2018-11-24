@@ -4,54 +4,55 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <style>
-    x*{
+    *{
       background-color: rgba(0, 0, 0, 0.08);
     }
     ul{
-      display: inline-block; /* 让其宽度能够包裹字体 */
       list-style: none;
       padding: 0;
-      position: relative;
+      background-color: tan;
     }
     li{
-      position: relative; /* 让其后面的ul 有明确的祖先 */
-      /* 为什么会折行 */
-      white-space:nowrap; /* 不折行 */  
-      padding-right: 20px;
-      background-color: hotpink;
+      height: 30px;
+      width: 100px;
+      font-size: 16px;
+      text-align: center;
+      line-height: 30px;
     }
-    ul ul li{
-      visibility: hidden;
-      transition: visibility 0.5s 0.5s;
+    .father{
+      display: inline-block;
+      font-size:0;
+      box-sizing: border-box;
+      position: relative;
     }
-    ul ul{
-      position: absolute;
-      left: 100%;
-      top: 0;
-      /* display: block; */
-    }
-    ul ul::before{
-      content: ">";
-      position: absolute;
-      left: -20px;
+    .father > li {
+      font-size: 16px;
+      display: inline-block;
     }
     li:hover{
       background-color: orange;
     }
-    li:hover > ul >li{
-      visibility:visible; /* display 要改回来 */
-      /* xposition: absolute; *//* 元素absolute定位后生成块级框 */
+    li > ul {
+      display: none;
     }
-    /* vistbility 属性的 hidden 到 visibile 状态，转变的一瞬间即显示visible 状态，而visible 转变到hidden 则延迟后再表现hidden 值。 */
-
-    /* visibility属性的渐变：
-      一旦离开hidden状态就可见了
-      在hidden到visible的过程中，就是可见的
-      支持延迟及缓动 */
+    ul ul::before{
+      content: ">";
+      position: absolute;
+      right: 10px;
+    }
+    li:hover > ul{
+      display: block;
+      position: absolute;
+    }
+    ul ul ul{
+      position: absolute;
+      left: 100%;
+      top: 0;
+    }
   </style>
 </head>
 <body>
-  <ul>
+  <ul class="father">
     <li>亚洲
         <ul>
           <li>中国
@@ -97,7 +98,7 @@
               </ul>
           </li>
           <li>帕劳</li>
-          <li>密克罗尼西亚联邦</li>
+          <li>密克罗尼西亚</li>
         </ul>
     </li>
   </ul>
