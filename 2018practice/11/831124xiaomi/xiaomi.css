@@ -1,0 +1,93 @@
+html,body{
+  margin: 0;
+  font-family: sans-serif;
+}
+a{
+  text-decoration: none;
+}
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/*---------------------------------- 头 */
+.head{
+  background-color: #333333;
+  height: 40px;
+  font-size: 12px;
+  color: #b0b0b0;
+  position: relative;
+  z-index: 6;
+}
+.width1226{
+  width: 1226px;
+  margin: 0 auto;
+}
+.head-nav{
+  float: left;
+}
+.width1226  a{
+  color: #b0b0b0;
+  line-height: 40px;
+}
+.width1226  a:hover{
+  color: #ffffff;
+}
+.head-nav-span{
+  color: #424242;
+  margin: 0 4px;
+  line-height: 40px
+}
+.shoppingcar{
+  height: 40px;
+  width: 120px;
+  float: right;
+  background-color: #424242;
+  margin-left: 25px;
+  position: relative;
+}
+.shoppingcar > a{
+  display: inline-block;
+  line-height: 40px;
+  width: 120px;
+  color: #a3a3a3;
+  box-sizing: border-box;
+  padding-left: 42px;
+  position: relative;
+}
+.shoppingcar i{
+  display: inline-block;
+  xheight: 20px; 
+  width: 20px; /* 为什么高度宽度设置20他的位置在顶部，有问题 */
+  position: absolute;
+  left: 20px;
+  xtop: 0;
+  xborder: 1px solid white;
+}
+.shoppingcar-menu{
+  width: 316px;
+  height: 0px;
+  background-color: red;
+  position: absolute;
+  right: 0;
+  xdisplay: none;
+  transition:height .3s linear ;
+}
+.shoppingcar a:hover{
+  color: #fc6821;
+  background-color: #fdfdfd;
+}
+.shoppingcar a:hover + .shoppingcar-menu{
+  height: 98px;
+}
+.head-nav-right{
+  float: right;
+}
+
+/* ---------------------------------上 */
+
+
+
+
+
+
