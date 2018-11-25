@@ -48,7 +48,7 @@ ul{
 }
 .shoppingcar > a{
   display: inline-block;
-  line-height: 40px; /* 行高可以继承 */
+  line-height: 40px;
   width: 120px;
   color: #a3a3a3;
   box-sizing: border-box;
@@ -58,7 +58,7 @@ ul{
 .shoppingcar i{
   display: inline-block;
   height: 20px; 
-  width: 20px; /* 为什么高度宽度设置20他的位置在顶部，有问题 ，行高继承了*/
+  width: 20px; /* 为什么高度宽度设置20他的位置在顶部，有问题 */
   position: absolute;
   left: 20px;
   xtop: 0;
@@ -70,6 +70,7 @@ ul{
   background-color: red;
   position: absolute;
   right: 0;
+  xdisplay: none;
   transition:height .3s linear ;
 }
 .shoppingcar a:hover{
