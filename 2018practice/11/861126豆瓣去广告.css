@@ -1,0 +1,30 @@
+/*豆瓣主页*/
+div[id="dale_homepage_login_top_right"], div[id="dale_homepage_login_bottom_right"]
+{
+  display: none;
+}
+/*豆瓣读书*/
+div[id="dale_book_home_top_right"], div[id="dale_book_home_bottem_right"]
+{
+  display: none;
+}
+/*豆瓣电影*/
+div[id="dale_movie_home_top_right"], div[id="dale_movie_home_bottom_right"]
+{
+  display: none;
+}
+/*豆瓣音乐*/
+div[id="dale_music_home_top_right"], div[id="dale_music_home_bottom_right"]
+{
+  display: none;
+}
+/*豆瓣同城*/
+div[id="dale_location_home_top_right"], div[id="dale_location_home_bottom_right"]
+{
+  display: none;
+}
+/*豆瓣小组*/
+div[id="dale_newgroup_home_bottom_right_201211"]
+{
+  display: none;
+}
