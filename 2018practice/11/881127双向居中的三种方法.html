@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    *{
+      background-color: rgba(0,0,0,0.09);
+    }
+    div{
+      width: 300px;
+      height: 300px;
+      position: relative;
+    }
+    .d1 span{
+      width: 100px; 
+      height: 100px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    .d2{
+      text-align: center;
+      line-height: 300px;
+    }
+    .d2 span{
+      line-height: normal;
+      width: 100px;
+      vertical-align: middle;
+      display: inline-block;
+    }
+    .d3{
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+    .d3 span{
+      display: inline-block;
+      width: 160px;
+    }
+  </style>
+</head>
+<body>
+  <h2>定位居中</h2>
+  <hr>
+  <div class="d1">
+    <span>不写宽度或高度则宽度或高度将会被拉长</span>
+  </div>
+  <h2>行内居中</h2>
+  <hr>
+  <div class="d2">busxxx
+    <span>行LoremLoremxxxxx hjbj harum nisi omnis d</span>
+    <!-- 为什么div里面文字的行高和span 一样高 -->
+    <!-- 为什么div 里设置的行高没用 选中的选取不和下面的一样高--> 
+    <!-- 答：选取无任何意义，不用在意 -->
+    <!-- vertical是 x 的中点,要想完全中点，则可以把字号设置为零 -->
+  </div>
+  <h2>表格居中</h3>
+  <hr>
+  <div class="d3">
+    <span>表格居中</span>
+  </div>
+</body>
+</html>

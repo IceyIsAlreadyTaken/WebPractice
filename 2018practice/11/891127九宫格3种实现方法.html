@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  /* 九宫格纯定位 */
+    .god{
+      width: 300px;
+      height: 300px;
+      box-sizing: border-box;
+      position: relative;
+    }
+    div{
+      width: 100px ;
+      height: 100px;
+      border: 3px solid blue;
+      box-sizing: border-box;
+      position: absolute;
+      text-align: center;
+      line-height: 100px;
+    }
+    .b{
+      left: 97px;
+    }
+    .c{
+      left: 194px;
+    }
+    .d{
+      top: 97px;
+    }
+    .e{
+      top: 97px;
+      left:97px;
+    }
+    .f{
+      top: 97px;
+      left:194px;
+    }
+    .g{
+      top: 194px;
+    }
+    .h{
+      top: 194px;
+      left: 97px;
+    }
+    .i{
+      top: 194px;
+      left: 194px;
+    }
+    div:hover{
+      z-index: 1;
+      border-color: red;
+    }
+    /* =========================================================== */
+    .fudong{
+      height: 300px;
+      width: 300px;
+    }
+    .fudong div{
+      height: 100px;
+      width: 100px;
+      border: 10px solid green;
+      box-sizing: border-box;
+      float: left;
+      margin: -10px -10px 0 0;
+      position: relative;
+    }
+    .fudong div:hover{
+      z-index: 100;
+      border-color: tan;
+    }
+    /* =========================================================== */
+    table{
+      border-collapse: collapse;
+    }
+    tr,col{
+      border: 3px solid;
+    }
+    td{
+      width: 100px;
+      height: 100px;
+      xborder: 3px solid;
+      box-sizing: border-box;
+    }
+    td:hover{
+      border:3px solid red;
+    }
+    
+  </style>
+</head>
+<body>
+  <h2>九宫格纯定位</h2>
+  <section class="god">
+    <div class="a">1</div>
+    <div class="b">2</div>
+    <div class="c">3</div>
+    <div class="d">4</div>
+    <div class="e">5</div>
+    <div class="f">6</div>
+    <div class="g">7</div>
+    <div class="h">8</div>
+    <div class="i">9</div>
+  </section>
+  <hr>
+  <h2>浮动</h2>
+  <section class="fudong">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </section>
+  <hr>
+  <h3>表格</h3>
+  <table>
+    <col>
+    <col>
+    <col>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+  </table>
+</body>
+</html>

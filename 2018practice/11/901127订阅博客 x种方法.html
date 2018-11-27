@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    *{
+      background-color: rgba(0,0,0,0.09);
+    }
+    .trick{
+      border-bottom: 5px solid red;
+      height: 100px;
+      width: 200px;
+      display: inline-block;
+      position: relative;
+    }
+    .trick::before{
+      content: "订阅博客";
+      position: absolute;
+      bottom: 0px;
+      transition: font-size .5s linear;
+    }
+    .trick:hover::before{
+      font-size: 3em;
+    }
+    /* ============================= */
+    .sub{
+      border-bottom: 5px solid red;
+      height: 100px;
+      width: 200px;
+      display: inline-block;
+      position: relative;
+      line-height: 180px;
+      transition: 1s;
+    }
+    .sub:hover{
+      font-size: 3em;
+      line-height: 150px;
+    }
+    /* ============================= */
+    .pad{
+      border-bottom: 5px solid red;
+      height: 100px;
+      width: 200px;
+      display: inline-block;
+      padding-top: 75px;
+      transition: 1s;
+      box-sizing: border-box;
+    }
+    .pad:hover{
+      font-size: 3em;
+      padding-top: 40px;
+    }
+    /* ============================= */
+    .tab{
+      border-bottom: 5px solid red;
+      height: 100px;
+      width: 200px;
+      display: table-cell;
+      transition: 1s;
+      vertical-align: bottom;
+    }
+    .tab:hover{
+      font-size: 3em;
+    }
+    span
+  </style>
+</head>
+<body>
+  <h2>伪元素（2个元素）</h2>
+  <span class="trick"></span>
+  <hr> 
+  <h2>行高字号一起动</h2>
+  <span class="sub">订阅博客</span>
+  <h2>padding</h2>
+  <span class="pad">订阅博客</span>
+  <hr>
+  <h2>table（方法最好)</h2>
+  <span class="tab">订阅博客</span>
+</body>
+</html>
