@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  *{
+    box-sizing: border-box;
+  }
+    .input-group{
+      display: table;
+      width: 500px;
+    }
+    .input-group > *{
+      display: table-cell;
+      border: 1px solid;
+      width: 1%;
+      outline: none;
+    }
+    .input-group >input{
+      width: 100%;
+      font-size: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="input-group">
+      <div class="input-group-addon">$$$$$$$</div>
+      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+      <div class="input-group-addon">???.00</div>
+  </div>
+</body>
+</html>
