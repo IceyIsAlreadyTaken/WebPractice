@@ -99,6 +99,7 @@ ul{
   left: 0;
   right: 0;
   margin: auto;
+  color: #424242;
 
 }
 .head-nav-right{
@@ -119,7 +120,7 @@ ul{
   height: 55px;
   width: 55px;
   background:no-repeat center/100% url("xiaomi.png");
-  border: 1px solid;
+  xborder: 1px solid;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -168,15 +169,39 @@ ul{
   top: 25px;
   box-sizing: border-box;
 }
+.search .icon-xiazai15{
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
 .search-search-out:hover>.search-search{
   border-color: #b0b0b0;
 }
 .search-search-out:hover>input {
   border-color: #b0b0b0;
 }
-
-
-
+.search-search:hover{
+  background-color: #fc6821;
+  border-color:#fc6821 !important;
+  color: white; 
+}
+/* -------------------------------轮播图 */
+.lunbotu{
+  position: relative;
+}
+.lunbotu-in{
+  width: 1226px;
+  height: 460px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
 
 
 
