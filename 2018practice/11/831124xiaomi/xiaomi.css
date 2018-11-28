@@ -1,3 +1,6 @@
+*{
+  background-color: rgba(0, 0, 0, 0.08);
+}
 html,body{
   margin: 0;
   font-family: sans-serif;
@@ -73,7 +76,6 @@ ul{
   right: 0;
   transition:all .3s linear ;
   overflow: hidden;
-  Xtransition:box-shadow .3s linear;
   box-shadow: 0;
 }
 .shoppingcar a:hover{
@@ -103,10 +105,76 @@ ul{
   float: right;
 }
 /* ---------------------------------上 */
-/* 小米图标 */
-.shang-mi{
-  
+/* 小米图标搜索框 */
+.search{
+  height: 100px;
 }
+.search-in{
+  height: 100px;
+  width: 1226px;
+  margin: 0 auto;
+  position: relative;
+}
+.search-a55{
+  height: 55px;
+  width: 55px;
+  background:no-repeat center/100% url("xiaomi.png");
+  border: 1px solid;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  float: left;
+}
+.search-in ul{
+  height: 100px;
+  margin-left: 245px;
+  display: inline-block;
+}
+.search-in li{
+  display: inline-block;
+}
+.search-in li a{
+  display: inline-block;
+  line-height: 100px;
+  color: #333333;
+  font-size: 16px;
+  padding-right: 16px;
+}
+.search-in li a:hover{
+  color: #fc6821;
+}
+.search-search-out{
+  float: right;
+  top: 25px;
+}
+.search input{
+  height: 50px;
+  float: right;
+  position: relative;
+  top: 25px;
+  outline: none;
+  border: 1px solid #e0e0e0;
+  border-right: none;
+}
+.search-search{
+  height: 50px;
+  width: 50px;
+  border: 1px solid #e0e0e0;
+  float: right;
+  position: relative;
+  top: 25px;
+  box-sizing: border-box;
+}
+.search-search-out:hover>.search-search{
+  border-color: #b0b0b0;
+}
+.search-search-out:hover>input {
+  border-color: #b0b0b0;
+}
+
 
 
 

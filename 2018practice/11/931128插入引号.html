@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body{
+      quotes: "[[[" "]]]" "'''" "'''";
+    }
+    div::before{
+      content: open-quote;
+    }
+    div::after{
+      content: close-quote;
+    }
+    span::before{
+      content: open-quote;
+    }
+    span::after{
+      content: no-close-quote; /* 引号必须成对出现 */
+    }
+  </style>
+</head>
+<body>
+  <div>
+    Lorem <span>ipsum dolor</span> sit amet, consectetur adipisicing elit. Adipisci neque qui et placeat architecto veniam veritatis eligendi, vel optio maiores doloremque, dicta sint ut nihil exercitationem non consequuntur error enim.
+  </div>
+
+</body>
+</html>
