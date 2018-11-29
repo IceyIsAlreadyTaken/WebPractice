@@ -109,6 +109,7 @@ ul{
 /* 小米图标搜索框 */
 .search{
   height: 100px;
+  position: relative;
 }
 .search-in{
   height: 100px;
@@ -189,6 +190,21 @@ ul{
   background-color: #fc6821;
   border-color:#fc6821 !important;
   color: white; 
+}
+ /* hover 框 */
+.search-hover{
+  position: absolute;
+  height: 123px;
+  width: 100%;
+  background-color: white;
+  top: 100px;
+  z-index: 9999;
+  border: 1px solid;
+  transition: all 0.3s linear;
+}
+.search-a55 a:hover .search-hover{
+  height: 230px;
+  background-color: #fdfdfd;
 }
 /* -------------------------------轮播图 */
 .lunbotu{
@@ -288,4 +304,50 @@ input[type="radio"]:checked+*+*+*+*+div{
   right: 0;
   margin: auto;
 }
+/* ==========轮播图左边导航 */
+.daohang{
+  width: 234px;
+  height: 460px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.daohang ul{
+  width: 234px;
+  height: 420px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.daohang li{
+  position: relative;
+  width: 234px;
+  height: 42px;
+  padding-left: 20px;
+  box-sizing: border-box;
+  color: white;
+}
+.daohang span{
+  line-height: 42px;
+}
+.daohang ul li i{
+  width: 10px;
+  height: 10px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  position: absolute;
+  right: 20px;
+}
+.daohang li:hover{
+  background-color: orange;
+}
+
+
+
+
+
+
 

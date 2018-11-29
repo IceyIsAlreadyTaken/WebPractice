@@ -1,130 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
   <style>
-    x*{
-      background-color:rgba(0,0,0,0.08);
-      box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin: 0;
+  }
+
+  .head {
+    width: 100%;
+    height: 100%;
+    background: url("https://mobike.com/cn/assets/themes/moby/img/landing/hero-bg-4.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position:0% 70%;
+    margin-bottom: 2px;
+  }
+
+  .four {
+    width: 100%;
+    height: 260px;
+  }
+
+  .four1 {
+    height: 260px;
+    width: calc((100% - 6px)/4);
+    background: url("https://mobike.com/cn/assets/themes/moby/img/promo-01.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: left;
+    margin-right: 2px;
+  }
+
+  .four2 {
+    height: 260px;
+    width: calc((100% - 6px)/4);
+    background: url("https://mobike.com/cn/assets/themes/moby/img/promo-02.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: left;
+    margin-right: 2px;
+  }
+
+  .four3 {
+    height: 260px;
+    width: calc((100% - 6px)/4);
+    background: url("https://mobike.com/cn/assets/themes/moby/img/promo-03.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: left;
+    margin-right: 2px;
+  }
+
+  .four4 {
+    height: 260px;
+    width: calc((100% - 6px)/4);
+    background: url("https://mobike.com/cn/assets/themes/moby/img/promo-04.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: left;
+  }
+
+  @media (max-width: 1080px) {
+    .head {
+      width: 100%;
+      height: 520px;
     }
-    body{
-      margin: 0;
+
+    .four1 {
+      width: calc((100% - 2px)/2);
+      margin-bottom: 2px
     }
-    .father {
-      position: relative;
-      height: 300px;
-      width: 800px;
-      border: 1px solid;
+
+    .four2 {
+      width: calc((100% - 2px)/2);
+      margin: 0 0 2px 0;
     }
-    .father img{
-      height:300px;
+
+    .four3 {
+      width: calc((100% - 2px)/2);
+      margin-right: 2px;
     }
-    .father > div {
-      position: absolute;
-      left: 0;
-      top: 0;
-      opacity: 0;
-      transition: 1s linear;
+
+    .four4 {
+      width: calc((100% - 2px)/2);
     }
-    input{
-      position: relative;
-      top: 300px;
-      xdisplay: none;
+  @media (max-width: 640px) {
+    .head{
+      background-position: right;
     }
-    input:checked +*+*+*+*+div{
-      opacity: 1;
-      z-index: 4;
+    .four1,.four2,.four3,.four4 {
+      width: 100%;
+      margin: 0 0 2px 0;
     }
-    section > label{
-      display: inline-block;
-      bottom:10px;
-      height: 5px;
-      width: 5px;
-      border: 3px solid #b0b1b5;
-      border-radius: 99px;
-      margin-left: 10px;
-      position: relative;
-      cursor: pointer;
-      background-color: #382c51;
-      z-index: 6;
-    }
-    input[id="a"]:checked ~ section > label[for="a"],
-    input[id="b"]:checked ~ section > label[for="b"],
-    input[id="c"]:checked ~ section > label[for="c"],
-    input[id="d"]:checked ~ section > label[for="d"],
-    input[id="e"]:checked ~ section > label[for="e"],sectioin > label:hover
-    {
-      background-color: #f8f8f8;
-      border-color: #909090;
-    }
-    section{
-      position: absolute;
-      bottom: 10px;
-      left: 0;
-      right: 0;
-      width: 180px;
-      margin: auto;
-    }
-    /* 左右箭头 */
-    div > label{
-      position: absolute;
-      width: 40px;
-      height: 60px;
-      background-color: rgba(255,255,255,0.5);
-      top: 0;
-      bottom: 0;
-      margin: auto;
-      line-height: 60px;
-      text-align: center;
-    }
-    div > label:nth-child(2){
-      right: 0;
-    }
-    input[id="a"]:checked + input[id="b"]{
-      
-    }
+  }
   </style>
 </head>
+
 <body>
-  <div class="father">
-    <input type="radio" name="choice" id="a" checked>
-    <input type="radio" name="choice" id="b">
-    <input type="radio" name="choice" id="c">
-    <input type="radio" name="choice" id="d">
-    <input type="radio" name="choice" id="e">
-    <div>
-      <label for="e">&lt;</label>
-      <label for="b">&gt;</label>
-      <img src="https://i1.mifile.cn/a4/xmad_15427181908339_moblU.jpg" alt="">
-    </div>
-    <div>
-      <label for="a">&lt;</label>
-      <label for="c">&gt;</label>
-      <img src="https://i1.mifile.cn/a4/xmad_15427030673006_kxsPA.jpg" alt="">
-    </div>
-    <div>
-      <label for="b">&lt;</label>
-      <label for="d">&gt;</label>
-      <img src="https://i1.mifile.cn/a4/xmad_15425931208271_yKAHi.jpg" alt="">
-    </div>
-    <div>
-      <label for="c">&lt;</label>
-      <label for="e">&gt;</label>
-      <img src="https://i1.mifile.cn/a4/xmad_15427625003613_ueNoB.jpg" alt="">
-    </div>
-    <div>
-      <label for="d">&lt;</label>
-      <label for="a">&gt;</label>
-      <img src="https://i1.mifile.cn/a4/xmad_15427183351942_nUlys.jpg " alt="">
-    </div>
-    <section>
-      <label for="a"></label>
-      <label for="b"></label>
-      <label for="c"></label>
-      <label for="d"></label>
-      <label for="e"></label>
-    </section>
+  <div class="head"></div>
+  <div class="four">
+    <div class="four1"></div>
+    <div class="four2"></div>
+    <div class="four3"></div>
+    <div class="four4"></div>
   </div>
 </body>
+
 </html>
