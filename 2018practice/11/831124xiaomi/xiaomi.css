@@ -1,9 +1,14 @@
-x*{
+*{
   background-color: rgba(0, 0, 0, 0.08);
 }
-html,body{
+html{
+  width: 100%;
+  overflow-y: scroll;
+  font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
+body{
   margin: 0;
-  font-family: sans-serif;
+  width: 100%
 }
 a{
   text-decoration: none;
@@ -12,6 +17,9 @@ ul{
   list-style: none;
   margin: 0;
   padding: 0;
+}
+.wrapper{
+  width: 100%;
 }
 /*---------------------------------- 头 */
 .head{
@@ -28,10 +36,14 @@ ul{
 }
 .head-nav{
   float: left;
+  font-size: 0px;
+
 }
 .width1226  a{
   color: #b0b0b0;
   line-height: 40px;
+  font-size: 12px;
+  /* vertical-align: bottom; */ /* font-size为0时，基线发生变化，导致变高 */
 }
 .width1226  a:hover{
   color: #ffffff;
@@ -110,25 +122,23 @@ ul{
 .search{
   height: 100px;
   position: relative;
+  width: 100%;
 }
 .search-in{
   height: 100px;
   width: 1226px;
   margin: 0 auto;
-  position: relative;
 }
 .search-a55{
   height: 55px;
   width: 55px;
-  background:no-repeat center/100% url("xiaomi.png");
-  xborder: 1px solid;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  margin-top: auto;
-  margin-bottom: auto;
   float: left;
+  background:url("xiaomi.png");
+  background-repeat:no-repeat; 
+  background-size:contain;
+  position: relative; 
+  margin-top: 25.5px;
+  
 }
 .search-in ul{
   height: 100px;
@@ -194,17 +204,26 @@ ul{
  /* hover 框 */
 .search-hover{
   position: absolute;
-  height: 123px;
+  height: 0px;
   width: 100%;
   background-color: white;
   top: 100px;
+  left: 0;
   z-index: 9999;
   border: 1px solid;
   transition: all 0.3s linear;
 }
-.search-a55 a:hover .search-hover{
+.search-in ul li a:hover + .search-hover{
   height: 230px;
   background-color: #fdfdfd;
+}
+.search-hover:hover{
+  height: 230px;
+  background-color: #fdfdfd;
+}
+.search-hover-in in{
+
+
 }
 /* -------------------------------轮播图 */
 .lunbotu{
