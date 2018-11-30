@@ -1,10 +1,11 @@
 *{
-  background-color: rgba(0, 0, 0, 0.08);
+  xbackground-color: rgba(0, 0, 0, 0.08);
 }
 html{
   width: 100%;
-  overflow-y: scroll;
+  xoverflow-y: scroll;
   font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+  box-sizing: inherit;
 }
 body{
   margin: 0;
@@ -43,15 +44,16 @@ ul{
   color: #b0b0b0;
   line-height: 40px;
   font-size: 12px;
-  /* vertical-align: bottom; */ /* font-size为0时，基线发生变化，导致变高 */
+  vertical-align: bottom; /* font-size为0时，基线发生变化，导致变高 */
 }
 .width1226  a:hover{
   color: #ffffff;
 }
 .head-nav-span{
   color: #424242;
-  margin: 0 4px;
-  line-height: 40px
+  margin: 0 6px;
+  line-height: 40px;
+  font-size: 12px;
 }
 .shoppingcar{
   height: 40px;
@@ -97,10 +99,12 @@ ul{
 .shoppingcar a:hover + .shoppingcar-menu{
   height: 98px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+  z-index: 100;
 }
 .shoppingcar-menu:hover{
   height: 98px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+  z-index: 100;
 }
 .shoppingcar-menu > div {
   position: absolute;
@@ -117,8 +121,7 @@ ul{
 .head-nav-right{
   float: right;
 }
-/* ---------------------------------上 */
-/* 小米图标搜索框 */
+/* ===========================小米图标搜索框 */
 .search{
   height: 100px;
   position: relative;
@@ -137,12 +140,12 @@ ul{
   background-repeat:no-repeat; 
   background-size:contain;
   position: relative; 
-  margin-top: 25.5px;
+  margin-top: 22.5px;
   
 }
 .search-in ul{
   height: 100px;
-  margin-left: 245px;
+  margin-left: 190px;
   display: inline-block;
 }
 .search-in li{
@@ -160,16 +163,8 @@ ul{
 }
 .search-search-out{
   float: right;
-  top: 25px;
-}
-.search input{
-  height: 50px;
-  float: right;
   position: relative;
   top: 25px;
-  outline: none;
-  border: 1px solid #e0e0e0;
-  border-right: none;
 }
 .search-search{
   height: 50px;
@@ -177,18 +172,56 @@ ul{
   border: 1px solid #e0e0e0;
   float: right;
   position: relative;
-  top: 25px;
   box-sizing: border-box;
+  text-align: center;
 }
 .search .icon-xiazai15{
+  display: inline-block;
+  line-height: 50px;
+  width: 20px;
+}
+.search input{
+  height: 50px;
+  width: 245px;
+  float: left;
+  position: relative;
+  outline: none;
+  border: 1px solid #e0e0e0;
+  border-right: none;
+}
+.search-search-out1{
+  font-size: 12px;
+  color: #757575;
   position: absolute;
-  width: 16px;
-  height: 16px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  display: inline-block;
+  left: 115px;
+  top: 15px;
+  line-height: 20px;
+  width: 45px;
+  background-color: #eee;
+  text-align: center;
+  z-index: 1;
+}
+.search-search-out1:hover{
+  color: white;
+  background-color: #fc6821;
+}
+.search-search-out2{
+  font-size: 12px;
+  color: #757575;
+  position: absolute;
+  display: inline-block;
+  left: 165px;
+  top: 15px;
+  line-height: 20px;
+  width: 70px;
+  background-color: #eee;
+  text-align: center;
+  z-index: 1;
+}
+.search-search-out2:hover{
+  color: white;
+  background-color: #fc6821;
 }
 .search-search-out:hover>.search-search{
   border-color: #b0b0b0;
@@ -201,7 +234,31 @@ ul{
   border-color:#fc6821 !important;
   color: white; 
 }
- /* hover 框 */
+.search-down{
+  position: absolute;
+  left: 0;
+  top: 50px;
+  width: 244px;
+  height: 200px;
+  z-index: 10;
+  background-color: white;
+  display: none;
+}
+.search input:focus +*+ .search-down{
+  display: block;
+  border: 1px solid #fc6821;
+  border-top: none;
+}
+.search input:focus,.search input:focus + .search-search{
+  border-color: #fc6821;
+}
+
+
+
+
+
+
+/*=========== hover 框 */
 .search-hover{
   position: absolute;
   height: 0px;
