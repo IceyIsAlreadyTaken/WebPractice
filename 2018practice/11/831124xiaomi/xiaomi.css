@@ -143,24 +143,130 @@ ul{
   margin-top: 22.5px;
   
 }
-.search-in ul{
+.search-in > ul{
   height: 100px;
   margin-left: 190px;
   display: inline-block;
 }
-.search-in li{
+.search-in > ul > li{
   display: inline-block;
 }
-.search-in li a{
+.search-in > ul > li > a{
   display: inline-block;
   line-height: 100px;
   color: #333333;
   font-size: 16px;
   padding-right: 16px;
 }
-.search-in li a:hover{
+.search-in >ul > li > a:hover{
   color: #fc6821;
 }
+/*---------------- hover 框----------- */
+.search-hover{
+  position: absolute;
+  height: 0px;
+  width: 100%;
+  top: 100px;
+  left: 0;
+  z-index: 30;
+  transition: all .5s linear;
+  background-color: #fdfdfd;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 0 #D3D3D3;
+  border-top: 1px solid white;
+}
+.search-in ul li a:hover + .search-hover{
+  border-top: 1px solid #e0e0e0;
+  height: 230px;
+  z-index: 30;
+  box-shadow: 0 2px 1px 0px #D3D3D3;
+}
+.search-hover:hover{
+  height: 230px;
+  background-color: #fdfdfd;
+}
+.search-hover:hover>ul>li:first-child::before{
+  z-index: 50;
+}
+
+/* ------------------------------------ */
+.search-hover-in{
+  position: absolute;
+  height: 230px;
+  width: 1200px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  font-size: 0;
+}
+.search-hover-in > li{
+  padding: 0;
+  float: left;
+  width: 200px;
+  height: 230px;
+  font-size: 12px;
+  position: relative;
+}
+.search-hover-in > li:first-child::before,.search-hover-in > li:nth-child(2)::before,.search-hover-in > li:nth-child(3)::before{
+  content: "新品";
+  width: 64px;
+  height: 19px;
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  color: #fc6821;
+  border: 1px solid #fc6821;
+  text-align: center;
+  vertical-align: center;
+  z-index: -20;
+}
+.search-hover-in > li > img{
+  width: 160px;
+  height: 110px;
+  position: absolute;
+  top: 45px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.search-hover-in .division{
+  position: absolute;
+  top: 35px;
+  width: 1px;
+  height: 100px;
+  right: 0px;
+  border-right: 1px solid #e0e0e0;
+}
+.search-hover-in .mingcheng{
+  height: 20px;
+  width: 100px;
+  position: absolute;
+  line-height: 20px;
+  top:166px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.search-hover-in .jiage{
+  height: 20px;
+  width: 100px;
+  position: absolute;
+  line-height: 20px;
+  top:185px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color:#fc6821;
+}
+/* ----------最右搜索框------------ */
 .search-search-out{
   float: right;
   position: relative;
@@ -240,7 +346,6 @@ ul{
   top: 50px;
   width: 244px;
   height: 200px;
-  z-index: 10;
   background-color: white;
   display: none;
 }
@@ -248,6 +353,7 @@ ul{
   display: block;
   border: 1px solid #fc6821;
   border-top: none;
+  z-index: 5;
 }
 .search input:focus,.search input:focus + .search-search{
   border-color: #fc6821;
@@ -258,30 +364,7 @@ ul{
 
 
 
-/*=========== hover 框 */
-.search-hover{
-  position: absolute;
-  height: 0px;
-  width: 100%;
-  background-color: white;
-  top: 100px;
-  left: 0;
-  z-index: 9999;
-  border: 1px solid;
-  transition: all 0.3s linear;
-}
-.search-in ul li a:hover + .search-hover{
-  height: 230px;
-  background-color: #fdfdfd;
-}
-.search-hover:hover{
-  height: 230px;
-  background-color: #fdfdfd;
-}
-.search-hover-in in{
 
-
-}
 /* -------------------------------轮播图 */
 .lunbotu{
   position: relative;
@@ -347,6 +430,7 @@ input[type="radio"]:checked+*+*+*+*+div{
   bottom: 0;
   margin-top: auto;
   margin-bottom: auto;
+  z-index: 1;
   /* border: 1px solid; */
 }
 .lunbotu-pic div label:last-of-type{
@@ -358,6 +442,7 @@ input[type="radio"]:checked+*+*+*+*+div{
   margin-bottom: auto;
   width: 41px;
   height: 69px;
+  z-index: 1;
 /*   border: 1px solid; */
 }
 .lunbotu-pic div label:hover{
@@ -380,7 +465,7 @@ input[type="radio"]:checked+*+*+*+*+div{
   right: 0;
   margin: auto;
 }
-/* ==========轮播图左边导航 */
+/* -------------------轮播图左边导航------- */
 .daohang{
   width: 234px;
   height: 460px;
@@ -389,39 +474,40 @@ input[type="radio"]:checked+*+*+*+*+div{
   top: 0;
   background-color: rgba(0, 0, 0, 0.6);
 }
-.daohang ul{
-  width: 234px;
-  height: 420px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto;
+.daohang>ul{
+  padding-top: 20px;
 }
-.daohang li{
-  position: relative;
+.daohang>ul>li{
   width: 234px;
   height: 42px;
+  line-height: 42px;
   padding-left: 20px;
   box-sizing: border-box;
   color: white;
 }
-.daohang span{
+.daohang>ul>li>span{
   line-height: 42px;
 }
-.daohang ul li i{
-  width: 10px;
-  height: 10px;
-  top: 0;
+.daohang>ul>li>i{
+  width: 25px;
+  height: 25px;
+  float: right;
+  top: ;
+  /* top: 0;
   bottom: 0;
+  right: 0;
   margin: auto 0;
-  position: absolute;
-  right: 20px;
+  position: absolute; */ 
 }
-.daohang li:hover{
+.daohang>ul>li:hover{
   background-color: orange;
 }
-
-
+/* ---------------daohang 右边 -----------*/
+.daohang-right{
+  width: 992px;
+  height: 460px;
+  position: absolute;
+}
 
 
 
