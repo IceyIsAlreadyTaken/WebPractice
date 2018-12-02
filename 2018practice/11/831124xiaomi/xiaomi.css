@@ -121,6 +121,7 @@ ul{
 .head-nav-right{
   float: right;
 }
+
 /* ===========================小米图标搜索框 */
 .search{
   height: 100px;
@@ -141,7 +142,6 @@ ul{
   background-size:contain;
   position: relative; 
   margin-top: 22.5px;
-  
 }
 .search-in > ul{
   height: 100px;
@@ -161,6 +161,7 @@ ul{
 .search-in >ul > li > a:hover{
   color: #fc6821;
 }
+
 /*---------------- hover 框----------- */
 .search-hover{
   position: absolute;
@@ -169,7 +170,7 @@ ul{
   top: 100px;
   left: 0;
   z-index: 30;
-  transition: all .5s linear;
+  transition: all .2s linear;
   background-color: #fdfdfd;
   overflow: hidden;
   box-sizing: border-box;
@@ -183,8 +184,10 @@ ul{
   box-shadow: 0 2px 1px 0px #D3D3D3;
 }
 .search-hover:hover{
+  border-top: 1px solid #e0e0e0;
   height: 230px;
   background-color: #fdfdfd;
+  box-shadow: 0 2px 1px 0px #D3D3D3;
 }
 .search-hover:hover>ul>li:first-child::before{
   z-index: 50;
@@ -416,11 +419,11 @@ input[type="radio"]:checked+*+*+*+*+div{
 .lunbotu-pic input[id="r3"]:checked ~ section > label[for="r3"],
 .lunbotu-pic input[id="r4"]:checked ~ section > label[for="r4"],
 .lunbotu-pic input[id="r5"]:checked ~ section > label[for="r5"],
-.lunbotu-pic section > label:hover
-    {
-      background-color: #f8f8f8;
-      border-color: #909090;
-    }
+.lunbotu-pic section > label:hover{
+  background-color: #f8f8f8;
+  border-color: #909090;
+}
+
 .lunbotu-pic div label:first-of-type{
   position: absolute;
   left: 234px;
@@ -451,12 +454,12 @@ input[type="radio"]:checked+*+*+*+*+div{
 .lunbotu-pic div label:hover > i{
   color: white;
 }
-.lunbotu-pic div label i{
+.lunbotu-pic div>label>i{
   font-size: 30px;
   font-weight: bold;
   color: #ddd;
   width: 30px;
-  height: 30px;
+  height: 40px;
   position: absolute;
   z-index: 999;
   top: 0;
@@ -492,18 +495,12 @@ input[type="radio"]:checked+*+*+*+*+div{
   width: 25px;
   height: 25px;
   float: right;
-  top: ;
-  /* top: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto 0;
-  position: absolute; */ 
 }
 .daohang>ul>li:hover{
   background-color: orange;
 }
 /* ---------------daohang 右边 -----------*/
-.daohang-right{
+x.daohang-right{
   width: 992px;
   height: 460px;
   position: absolute;
