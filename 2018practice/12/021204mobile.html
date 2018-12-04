@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Document</title>
+  <style>
+    div{
+      width: 100vw;
+      height: 100vw;
+      margin: auto;
+      border: 1px solid;
+    }
+    figure{
+      margin: 0;
+    }
+    .name{
+      float: left;
+    }
+    .blog{
+      float: right;
+    }
+    hr{
+      clear: left;
+    }
+    p{
+      margin-bottom: 5px;
+      margin-top: 0;
+    }
+    main{
+      width: 360px;
+      height: 500px;
+      position: relative;
+      margin: auto;
+    }
+    .one{
+      width: 180px;
+      height: 270px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .one:hover{
+      z-index: 2;
+    }
+    .one img{
+      width: 180px;
+    }
+    .two{
+      width: 180px;
+      height: 270px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      margin:0 auto;
+      margin-top: -135px;
+      z-index: 1;
+    }
+    .two img{
+      width: 180px;
+    }
+    .three{
+      width: 180px;
+      height: 270px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+    .three:hover{
+      z-index: 2;
+    }
+    .three img{
+      width: 180px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p class="name">Daniel Eden, Designer</p>
+    <p class="blog">Blog&nbsp;&nbsp;Portfolio&nbsp;&nbsp;Library</p>
+    <hr>
+    <main>
+      <figure class="one">
+        <img src="https://daneden.imgix.net/2018/10/portrait.jpg?auto=format&dpr=2&fm=pjpg&crop=faces&fit=max&w=200&h=1&ixlib=react-7.2.0" alt="">
+      </figure>
+      <figure class="two">
+        <img src="https://daneden.imgix.net/2018/10/GenArt.png?auto=format&dpr=2&fm=pjpg&crop=faces&fit=max&w=200&h=1&ixlib=react-7.2.0" alt="">
+      </figure>
+      <figure class="three">
+        <img src="https://daneden.imgix.net/2018/10/home.jpg?auto=format&dpr=2&fm=pjpg&crop=faces&fit=max&w=200&h=1&ixlib=react-7.2.0" alt="">
+      </figure>
+    </main>
+    
+  </div>
+</body>
+</html>
