@@ -34,7 +34,7 @@
     }
     .two{
       width: 180px;
-      height: 270px;
+      height: 300px;
       position: absolute;
       top: 50%;
       left: 0;
@@ -60,14 +60,8 @@
       main{
         width: 90vw;
       }
-      .one{
-        width: 45vw;
-      }
-      .two{
-        width: 45vw;
-      }
-      .three{
-        width: 45vw;
+      .one,.two,.three{
+        width: calc(90vw/640px*180px);
       }
     }
   </style>
