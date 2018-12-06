@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .wrap{
+      height: 500px;
+      width: 500px;
+      border:5px solid gold;
+      border-radius: 99999px;
+      box-sizing: border-box;
+      position: relative;
+    }
+    span{
+      font-size:50px;
+      font-weight:bold;
+      color: rgb(255, 123, 0);
+    }
+    span:nth-child(1){
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      left:0;
+      right: 0;
+      margin:auto;
+    }
+    span:nth-child(2){
+      position: absolute;
+      right:0;
+      line-height: 500px;
+    }
+    span:nth-child(3){
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      left:0;
+      right: 0;
+      bottom:0;
+      margin:auto;
+    }
+    span:nth-child(4){
+      position: absolute;
+      left:0;
+      line-height: 500px;
+    }
+    @keyframes second{
+      0%{
+        transform: rotateZ(0deg);
+      }
+      100%{
+        transform: rotateZ(360deg);
+      }
+    }
+    .second{
+      position: absolute;
+      height: 180px;
+      width: 4px;
+      background-color: black;
+      left: 0;
+      right: 0;
+      bottom: 50%;
+      margin:auto;
+      transform-origin: bottom;
+      animation: second 60s linear 99999999999;
+    }
+    @keyframes minute{
+      0%{
+        transform: rotateZ(0deg);
+      }
+      100%{
+        transform: rotateZ(360deg);
+      }
+    }
+    .minute{
+      position: absolute;
+      height: 150px;
+      width: 8px;
+      background-color:gold;
+      left:0;
+      right: 0;
+      bottom: 50%;
+      margin:auto;
+      transform-origin: bottom;
+      animation: minute 3600s linear 99999999999999999;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <span>12</span>
+    <span>3</span>
+    <span>6</span>
+    <span>9</span>
+    <div class="second"></div>
+    <div class="minute"></div>
+  </div>
+</body>
+</html>
