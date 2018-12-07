@@ -6,77 +6,143 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
+    x*{
+      background-color:rgba(0,0,0,0.08);
+    }
+    body{
+      margin:0;
+    }
+    div{
+      position: absolute;
+    }
     .wrap{
       height: 500px;
       width: 500px;
       border:5px solid gold;
       border-radius: 99999px;
       box-sizing: border-box;
-      position: relative;
+    }
+    section{
+      height: 240px;
+      width: 50px;
+      position: absolute;
+      left:0;
+      right:0;
+      bottom: 50%;
+      margin:auto;
+      text-align: center;
     }
     span{
-      font-size:50px;
+      display:block;
+      font-size:3em;
       font-weight:bold;
       color: rgb(255, 123, 0);
     }
-    span:nth-child(1){
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      left:0;
-      right: 0;
-      margin:auto;
+    section:nth-child(1){
+      transform-origin: bottom;
+      transform: rotateZ(30deg);
     }
-    span:nth-child(2){
-      position: absolute;
-      right:0;
-      line-height: 500px;
+    section:nth-child(2){
+      transform-origin: bottom;
+      transform: rotateZ(60deg);
     }
-    span:nth-child(3){
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      left:0;
-      right: 0;
-      bottom:0;
-      margin:auto;
+    section:nth-child(3){
+      transform-origin: bottom;
+      transform: rotateZ(90deg);
     }
-    span:nth-child(4){
-      position: absolute;
-      left:0;
-      line-height: 500px;
+    section:nth-child(4){
+      transform-origin: bottom;
+      transform: rotateZ(120deg);
     }
+    section:nth-child(5){
+      transform-origin: bottom;
+      transform: rotateZ(150deg);
+    }
+    section:nth-child(6){
+      transform-origin: bottom;
+      transform: rotateZ(180deg);
+    }
+    section:nth-child(7){
+      transform-origin: bottom;
+      transform: rotateZ(210deg);
+    }
+    section:nth-child(8){
+      transform-origin: bottom;
+      transform: rotateZ(240deg);
+    }
+    section:nth-child(9){
+      transform-origin: bottom;
+      transform: rotateZ(270deg);
+    }
+    section:nth-child(10){
+      transform-origin: bottom;
+      transform: rotateZ(300deg);
+    }
+    section:nth-child(11){
+      transform-origin: bottom;
+      transform: rotateZ(330deg);
+    }
+    section:nth-child(12){
+      transform-origin: bottom;
+      transform: rotateZ(0deg);
+    }
+    section:nth-child(1) > span{
+      transform: rotateZ(-30deg);
+    }
+    section:nth-child(2) > span{
+      transform: rotateZ(-60deg);
+    }
+    section:nth-child(3) > span{
+      transform: rotateZ(-90deg);
+    }
+    section:nth-child(4) > span{
+      transform: rotateZ(-120deg);
+    }
+    section:nth-child(5) > span{
+      transform: rotateZ(-150deg);
+    }
+    section:nth-child(6) > span{
+      transform: rotateZ(-180deg);
+    }
+    section:nth-child(7) > span{
+      transform: rotateZ(-210deg);
+    }
+    section:nth-child(8) > span{
+      transform: rotateZ(-240deg);
+    }
+    section:nth-child(9) > span{
+      transform: rotateZ(-270deg);
+    }
+    section:nth-child(10) > span{
+      transform: rotateZ(-300deg);
+    }
+    section:nth-child(11) > span{
+      transform: rotateZ(-330deg);
+    }
+
     @keyframes second{
-      0%{
-        transform: rotateZ(0deg);
-      }
       100%{
         transform: rotateZ(360deg);
       }
     }
     .second{
-      position: absolute;
       height: 180px;
       width: 4px;
-      background-color: black;
+      background-color: red;
       left: 0;
       right: 0;
       bottom: 50%;
       margin:auto;
       transform-origin: bottom;
-      animation: second 60s linear 99999999999;
+      animation: second 60s steps(60) infinite ;
     }
     @keyframes minute{
-      0%{
-        transform: rotateZ(0deg);
-      }
       100%{
         transform: rotateZ(360deg);
       }
     }
     .minute{
-      position: absolute;
-      height: 150px;
+      height: 160px;
       width: 8px;
       background-color:gold;
       left:0;
@@ -84,18 +150,43 @@
       bottom: 50%;
       margin:auto;
       transform-origin: bottom;
-      animation: minute 3600s linear 99999999999999999;
+      animation: minute 3600s steps(60) infinite ;
+    }
+    @keyframes hours{
+      100%{
+        transform: rotateZ(360deg);
+      }
+    }
+    .hours{
+      height: 100px;
+      width: 10px;
+      background-color:rgb(162, 0, 255);
+      left:0;
+      right: 0;
+      bottom: 50%;
+      margin:auto;
+      transform-origin: bottom;
+      animation: hours 43200s steps(60) infinite;
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <span>12</span>
-    <span>3</span>
-    <span>6</span>
-    <span>9</span>
+    <section><span>1</span></section>
+    <section><span>2</span></section>
+    <section><span>3</span></section>
+    <section><span>4</span></section>
+    <section><span>5</span></section>
+    <section><span>6</span></section>
+    <section><span>7</span></section>
+    <section><span>8</span></section>
+    <section><span>9</span></section>
+    <section><span>10</span></section>
+    <section><span>11</span></section>
+    <section><span>12</span></section>
     <div class="second"></div>
     <div class="minute"></div>
+    <div class="hours"></div>
   </div>
 </body>
 </html>
