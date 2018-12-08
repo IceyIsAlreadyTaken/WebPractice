@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      background-color: rgba(0,0,0,0.08);
+    }
+    body{
+      margin:0;
+    }
+    section{
+      display:flex;
+      width: 1226px;
+      height: 615px;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-content:space-between;
+      margin:auto; 
+    }
+    div{
+      width: 222px;
+      height: 300px;
+    }
+    div:first-of-type{
+      height: 100%;
+    }
+    div:nth-last-child(-n+2){
+      height: 140px;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+  </section>
+  
+</body>
+</html>
