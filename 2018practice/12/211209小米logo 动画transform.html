@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div{
+      height: 50px;
+      width: 50px;
+      overflow: xhidden;
+      position: relative;
+      overflow: hidden;
+    }
+    section:first-child{
+      height: 50px;
+      width: 50px;
+      background: url('house.png');
+      background-size: contain;
+      transform:translateX(-100%) ;
+      position: absolute;
+      transition:transform 0.15s linear;
+    }
+    section:last-child{
+      height: 50px;
+      width: 50px;
+      background: url('mi.png');
+      background-size: contain;
+      position: absolute;
+      transition:transform 0.15s linear;
+    }
+    div:hover>section:first-child{
+      transform:translateX(0);
+    }
+    div:hover>section:last-child{
+      transform: translateX(100%);
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <section></section>
+    <section></section>
+  </div>
+</body>
+</html>
