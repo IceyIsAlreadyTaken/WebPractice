@@ -5,22 +5,17 @@
   <title>Document</title>
   <style>
     @keyframes zhuanya{
-      0% {transform:rotate3D(1,1,1,0deg);}
-      100% {transform: rotate3D(1,1,1,360deg);}
+      100% {transform: rotate3D(100,-100,100,360deg);}
     }
     .main{
       width: 200px;
       height: 200px;
       margin: 200px auto;
       position: relative;
-      /* transition: 5s; */
       transform-style: preserve-3d;
       font-size: 5em;
-      animation:zhuanya 5s 100 linear;
+      animation:zhuanya 10s infinite linear;
     }
-    /* .main:hover{
-      transform: rotate3D(1,1,1,600deg);
-    } */
     .main div{
       width: 200px;
       height: 200px;
