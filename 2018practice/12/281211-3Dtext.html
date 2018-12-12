@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .alphaf{
+      height: 600px;
+      width: 600px;
+      position: absolute;
+      background-color: red;
+      transform-style: preserve-3d;
+      animation:alphaz 15s infinite linear;
+      xanimation-play-state:paused;
+    }
+    @keyframes alphaz{
+      from{transform: rotate(0);}
+      to{transform: rotate(800deg);}
+    }
+  </style>
+</head>
+<body>
+  <div class="alphaf"></div>
+</body>
+</html>

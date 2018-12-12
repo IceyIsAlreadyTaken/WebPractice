@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-image: url(hmbaby.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: h-sin 2s cubic-bezier(0.36,0, 0.64,1) infinite alternate,v-cos 2s -1s cubic-bezier(0.36,0, 0.64,1) infinite alternate;
+    position: relative;
+  }
+  @keyframes h-sin {
+    from {
+      left: 0;
+    }
+    to {
+      left: 200px;
+    }
+  }
+  @keyframes v-cos {
+    from {
+      top: 0;
+    }
+    to {
+      top: 200px;
+    }
+  }
+  </style>
+  <script>
+      setInterval(() => {
+      var pos = a.getBoundingClientRect()
+        var tag = document.createElement('i')
+        tag.style = `background:red;width: 2px;height:2px;position: fixed;top:${pos.top}px;left:${pos.left}px;`
+        document.body.appendChild(tag)
+    },30)
+  </script>
+</head>
+<body>
+  <!-- 使用sin 函数曲线 -->
+  <div id="a"></div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    @keyframes gongzhuan{
+      from{transform: rotate(0deg);}
+      to{transform: rotate(360deg);}
+    }
+    @keyframes zizhuan{
+      from{transform:rotate(0deg);}
+      to{transform: rotate(-360deg);}
+    }
+    div{
+      margin:150px;
+      width: 500px;
+      height: 500px;
+      position: relative;
+      xbackground-color: rgba(0,0,0,0.1);
+      animation:gongzhuan 15s infinite linear;
+    }
+    span{
+      background: url('hmbaby.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 80px;
+      height: 80px;
+      display: inline-block;
+      animation:zizhuan 15s infinite linear;
+    }
+  </style>
+  <script>
+    setInterval(() => {
+    var pos = a.getBoundingClientRect()
+      var tag = document.createElement('i')
+      tag.style = `background:red;width: 2px;height:2px;position: fixed;top:${pos.top}px;left:${pos.left}px;`
+      document.body.appendChild(tag)
+  },20)
+</script>
+</head>
+<body>
+  <div>
+    <span id="a"></span>
+  </div>
+</body>
+</html>

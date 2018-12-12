@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    @keyframes zhuan{
+      from{transform:rotate(0deg) translateX(150px) rotate(-0deg);}
+      to{transform: rotate(360deg) translateX(150px) rotate(-360deg);}
+      /* transfrom 函数相同对应时 会形成矩阵渐变效果 */
+    }
+    div{
+      margin:250px;
+    }
+    span{
+      background: url('hmbaby.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 80px;
+      height: 80px;
+      display: inline-block;
+      animation:zhuan 2s infinite linear;
+    }
+  </style>
+  <script>
+    setInterval(() => {
+    var pos = a.getBoundingClientRect()
+      var tag = document.createElement('i')
+      tag.style = `background:red;width: 2px;height:2px;position: fixed;top:${pos.top}px;left:${pos.left}px;`
+      document.body.appendChild(tag)
+  },30)
+</script>
+</head>
+<body>
+  <div>
+    <span id="a"></span>
+  </div>
+</body>
+</html>
