@@ -23,6 +23,7 @@
       display:inline-block;
       width: 150px;
       height: 400px;
+      left:100%;
     }
     .wrap>div>span:nth-child(1){
       background-image: url(https://tympanus.net/Tutorials/CSS3SlidingImagePanels/images/1.jpg);
@@ -37,17 +38,33 @@
       background-image: url(https://tympanus.net/Tutorials/CSS3SlidingImagePanels/images/4.jpg);
     }
     input:nth-child(1):checked~.wrap>div>span:nth-child(1){
-      
+      left:-100%;
+      animation:move 1s both;
+    }
+    input:nth-child(2):checked~.wrap>div>span:nth-child(2){
+      left:-100%;
+      animation: move 1s both;
+    }
+    input:nth-child(3):checked~.wrap>div>span:nth-child(3){
+      left:-100%;
+      animation: move 1s both;
+    }
+    input:nth-child(4):checked~.wrap>div>span:nth-child(4){
+      left:-100%;
+      animation: move 1s both;
     }
     @keyframes move{
       from{
-        transfrom:
+        left:-100%;
+      }
+      to{
+        left:0;
       }
     }
   </style>
 </head>
 <body>
-  <input type="radio" name="slide" checked>
+  <input type="radio" name="slide">
   <input type="radio" name="slide">
   <input type="radio" name="slide">
   <input type="radio" name="slide">
