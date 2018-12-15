@@ -11,7 +11,6 @@
       height: 400px;
       margin:auto;
       border:2px solid;
-
     }
     .wrap>div{
       position: relative;
@@ -39,19 +38,19 @@
     }
     input:nth-child(1):checked~.wrap>div>span:nth-child(1){
       left:-100%;
-      animation:move 1s both;
+      animation:move 1s backwards;
     }
     input:nth-child(2):checked~.wrap>div>span:nth-child(2){
       left:-100%;
-      animation: move 1s both;
+      animation: move 1s forwards;
     }
     input:nth-child(3):checked~.wrap>div>span:nth-child(3){
       left:-100%;
-      animation: move 1s both;
+      animation: move 1s forwards;
     }
     input:nth-child(4):checked~.wrap>div>span:nth-child(4){
       left:-100%;
-      animation: move 1s both;
+      animation: move 1s backwards;
     }
     @keyframes move{
       from{
