@@ -1,0 +1,50 @@
+<script>
+// 判断闰年
+var year = prompt("请输入年份","");
+if (year % 400==0 || year % 4 == 0 && year % 100 != 0){
+  alert(year + "是闰年");
+}
+else{
+  alert(year + "不是闰年");
+}
+// 输入数字求平方
+var number = prompt("请输入数字","");
+if (!isNaN(number)){
+  alert("该数字的平方为" + number * number);
+}
+else{
+  alert("您输入的不是数字");
+}
+// 输入数字求平方
+var old = Number(prompt("请输入你的年龄",""));
+alert(typeof(old));
+if ( 0 < old && old < 6)
+  alert("这么小就会上网了，真是个牛逼宝宝");
+else if( 7 < old && old < 16)
+  alert("绝对是个牛逼儿童");
+else if( 17 < old && old < 30)
+  alert("你绝对是个帅小伙，要不就是个大美女");
+else if( 31 < old && old < 60)
+  alert("人到中年当自强");
+else if( 61 < old && old < 80)
+  alert("真是个老顽童");
+else if( old < 0)
+  alert("请输入正值");
+else
+  alert("祝您长命百岁");
+// 输出100以内的偶数
+var even = 0;
+while(even <100){
+  console.log(even);
+  even=even+2;
+}
+// 显示二的乘方
+var result=1;
+var counter=0;
+while (counter<10){
+  result=result * 2;
+  counter =counter +1;
+  console.log("2的"+counter+"次幂为"+result);
+}
+
+</script>
