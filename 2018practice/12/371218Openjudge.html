@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- openjudge.cn-1.1 -->
+  <script id="ch0101/01" type="01">
+    console.log("Hello, World!")
+  </script>
+  <script id="ch0101/02" type="02">
+    var a = prompt()
+    var b = prompt()
+    var c = prompt()
+    console.log(b)
+  </script>
+  <script id="ch0101/03" type="03">
+    var a = prompt()
+    var b = prompt()
+    var c = prompt()
+    console.log(a+" "+b+" "+c)
+  </script>
+  <script id="ch0101/04" type="04">
+    var a = +prompt()
+    console.log(a.toFixed(3))
+  </script>
+  <script id="ch0101/05" type="05">
+    var a = +prompt()
+    console.log(a.toFixed(12))
+  </script>
+  <script id="ch0101/06" type="06">
+    var a = prompt()
+    var b = prompt()
+    var c = +prompt()
+    var d = +prompt()
+    console.log(a+" "+b+" "+c.toFixed(6)+" "+d.toFixed(6))
+  </script>
+  <script id="ch0101/07" type="07">
+    var a = +prompt()
+    console.log(a.toFixed(6))
+    console.log(a.toFixed(5))
+    console.log(a.toExponential(6))
+    console.log(a.toFixed(4))
+  </script>
+  <script id="ch0101/08" type="08">
+    var a =prompt()
+    console.log("  "+a)
+    console.log(" "+a+a+a)
+    console.log(a+a+a+a+a)
+  </script>
+  <script id="ch0101/09" type="09">
+    var a =prompt()
+    console.log("  "+a)
+    console.log(" "+a+a+a)
+    console.log(a+a+a+a+a)
+    console.log(" "+a+a+a)
+    console.log("  "+a)
+  </script>
+  <script id="ch0101/10" type="10">
+console.log("                ********")
+console.log("               ************")
+console.log("               ####....#.")
+console.log("             #..###.....##....")
+console.log("             ###.......######              ###                 ###           ###           ###")
+console.log("                ...........               #...#               #...#         #...#         #...#")
+console.log("               ##*#######                 #.#.#               #.#.#         #.#.#         #.#.#")
+console.log("            ####*******######             #.#.#               #.#.#         #.#.#         #.#.#")
+console.log("           ...#***.****.*###....          #...#               #...#         #...#         #...#")
+console.log("           ....**********##.....           ###                 ###           ###           ###")
+console.log("           ....****    *****....")
+console.log("             ####        ####")
+console.log("           ######        ######")
+console.log("##############################################################              ##################################")
+console.log("#...#......#.##...#......#.##...#......#.##------------------#              #...#......#.##------------------#")
+console.log("###########################################------------------#              ###############------------------#")
+console.log("#..#....#....##..#....#....##..#....#....#####################              #..#....#....#####################")
+console.log("##########################################    #----------#                  ##############    #----------#")
+console.log("#.....#......##.....#......##.....#......#    #----------#                  #.....#......#    #----------#")
+console.log("##########################################    #----------#                  ##############    #----------#")
+console.log("#.#..#....#..##.#..#....#..##.#..#....#..#    #----------#                  #.#..#....#..#    #----------#")
+console.log("##########################################    ############                  ##############    ############")
+  </script>
+  <!-- 1.2 -->
+  <script id="ch0102/06" type="06">
+    var a = prompt()
+    if(a>= 0){
+      console.log(Math.floor(a))
+    }else{
+      console.log(Math.ceil(a))
+    }
+  </script>
+  <script id="ch0102/07" type="07">
+    var a = prompt()
+    console.log(a.charCodeAt())
+  </script>
+  <script id="ch0102/08" type="08">
+    var a = +prompt()
+    console.log(String.fromCharCode(a))
+  </script>
+  <script id="ch0102/09" type="09">
+    var a = +prompt()
+    var b = Boolean(a)
+    var c = Number(b)
+    console.log(c)
+  </script>
+  <!-- 1.3 -->
+  <script id="ch0103/01" type="01">
+    var a =+prompt()
+    var b =+prompt()
+    console.log(a+b)
+  </script>
+  <script id="ch0103/02" type="02">
+    var a =+prompt()
+    var b =+prompt()
+    var c =+prompt()
+    console.log((a+b)*c)
+  </script>
+  <script id="ch0103/03" type="03">
+    var a =+prompt()
+    var b =+prompt()
+    var c =+prompt()
+    console.log(parseInt((a+b)/c))
+  </script>
+  <script id="ch0103/04" type="04">
+    var a =+prompt()
+    var b =+prompt()
+    console.log(parseInt(a/b))
+    console.log(a%b)
+  </script>
+  <script id="ch0103/05" type="05">
+    var a =+prompt()
+    var b =+prompt()
+    console.log((a/b).toFixed(9))
+  </script>
+  <script id="ch0103/06" type="06">
+    var a =+prompt()
+    var b =+prompt()
+    console.log(((b/a)*100).toFixed(3)+"%")
+  </script>
+  <script id="ch0103/08" type="08">
+    var F =+prompt()
+    var C = (5 * (F-32) / 9).toFixed(5)
+    console.log(C)
+  </script>
+  <script id="ch0103/09" type="09">
+    var a =+prompt()
+    var pi =3.14159
+    console.log((2*a).toFixed(4))
+    console.log((2*a*pi).toFixed(4))
+    console.log((a*a*pi).toFixed(4))
+  </script>
+  <script id="ch0103/10" type="10">
+    var r1 = prompt()
+    var r2 = prompt()
+    var R
+    console.log((1/(1/r1+1/r2)).toFixed(2))
+  </script>
+  <script id="ch0103/11" type="11">
+    var a = prompt()
+    var b = prompt()
+    console.log((a%b).toFixed(4))
+  </script>
+  <script id="ch0103/12" type="12">
+    var a =+prompt()
+    var pi =3.14
+    console.log((4/3*pi*a*a*a).toFixed(2))
+  </script>
+  <script id="ch0103/13" type="">
+
+  </script>
+  <script id="ch0103/14" type="14">
+    var b =+prompt()
+    var a =+prompt()
+    var pi =3.14159
+    console.log(Math.ceil(20000/(pi * a * a * b)))
+  </script>
+  <script id="ch0103/15" type="15">
+    var n =+prompt()
+    var x =+prompt()
+    var y =+prompt()
+    var count
+    console.log(count=n-Math.ceil(y/x))
+  </script>
+  <script id="ch0103/16" type="16">
+    var x1 =+prompt()
+    var y1 =+prompt()
+    var x2 =+prompt()
+    var y2 =+prompt()
+    console.log((Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)).toFixed(3)))
+  </script>
+  <script id="ch0103/17" type="17">
+    var x1 =+prompt()
+    var y1 =+prompt()
+    var x2 =+prompt()
+    var y2 =+prompt()
+    var x3 =+prompt()
+    var y3 =+prompt()
+    console.log(((1/2)*(x1*y2+x2*y3+x3*y1-x1*y3-x2*y1-x3*y2)).toFixed(2))
+  </script>
+  <script id="ch0103/18" type="18">
+    var a1 =+prompt()
+    var a2 =+prompt()
+    var n  =+prompt()
+    console.log(a1+ (n-1)*(a2-a1))
+  </script>
+  <script id="ch0103/19" type="19">
+    var a =+prompt()
+    var b =+prompt()
+    console.log(a*b)
+  </script>
+  <script id="ch0103/20" type="20">
+    var n=+prompt()
+    var a=2
+    while(n>1){
+      a=2*a
+      n-=1
+    }
+    console.log(a)
+  </script>
+  <!-- 1.4 -->
+  <script id="ch0104/01" type="01">
+    var N =+prompt()
+    if(N>0){
+      console.log("positive")
+    }else if(N==0){
+      console.log("zero")
+    }else{
+      console.log("negative")
+    }
+  </script>
+  <script id="ch0104/02" type="02">
+    var a =+prompt()
+    if(a<0){
+      console.log((-a).toFixed(2))
+    }
+  </script>
+  <script id="ch0104/03" type="03">
+    var a =+prompt()
+    if(a%2==0){
+      console.log("even")
+    }else if(a%2!=0){
+      console.log("odd")
+    }
+  </script>
+  <script id="ch0104/04" type="04">
+    var a =prompt()
+    if(a.charCodeAt()%2!=0){
+      console.log("YES")
+    }else{
+      console.log("NO")
+    }
+  </script>
+  <script id="ch0104/05" type="05">
+    var a =prompt()
+    var b =prompt()
+    if(a>b){
+      console.log(">")
+    }else if(a==b){
+      console.log("=")
+    }else{
+      console.log(">")
+    }
+  </script>
+  <script id="ch0104/06" type="06">
+    var a =prompt()
+    if(a>=10 && a<=99){
+      console.log("1")
+    }else{
+      console.log("0")
+    }
+  </script>
+  <script id="ch0104/07" type="07">
+    var a =prompt()
+    var b =prompt()
+    if(a>=10 || b>=20){
+      console.log("1")
+    }else{
+      console.log("0")
+    }
+  </script>
+  <script id="ch0104/08" type="08">
+    var a =prompt()
+    if(a%3==0 && a%5==0){
+      console.log("YES")
+    }else{
+      console.log("NO")
+    }
+  </script>
+  <script id="ch0104/09" type="09">
+    var a =prompt()
+    if(a%3==0 && a%5==0 &&a%7==0){
+      console.log("3 5 7")
+    }else if(a%3==0 && a%5==0){
+      console.log("3 5")
+    }else if(a%3==0 && a%7==0){
+      console.log("3 7")
+    }else if(a%5==0 && a%7==0){
+      console.log("5 7")
+    }else if(a%3==0){
+      console.log("3")
+    }else if(a%5==0){
+      console.log("5")
+    }else if(a%7==0){
+      console.log("7")
+    }else(
+      console.log("n")
+    )
+  </script>
+  <script id="ch0104/10" type="10">
+    var a =prompt()
+    var b =prompt()
+    if((a<60 && b>=60)||(a>=60 && b<60)){
+      console.log("1")
+    }else{
+      console.log("0")
+    }
+  </script>
+  <script id="ch0104/11" type="11">
+    var a =prompt()
+    if(a==1 || a==3 || a==5){
+      console.log("NO")
+    }else{
+      console.log("YES")
+    }
+  </script>
+  <script id="ch0104/12" type="12">
+    var a =prompt()
+    if(a>100){
+      console.log("Bike")
+    }else if(a<100){
+      console.log("Walk")
+    }else{
+      console.log("All")
+    }
+  </script>
+  <script id="ch0104/13" type="13">
+    var x =prompt()
+    if(x>=0&&x<5){
+      console.log((-x+2.5).toFixed(3))
+    }else if(x>=5&&x<10){
+      console.log((2-1.5*(x-3)*(x-3)).toFixed(3))
+    }else if(x>=10&&x<20){
+      console.log((x/2-1.5).toFixed(3))
+    }
+  </script>
+  <script id="ch0104/14" type="14">
+    var a =+prompt()
+    var b =prompt()
+    if(a<1000 && b=="y"){
+      console.log(8+5)
+    }else if(a<=1000 && b=="n"){
+      console.log(8)
+    }else if(a>1000 && b=="y"){
+      console.log(Math.ceil((a-1000)/500)*4+8+5)
+    }else if(a>1000 && b=="n"){
+      console.log(Math.ceil((a-1000)/500)*4+8)
+    }
+  </script>
+  <script id="ch0104/15" type="15">
+    var a =+prompt()
+    var b =+prompt()
+    var c =+prompt()
+    if(a>b&&a>c){
+      console.log(a)
+    }else if(b>a&&b>c){
+      console.log(b)
+    }else if(c>a&&c>b){
+      console.log(c)
+    }
+  </script>
+  <script id="ch0104/16" type="16">
+    var a =+prompt()
+    var b =+prompt()
+    var c =+prompt()
+    if((a<c&&b>c)&&(a+b>c)){
+      console.log("YES")
+    }else if((b<a&&c>a)&&(c+b>a)){
+      console.log("YES")
+    }else if((a<b&&c>b)&&(c+a>b)){
+      console.log("YES")
+    }
+    else{
+      console.log("NO")
+    }
+  </script>
+  <script id="ch0104/17" type="17">
+    var year = prompt("请输入年份","");
+    if (year % 400==0 || year % 4 == 0 && year % 100 != 0){
+      console.log("Y");
+    }   
+    else{
+      console.log("N");
+    }
+  </script>
+  <script id="ch0104/18" type="18">
+    var a =+prompt()
+    var b =+prompt()
+    if((a<=1&&a>=-1)&&(b<=1&&b>=-1)){
+      console.log("yes")
+    }else{
+      console.log("no")
+    }
+  </script>
+  <script id="ch0104/19" type="19">
+    var a =+prompt()
+    var b =+prompt()
+    var c =prompt()
+    if(c=="+"){
+      console.log(a+b)
+    }else if(c=="-"){
+      console.log(a-b)
+    }else if(c=="*"){
+      console.log(a*b)
+    }else if(c=="/"){
+      if(b==0){
+        console.log("Divided by zero!")
+      }
+      console.log(a/b)
+    }else{
+      console.log("Invalid operator!")
+    }
+  </script>
+  <script id="ch0104/20" type="">
+
+  </script>
+  <script id="ch0104/21" type="">
+    var n =+prompt()
+    var x =+prompt()
+    var y =+prompt()
+    var count
+    console.log(count=n-Math.ceil(y/x))
+  </script>
+  <script id="ch0104/01" type="">
+
+  </script>
+  <script id="ch0104/01" type="">
+
+  </script>
+  <script id="ch0104/01" type="">
+
+  </script>
+  <script id="ch0104/01" type="">
+
+  </script>
+  <script id="ch0104/01" type="">
+
+  </script>
+  <script id="ch0104/01" type="">
+
+  </script>
+  <script id="ch0104/01" type="">
+
+  </script>
+  <script id="ch0104/01" type="">
+
+  </script>
+  <script id="ch0104/01" type="">
+
+  </script>
+  <script id="ch0104/01" type="">
+
+  </script>
+  <script id="ch0104/01" type="">
+
+  </script>
+  <script id="ch0104/01" type="">
+
+  </script>
+  <script id="ch0104/01" type="">
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
