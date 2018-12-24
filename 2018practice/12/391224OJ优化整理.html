@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script id="ch0105/17" type="17:菲波那契数列">
+    var n = +prompt()
+    var a = 1;
+    var b = 1;
+      for(var i = 3;i < n;i++){
+        b=b+a
+        a=b-a
+        console.log(b)
+      }
+  </script>
+
+  <!-- 辗转相除法求最大公约数 -->
+  <script id="lcf&lcm" sample-input="12 9" sample-output="36 3" comment="给定两个数，求它们的最小公倍数和最大公约数">
+    var n=+prompt()
+    var m=+prompt()
+    var gongyue
+    for(var b=n;;b++){
+      if((b%n==0)&&(b%m==0)){
+        console.log(b)//求最小公倍数
+        break;
+      }
+    }
+    for(var a = 0;;a++){
+      if(m >= n){
+        m = m - n
+        if(m==0){
+          console.log(n)
+          break
+        }
+      }else{
+        n = n + m
+        m = n - m
+        n = n - m
+      }
+    }
+  </script>
+
+  <script id="ch0105/25:求特殊自然数" >
+    for (var i = 81; i <= 350; i++) {
+      var n = i
+
+      d70 = n % 7
+      d71 = (n - d70) / 7 % 7
+      d72 = (n - d70 - d71 * 7) / 7 / 7 % 7
+
+      d90 = n % 9
+      d91 = (n - d90) / 9 % 9
+      d92 = (n - d90 - d91 * 9) / 9 / 9 % 9
+
+      if ((d70 == d92) && (d71 == d91) && (d72 == d90)) {
+        console.log(i)
+        console.log('' + d72 + d71 + d70)
+        console.log('' + d92 + d91 + d90)
+      }
+    }
+    </script>
+
+    <script id="ch0105/31开关灯">
+      var n = +prompt()//灯的数量
+      var m = +prompt()//人的数量
+      var counter = true//true 开灯
+      for(var a = 1;a <= n;a++) {
+        for(var b = 1;b <= a;b++) {
+          if(a % b == 0) {
+            counter =!counter//对开关状态取反
+          }
+        }
+        if(counter==false){ //关灯时输出
+          console.log(a)
+        }
+        counter=true
+      }
+    </script>
+</head>
+<body>
+  
+</body>
+</html>

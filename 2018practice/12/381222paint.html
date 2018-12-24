@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>画图</title>
+  <style>
+    canvas {
+      border: 1px solid #f0f;
+      display: block;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <canvas width="400" height="300"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector('canvas')
+  canvas.style.imageRendering = 'pixelated'
+  var ctx = canvas.getContext('2d')
+
+  function dot(x, y, color = 'black') {
+    ctx.fillStyle = color
+    ctx.fillRect(x, y, 1, 1)
+  }
+  /**
+   * YOUR TASK
+画图的题：
+画一条实线
+画一条一个实点一个空点的虚线
+画一条两个实点两个空点的虚线
+画一条三个实点两个空点的虚线
+画一条45度的斜线
+画一条跨越画布左上角和右下角的对角线
+画一个空心矩形
+画一个实心矩形
+画一个rgb色彩空间的某一面
+画一个空心的圆
+画一个实心的圆
+画一个大小合适的sin(x)的图像
+   */
+</script>
+<script>
+  // YOUR CODE GOES BELOW
+  //画一条实线
+  for(var a=0;a<400;a++){
+    dot(a,20,"red")
+  }
+  // 画一条两个实点两个空点的虚线
+  for(var a=0;a<400;a+=2){
+    for(var b=0;b<2;b++){
+    dot(a,30,"blue")
+    a+=1
+    }
+  }
+  // 画一条三个实点两个空点的虚线
+  for(var a=0;a<400;a+=2){
+    for(var b=0;b<3;b++){
+    dot(a,40,"orange")
+    a+=1
+    }
+  }
+  // 画一条45度的斜线
+  var b=300
+  for(var a=0;a<400;a+=1){
+    dot(a,b)
+    b-=1
+  }
+  // 画一条跨越画布左上角和右下角的对角线
+  b=0
+  for(var a=0;a<400;a+=1){
+    dot(a,b,"yellow")
+    b+=300/400
+  }
+  // 画一个空心矩形
+  b=50
+  for(var a=30;a<100;a+=1){
+    dot(a,b,"pink")
+  }
+  b=80
+  for(var a=30;a<100;a+=1){
+    dot(a,b,"pink")
+  }
+  a=30
+  for(var b=50;b<80;b+=1){
+    dot(a,b,"pink")
+  }
+  a=100
+  for(var b=50;b<80;b+=1){
+    dot(a,b,"pink")
+  }
+  // 画一个实心矩形
+  for(var b=100;b<130;b++){
+    for(var a=30;a<100;a+=1){
+    dot(a,b,"green")
+    }
+  }
+  // 画一个rgb色彩空间的某一面
+  var xxx=0,yyy=255,zzz=0
+  for(var b=130;b<250;b++){
+    for(var a=130;a<250;a+=1){
+    dot(a,b,"rgb("+xxx+","+yyy+","+zzz+")")
+    xxx+=250/120
+    zzz+=250/120
+    }
+    xxx=0
+    zzz=0
+    yyy-=255/120
+  }
+  // 画一个空心的圆
+  var delta
+  for(var x=10;x<=50;x=x+0.05){
+    delta=+Math.sqrt(400-(x-50)*(x-50))
+      dot(x,160-delta)
+      dot(x,160+delta)
+  }
+  for(var y=140;y<=180;y=y+0.05){
+    delta=+Math.sqrt(400-(y-160)*(y-160))
+      dot(50+delta,y)
+      dot(50-delta,y)
+  }
+  // 画一个实心的圆
+  for(var m=30;m<=70;m=m+0.1){
+    for(var n=240;n<=280;n=n+0.1){
+      delta=+Math.sqrt(400-(m-50)*(m-50))
+      if(n>=260-delta&&n<=260+delta){
+        dot(m,n,"red")
+      }
+    }
+  }
+  // 画一个大小合适的sin(x)的图像
+  for(var a=0;a<400;a++){
+    dot(a,200+20*Math.sin(a/10))
+  }
+</script>
+</html>
