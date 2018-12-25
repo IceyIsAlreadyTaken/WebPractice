@@ -1,8 +1,0 @@
-hello world
-today is 2018 November 11 9:06
-I'm very happy
-I can use vim edit txt file and put it to my github repository by my Smartisan M1:) so cool^O^ Thanks termux~ I like you very much~
-
-20181116
-感冒，头好痛
-

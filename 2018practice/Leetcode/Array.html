@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script id="905. 按奇偶排序数组">
+    //从左边开始先判断奇偶，奇数添加到队尾并删除，偶数不操作
+    //难点在于，当 a走到数组中点时，奇数已经全部放到队尾，中止循环的方法
+    var sortArrayByParity = function(A) {
+    var b = 0
+    for(var a = 0;;a++) {
+        if(A[a] % 2 == 1) {
+            A.push(A[a])
+            A.splice(a,1)
+            a-=1
+        }
+        b++
+        if(b==A.length){
+            break
+        }
+    }
+    return A
+    };
+    var A =[3,1,2,4]
+    sortArrayByParity(A)
+    console.log(A)
+  </script>
+
+  <script id="832. 翻转图像">
+      var flipAndInvertImage = function(A) {
+      for(var a = 0;a < A.length;a++) {
+          A[a]=A[a].reverse()
+      }
+      for(var a = 0;a < A.length;a++) {
+        for(var b = 0;b < A.length;b++){
+            if(A[a][b]==1){
+                A[a][b]=0
+            }else{
+                A[a][b]=1
+            }
+        }
+      }
+      return A
+    };
+  </script>
+
+  <script id="922. 按奇偶排序数组 II">
+    var sortArrayByParityII = function(A) {
+      var even = new Array()
+      var odd = new Array()
+      var e=0
+      var o=0
+      for(var a = 0;a < A.length;a++){
+          if(A[a]%2==0){
+              even.push(A[a])
+          }else{
+              odd.push(A[a])
+          }
+      }
+      for(var a = 0;a < A.length;a++){
+          if(a%2==0){
+              A[a]=even[e]
+              e+=1
+          }else{
+              A[a]=odd[o]
+              o+=1
+          }
+      }
+      return A
+    };
+  </script>
+
+  <script id="867. 转置矩阵">
+    var transpose = function(A) {
+    var hang = A.length
+    var lie = A[0].length
+    var B = new Array(lie)
+    var C = new Array(hang)
+    for (var a = 0;a < lie;a++) {
+        B[a] = C
+    }
+    for (var a = 0;a < hang;a++) {
+        for (var b = 0;b < lie;b++) {
+          B[b][a]=A[a][b]
+            console.log(B[b][a])
+            console.log(B)
+        }
+    }
+    return B
+};
+  </script>
+
+  <script id="">
+    
+  </script>
+
+  <script id="">
+  
+  </script>
+
+  <script id="">
+  
+  </script>
+
+  <script id="">
+  
+  </script>
+
+  <script id="">
+  
+  </script>
+
+  <script id="">
+  
+  </script>
+
+  <script id="">
+  
+  </script>
+
+<script id="">
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
