@@ -1299,90 +1299,64 @@ console.log("##########################################    ############         
       或：1634 =　1的四次方+6的四次方+3的四次方+4的四次方
       因为1634是一个四位数。
       找出100到100000以内所有的水仙花数。 -->
-  <script id="narcissistic " sample-input="153" sample-output="YES" comment="判断一个数是否为水仙花数" type="text/css">
-    var n=+prompt()
-    debugger
-    var num=n,counter=0,wei,chengji=1
-    for(var mi=0;num>0;mi++){
-      num=Math.floor(num/10)
-    }
-    num=n
-    for(var b=0;b<mi;b++){
-      wei=num%10
-      for(var a=0;a<mi;a++){
-      chengji=chengji*wei
+  <script id="narcissistic " sample-input="153" sample-output="YES" comment="判断一个数是否为水仙花数" >
+    function isNarcissistic(n) {  //求水仙花数
+      var saveN = n
+      var width = numWidth(n)
+      var digit 
+      var sum = 0
+      while(n > 0) {
+        digit = n % 10
+        n = (n - digit)/10
+        sum += power(digit,width)
       }
-      counter=counter+chengji
-      num=Math.floor(num/10)
-      chengji=1
+      if (sum == saveN) {
+        return true
+      }else {
+        return false
+      }
     }
-    if(counter==n){
-      console.log("YES")
-    }else{
-      console.log("NO")
+    function numWidth(n) {        //判断数字的长度
+        return Math.floor(Math.log10(n)) + 1
+    }
+    function power(x,y) {         //求出数字的长度次幂
+      var sum = 1
+      for (var a = 0;a < y;a++) {
+        sum *= x
+      }
+      return sum
+    }
+  
+  </script>
+
+  <script id="narcissistics" sample-input="" sample-output="" comment="找出100到10000以内所有的水仙花数">
+    for(var n = 100;n <= 10000;n++){
+      if(isNarcissistic(n)) {
+        console.log(n)
+      }
     }
   </script>
 
-  <script id="narcissistics" sample-input="" sample-output="" comment="找出100到10000以内所有的水仙花数"
-  type="narcissistics">
-    var n=100
-    var num=n,counter=0,wei,chengji=1
-    for(var q=n;q<=10000;q++){
-      num=q
-      for(var mi=0;num>0;mi++){
-        num=Math.floor(num/10)
+  <script id="palindrom" sample-input="12321" sample-output="YES" comment="判断一个非负整数是否为回文数字" >
+    function isPalindrom(n) {
+      var digit
+      var fanzhuan = 0
+      var saveN = n
+      for (var i = 1;i <= numWidth(n);i++) {
+          digit = saveN % 10
+          saveN = (saveN - digit)/10
+          fanzhuan = fanzhuan * 10 + digit 
       }
-      num=q
-      for(var b=0;b<mi;b++){
-        wei=num%10
-        for(var a=0;a<mi;a++){
-          chengji=chengji*wei
-        }
-        counter=counter+chengji
-        num=Math.floor(num/10)
-        chengji=1
-      }
-      if(counter==q){
-        console.log(q)
-      }
-      counter=0
-    }
-  </script>
-
-  <script id="palindrom" sample-input="12321" sample-output="YES" comment="判断一个非负整数是否为回文数字" type="palindrom">
-    var n = +prompt()
-    var num=n
-    var last,first
-    var shi=1
-    for(var mi=0;num>0;mi++){
-      num=Math.floor(num/10)
-    }
-    num=n
-    for(var a=1;a<=Math.ceil(mi/2);a++){
-      for(var b=1;b<=a-1;b++){
-        shi=shi*10
-      }
-      last=Math.floor(num/shi)%10
-      //console.log("last="+last)
-      shi=1
-      for(var c=1;c<=mi-a;c++){
-        shi=shi*10
-      }
-      first=Math.floor(num/shi)%10
-      //console.log("first="+first)
-      shi=1
-      if(first!=last){
-        console.log("NO")
-        break;
-      }
-      if(a==Math.ceil(mi/2)){
-        console.log("YES")  
+      if (fanzhuan == n) {
+        return true
+      }else {
+        return false
       }
     }
     
   </script>
   
-  <script id="weekday" sample-input="2018 6" sample-output="5" comment="输入年份与月份，给出该年该月的第一天是星期几" type="weekday">
+  <script id="weekday" sample-input="2018 6" sample-output="5" comment="输入年份与月份，给出该年该月的第一天是星期几">
     var n=+prompt()
     var m=+prompt()
     var counter=0

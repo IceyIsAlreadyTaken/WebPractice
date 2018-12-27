@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+  // 题目：猴子选王，m个编了号的猴子顺次围成一圈，从第一只开始报数，报到n的猴子退出，
+  // 退出的猴子的下一只从1开始重新报数，依此类推，最后剩下的猴子为猴王。
+  // 输入m和n求猴王的编号。
+  </script>
+
+  <script>
+  // 题目：把单词转换成拨号键盘上的数字。
+  // 如“dell”转换成3355.“alienware”转换成254369273
+  function button(n){
+    var letter
+    var sum = ""
+    for(var a = 0;a < n.length;a++) {
+      latter = n.charAt(a)
+      switch (latter) {
+        case "A":
+        case "B":
+        case "C":
+        case "a":
+        case "b":
+        case "c":
+          sum = sum +"2"
+          break;
+        case "D":
+        case "E":
+        case "F":
+        case "d":
+        case "e":
+        case "f":
+          sum = sum +"3"
+          break;
+        case "G":
+        case "H":
+        case "I":
+        case "g":
+        case "h":
+        case "i":
+          sum = sum +"4"
+          break;
+        case "J":
+        case "K":
+        case "L":
+        case "j":
+        case "k":
+        case "l":
+          sum = sum +"5"
+          break;
+        case "M":
+        case "N":
+        case "O":
+        case "m":
+        case "n":
+        case "o":
+          sum = sum +"6"
+          break;
+        case "P":
+        case "Q":
+        case "R":
+        case "S":
+        case "p":
+        case "q":
+        case "r":
+        case "s":
+          sum = sum +"7"
+          break;
+        case "T":
+        case "U":
+        case "V":
+        case "t":
+        case "u":
+        case "v":
+          sum = sum +"8"
+          break;
+        case "W":
+        case "X":
+        case "Y":
+        case "Z":
+        case "w":
+        case "x":
+        case "y":
+        case "z":
+          sum = sum +"9"
+          break;
+      }
+    }
+    return sum
+  }
+  </script>
+  
+  <script>
+  //题目：字符串展开。把字符串中包含有类似“a-g”的字符串展开成完整形式。
+  // 例："abc-fgx-z0-9"输出"abcdefgxyz0123456789"。（类似于上面行程编码的反操作)
+  function open(n) {
+    var start
+    var end
+    var bridge
+    var translate = n.split(",")
+    for(var a = 0;a < n.length;a++) {
+      if(n.charAt(a) == "-") {
+        start = a - 1
+        end = a + 1
+        bridge = openit(n.charAt(start),n.charAt(end))
+        translate.splice(a,bridge)
+      }
+    }
+    n = translate.join("")
+    return n
+  }
+  function openit(x,y) {
+    var letter = "abcdefghijklmnopqrstuvwxwz"
+    var digit = "0123456789"
+    var start 
+    var end 
+    var openAfter = ""
+    if (letter.indexOf(x) != -1) {
+      start = letter.indexOf(x) + 1
+      end = letter.indexOf(y) - 1
+      for(var a = start;a <= end;a++) {
+        openAfter += letter.charAt(a)
+      }
+    }
+    if (digit.indexOf(x) != -1 ) {
+      start = digit.indexOf(x) + 1
+      end = digit.indexOf(y) - 1
+      for(var a = start;a <= end;a++) {
+        openAfter += digit.charAt(a)
+      }
+    }
+    return openAfter
+  }
+  </script>
+
+  <script>
+//   题目：找出唯一的满足a + b + c = 1000的毕达哥拉斯三元组{a, b, c}。
+// 一个毕达哥拉斯三元组是一个包含三个自然数的集合，a<b<c，满足条件：
+// a^2 + b^2 = c^2例如：3^2 + 4^2 = 9 + 16 = 25 = 5^2.（说白了就是一组勾股数）
+// 已知存在并且只存在一个毕达哥拉斯三元组满足条件a + b + c = 1000。
+// 找出这个三元组。
+// 题目中a^b代表a的b次方（这是一个通用表示法） 。
+  </script>
+
+  <script>
+// 题目：将一个数字的各位加起来求和。如果该和大于10，将得到这个数字继续进行这种操作，直到其只有一位数。
+// 例如：459->4+6+9->19->1+9->10->1+0->1
+// 于是就输出1
+  function numWidth(n) {        //判断数字的长度
+    return Math.floor(Math.log10(n)) + 1
+  }
+  function output1(n) {
+    var sum 
+    while(n > 0) {
+      digit = n % 10
+      n = (n - digit)/10
+      sum += digit
+    }
+    while (sum > 10) {
+      n = sum
+    }
+  }
+  
+  </script>
+
+  <script>
+  // 题目：找出最小的能被1-20中每个数整除的数。
+  </script>
+
+  <script>
+  // 题目：在控制输出九九乘法表。
+  function multiplication(){
+    let con = ""
+    for (let a = 1;a <= 9;a++) {
+      for (let b = 1;b <= a;b++) {
+        con = con + b + "*" + a + "=" + b * a + " "
+      }
+      console.log(con)
+      con = ""
+    }
+  }
+  </script>
+
+  <script>
+  //   作业：
+  // 实现一个函数cal，接收一数值表示年份，在网页中使用表格打印出这一年的日历。
+  // document.write(string)可以用于向网页中写入html内容
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

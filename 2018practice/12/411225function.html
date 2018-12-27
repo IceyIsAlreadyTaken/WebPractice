@@ -18,7 +18,7 @@
       return false
      }
 
-     //返回n 的阶乘
+     //返回 n 的阶乘
      var favtorial = function (n) {
        var sum = 1
        for (var a = 1;a <= n;a++){
@@ -27,7 +27,18 @@
        return sum
      }
 
-     
+     //把数值 n 转换成 x 进制
+     //返回数组
+     function base(n,x) {
+       var result=""
+       var digit
+       while(n > 0) {
+         digit = n % x
+         result = digit + result
+         n = (n - digit) / x
+       }
+       return result
+     }
   </script>
 </head>
 <body>
