@@ -1548,29 +1548,45 @@ console.log("##########################################    ############         
       }
     }
   </script>
-  <script id="sqrt" sample-input="2" sample-output="1.414" comment="不使用Math.sqrt，求一个非负数的平方根，至少精确到小数点后3位" type="sqrt">
-    var n = +prompt()
-    for(a=1;;a++){
-      if(a*a<=n&&(a+1)*(a+1)>n){
-        for(b=a;;b+=0.1){
-          if(b*b<=n&&(b+0.1)*(b+0.1)>n){
-            for(var c=b;;c+=0.01){
-              if(c*c<=n&&(c+0.01)*(c+0.01)>n){
-                for(var d=c;;d+=0.001){
-                  if(d*d<=n&&(d+0.001)*(d+0.001)>n){
-                    console.log((d).toFixed(3))
-                    break;
-                  }
-                }
-                break;
-              }
-            }
-            break;
-          }
-        }
-        break;
+  <script id="sqrt" sample-input="2" sample-output="1.414" comment="不使用Math.sqrt，求一个非负数的平方根，至少精确到小数点后3位" >//牛顿法开平方根
+    //牛顿法
+    
+    
+    
+    
+    
+    
+    //二分法
+    function erFenFa(n) {
+      for(var a = 0;;a++) {
+        if(a * a < n && (a + 1) * (a + 1) > n) {}
       }
     }
+    
+    
+    //自己想的
+    // var n = +prompt()
+    // for(a=1;;a++){
+    //   if(a*a<=n&&(a+1)*(a+1)>n){
+    //     for(b=a;;b+=0.1){
+    //       if(b*b<=n&&(b+0.1)*(b+0.1)>n){
+    //         for(var c=b;;c+=0.01){
+    //           if(c*c<=n&&(c+0.01)*(c+0.01)>n){
+    //             for(var d=c;;d+=0.001){
+    //               if(d*d<=n&&(d+0.001)*(d+0.001)>n){
+    //                 console.log((d).toFixed(3))
+    //                 break;
+    //               }
+    //             }
+    //             break;
+    //           }
+    //         }
+    //         break;
+    //       }
+    //     }
+    //     break;
+    //   }
+    // }
   </script>
   
   给定M和N，求从M个物体中选出N个的排列与组合的数量：

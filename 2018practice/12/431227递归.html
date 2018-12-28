@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    function factorial(n) {
+      if (n == 0) {
+        return 1
+      }else {
+        return n * factorial(n-1)
+      }
+    }
+
+    function s(n) { //返回数列 a(n)的前n项和
+      if(n == 1) {
+        return a(1)
+      }else {
+        return a(n) + s(n-1)
+      }
+    }
+
+    function a(n) { //返回自然数列的第n项
+      return n*n
+    }
+
+    function  fei(n) { //斐波那切数列
+      if(n==1 || n==2) {
+        return 1
+      }else {
+        return fei(n-1) +fei (n-2)
+      }
+    }
+
+    function select(a,b,rout) {
+      if(a == 6 && b == 5) {
+        console.log(route)
+      }else if(a > 6 ||y > 5) {
+
+      }else {
+        select(a + 1,b,rout + "↑")
+        select(a,b+1,rout + "→")
+      }
+    }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

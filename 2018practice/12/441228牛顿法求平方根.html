@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+//二分法
+function sqrt(n) {
+  var left = 0
+  var right = n
+  var middle = (left + right) / 2
+
+  while(Math.abs(middle * middle - n) > 0.0000000001) {
+    var middle = (left + right) / 2
+    if (middle * middle > n) {
+      right = middle
+    } else if (middle * middle < n) {
+      left = middle
+    }
+  }
+
+  return middle
+}
+
+//牛顿法
+function sqrt2(n) {
+  var x = n
+
+  while(x * x - n > 0.00000000000001) {
+    // x = x - (x * x - n) / (2 * x)
+    x = 0.5 * (x + n / x)
+  }
+
+  return x
+}
+</script>

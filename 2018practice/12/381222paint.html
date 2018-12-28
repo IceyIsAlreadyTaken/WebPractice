@@ -43,81 +43,71 @@
 <script>
   // YOUR CODE GOES BELOW
   //画一条实线
-  for(var a=0;a<400;a++){
-    dot(a,20,"red")
+  for (var a = 0;a < 400;a++) {
+    dot(a,10,"red")
   }
+
+  //画一条一个实点一个空点的虚线
+  for (var a = 0;a < 400;a++) {
+    if( a % 2 == 0) {
+      dot(a,20,"tan")
+    }
+  }
+
   // 画一条两个实点两个空点的虚线
-  for(var a=0;a<400;a+=2){
-    for(var b=0;b<2;b++){
-    dot(a,30,"blue")
-    a+=1
+  for (var a = 0;a < 400;a += 1) {
+    if (a % 4 < 2) {
+      dot(a,30,"blue")
     }
   }
+
   // 画一条三个实点两个空点的虚线
-  for(var a=0;a<400;a+=2){
-    for(var b=0;b<3;b++){
-    dot(a,40,"orange")
-    a+=1
+  for (var a = 0;a < 400;a += 1) {
+    if (a % 5 < 3) {
+      dot(a,40,"orange")
     }
   }
+
   // 画一条45度的斜线
-  var b=300
-  for(var a=0;a<400;a+=1){
-    dot(a,b)
-    b-=1
+  for (var a = 0;a < 400;a += 1) {
+    dot(a,a)
   }
+
   // 画一条跨越画布左上角和右下角的对角线
-  b=0
-  for(var a=0;a<400;a+=1){
-    dot(a,b,"yellow")
-    b+=300/400
+  for (var a = 0;a < 400;a += 1) {
+    dot(a,a*0.75,"yellow")
   }
   // 画一个空心矩形
-  b=50
-  for(var a=30;a<100;a+=1){
-    dot(a,b,"pink")
+  for (var a = 30;a <= 100;a += 1) {
+    dot(a,50,"brown")
   }
-  b=80
-  for(var a=30;a<100;a+=1){
-    dot(a,b,"pink")
+  for (var a = 30;a <= 100;a += 1) {
+    dot(a,80,"brown")
   }
-  a=30
-  for(var b=50;b<80;b+=1){
-    dot(a,b,"pink")
+  for (var b = 50;b <= 80;b += 1) {
+    dot(30,b,"brown")
   }
-  a=100
-  for(var b=50;b<80;b+=1){
-    dot(a,b,"pink")
+  for (var b = 50;b <= 80;b += 1) {
+    dot(100,b,"brown")
   }
   // 画一个实心矩形
-  for(var b=100;b<130;b++){
-    for(var a=30;a<100;a+=1){
-    dot(a,b,"green")
+  for (var b = 100;b < 130;b++) {
+    for (var a = 30;a < 100;a += 1) {
+      dot(a,b,"rgb(" + a*1.5 + "," + b*1.5 + "," + 222+")")
     }
   }
   // 画一个rgb色彩空间的某一面
-  var xxx=0,yyy=255,zzz=0
-  for(var b=130;b<250;b++){
-    for(var a=130;a<250;a+=1){
-    dot(a,b,"rgb("+xxx+","+yyy+","+zzz+")")
-    xxx+=250/120
-    zzz+=250/120
+  for (var b = 130;b <= 250;b++) {
+    for (var a = 130;a <= 250;a += 1) {
+      var y = (a - 130) * 255/120 
+      var z = (b - 130) * 255/120
+      dot(a,b,"rgb("+255+","+y+","+z+")")
     }
-    xxx=0
-    zzz=0
-    yyy-=255/120
   }
   // 画一个空心的圆
-  var delta
-  for(var x=10;x<=50;x=x+0.05){
-    delta=+Math.sqrt(400-(x-50)*(x-50))
-      dot(x,160-delta)
-      dot(x,160+delta)
-  }
-  for(var y=140;y<=180;y=y+0.05){
-    delta=+Math.sqrt(400-(y-160)*(y-160))
-      dot(50+delta,y)
-      dot(50-delta,y)
+  var radius = 50
+  for (var r = 0;r <= 2 * Math.PI;r += 0.01) {
+    dot(radius * Math.cos(r) + 300,radius * Math.sin(r) + 100)
   }
   // 画一个实心的圆
   for(var m=30;m<=70;m=m+0.1){

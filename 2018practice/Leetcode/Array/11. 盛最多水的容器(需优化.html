@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script id="11. 盛最多水的容器">//需要优化
+    var maxArea = function(height) {
+    let big = 0
+    let vol
+    for (var a = 0;a < height.length-1;a++) {
+        for(var b = a+1;b < height.length;b++) {
+            if(height[b] > height[a]) {
+              vol = height[a] * (b - a)
+                
+            }
+            else {
+              vol = height[b] * (b - a)
+            }
+            if(vol > big) {
+              big = vol
+            }
+        }
+    }
+    return big
+    };
+    //执行用时: 1124 ms, 在Container With Most Water的JavaScript提交中击败了16.00% 的用户
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
