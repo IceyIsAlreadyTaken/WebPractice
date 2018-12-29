@@ -110,14 +110,24 @@
     dot(radius * Math.cos(r) + 300,radius * Math.sin(r) + 100)
   }
   // 画一个实心的圆
-  for(var m=30;m<=70;m=m+0.1){
-    for(var n=240;n<=280;n=n+0.1){
-      delta=+Math.sqrt(400-(m-50)*(m-50))
-      if(n>=260-delta&&n<=260+delta){
-        dot(m,n,"red")
+  function line(x1,x2,y1,y2) {
+    if (x2 > x1) {
+      for (var x = x1;x <= x2;x += 0.1) {
+        var y = y1 + (y2 - y1) * (x - x1) / (x2 - x1)
+        dot(x,y)
+      }
+    }else {
+      for (var x = x2;x <= x1;x += 0.1) {
+        var y = y2 + (y1 - y2) * (x - x2) / (x1 - x2)
+        dot(x,y)
       }
     }
   }
+
+  for (var y = 70;y <= 130;y++) {
+    
+  }
+
   // 画一个大小合适的sin(x)的图像
   for(var a=0;a<400;a++){
     dot(a,200+20*Math.sin(a/10))
