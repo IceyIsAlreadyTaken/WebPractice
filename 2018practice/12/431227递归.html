@@ -6,14 +6,20 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script>
-    function factorial(n) {
+    function factorial(n) { //求n的阶乘
       if (n == 0) {
         return 1
       }else {
         return n * factorial(n-1)
       }
     }
-
+    function power(x,y) { //求x的y次方
+      if (y == 0) {
+        return 1
+      } else {
+        return x*power(x,y-1)
+      }
+    }
     function s(n) { //返回数列 a(n)的前n项和
       if(n == 1) {
         return a(1)
@@ -23,7 +29,7 @@
     }
 
     function a(n) { //返回自然数列的第n项
-      return n*n
+      return n
     }
 
     function  fei(n) { //斐波那切数列
@@ -43,6 +49,21 @@
         select(a + 1,b,rout + "↑")
         select(a,b+1,rout + "→")
       }
+    }
+
+    //从数字1开始，加上5或者乘以3
+    function findSolution(target) {
+      function find(start,history) {
+        if (start == target) { 
+          return history;
+        }
+        else if (start > target) {
+          return null;
+        } else {
+          return find(start + 5,"(" + history + "+ 5)") ||find(start * 3,"(" + history + " * 3)");
+        }
+      }
+      return find(1,"1");
     }
   </script>
 </head>
