@@ -12,11 +12,11 @@
 </html>
 <script>
 //二分法
-function sqrt(n) {
+//大于1的数的平方根
+function sqrt(n) {//函数有问题
   var left = 0
   var right = n
   var middle = (left + right) / 2
-
   while(Math.abs(middle * middle - n) > 0.0000000001) {
     var middle = (left + right) / 2
     if (middle * middle > n) {
@@ -25,19 +25,16 @@ function sqrt(n) {
       left = middle
     }
   }
-
   return middle
 }
 
 //牛顿法
 function sqrt2(n) {
   var x = n
-
   while(x * x - n > 0.00000000000001) {
     // x = x - (x * x - n) / (2 * x)
     x = 0.5 * (x + n / x)
   }
-
   return x
 }
 </script>

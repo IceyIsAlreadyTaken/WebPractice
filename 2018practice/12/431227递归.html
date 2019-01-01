@@ -65,6 +65,67 @@
       }
       return find(1,"1");
     }
+
+    //找到所有情况
+    function findSolution(target) {
+      function find(start,history) {
+        if (start == target) { 
+          console.log(history)
+          //return history;
+        }
+        else if (start > target) {
+          return null;
+        } else {
+          find(start + 5,"(" + history + "+ 5)")
+          find(start * 3,"(" + history + " * 3)")
+        }
+      }
+      return find(1,"1");
+    }
+
+    //走棋盘
+    function find(x,y,route) {
+      if (x == 6 && y ==5) { 
+        console.log(route)
+      }
+      else if (x > 6 || y > 5) {
+        //void 无效
+      } else {
+        find(x + 1,y, route + "→")
+        find(x,y + 1, route + "↑")
+      }
+    }
+
+    //上楼梯上十级台阶，一次可以上一阶，两阶
+    function find(num,route) {
+      if (num == 10) { 
+        console.log(route)
+      }
+      else if (num > 10) {
+        //void 无效
+      } else {
+        find(num + 1,"1" + route)
+        find(num + 2,"2" + route)
+      }
+    }
+
+    //上楼梯上十级台阶，一次可以上一阶，两阶，三阶
+    function findSolution(target) {
+      function find(num,route) {
+        if (num == target) { 
+          console.log(route)
+        }
+        else if (num > target) {
+          //void 无效
+        } else {
+          find(num + 1,"1" + route)
+          find(num + 2,"2" + route)
+          find(num + 3,"3" + route)
+        }
+      }
+      find(0,"")
+    }
+    
   </script>
 </head>
 <body>
