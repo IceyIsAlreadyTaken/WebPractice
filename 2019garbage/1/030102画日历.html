@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    function isLeapYear(year) {
+      if ((year % 4 == 0 && year % 100 !=0)||(year % 400 ==0 )) {
+        return true
+      } else {
+        return false
+      }
+    }
+    function weekdayof(year,month) {
+      var counter=0
+      for(var a=1901;a<=year;a++){
+        if (a % 400==0 || (a % 4 == 0 && a % 100 != 0)){
+          counter+=1
+        }
+      }
+      switch(month){
+        case 1:
+          counter=counter+1
+          break;
+        case 2:
+          counter=counter+32
+          break;
+        case 3:
+          counter=counter+60
+          break;
+        case 4:
+          counter=counter+91
+          break;
+        case 5:
+          counter=counter+121
+          break;
+        case 6:
+          counter=counter+152
+          break;
+        case 7:
+          counter=counter+182
+          break;
+        case 8:
+          counter=counter+213
+          break;
+        case 9:
+          counter=counter+244
+          break;
+        case 10:
+          counter=counter+274
+          break;
+        case 11:
+          counter=counter+305
+          break;
+        case 12:
+          counter=counter+335
+          break;
+      }
+      // if(((n-1900)*365+counter)%7==0)
+      // {
+      //   console.log(7)
+      // }else{
+      //   console.log(((n-1900)*365+counter)%7)
+      // }
+    }
+    function monthdayof(year,month) {
+      switch (month) {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+          return 31
+          break;
+        case 2:
+          if(isLeapYear(year,month)){
+            return 29
+          } else {
+            return 28
+          }
+          break;
+        default:
+          return 30
+          break;
+      }
+    }
+    function monthCal(year,month) {
+      var starDay = weekdayof(year,month)
+      document.write("")
+    }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

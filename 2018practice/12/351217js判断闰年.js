@@ -1,7 +1,7 @@
 
 // 判断闰年
 var year = prompt("请输入年份","");
-if (year % 400==0 || year % 4 == 0 && year % 100 != 0){
+if ((year % 400==0) || (year % 4 == 0 && year % 100 != 0)){
   alert(year + "是闰年");
 }
 else{
