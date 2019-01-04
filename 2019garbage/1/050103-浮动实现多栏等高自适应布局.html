@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body,html{
+      height: 100%;
+      margin:0px;
+    }
+    div{
+      border:5px solid;
+      overflow: hidden;
+      xheight:100%;
+      box-sizing: border-box;
+    }
+    div > * {
+      padding-bottom:5000px;
+      margin-bottom:-5000px;
+    }
+    aside{
+      width: 100px;
+      float: left;
+      background-color: tan;
+      xheight: 100%;
+    }
+    section{
+      width: 300px;
+      float:right;
+      background-color: gold;
+      xheight: 100%;
+    }
+    header{
+      width: 200px;
+      float:right;
+      background-color: pink;
+      xheight: 100%;
+    }
+    footer{
+      display: block;
+      background-color: blue;
+      border: 3px solid hotpink;
+      overflow: hidden;
+      xheight: 100%;
+      box-sizing: border-box;
+      /* 常规流元素触发BFC会通过让自己变窄的方式避开浮动元素 */
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <aside>aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside aside </aside>
+    <section>sectioin Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum minus pariatur temporibus maxime cum dicta facere adipisci animi perspiciatis, doloribus obcaecati suscipit? Vel voluptas rem dolorem, consequuntur asperiores fugiat in!</section>
+    <header>header Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus sunt molestiae repudiandae a architecto eius asperiores accusantium, repellat veritatis delectus autem adipisci, corrupti quibusdam quis, reiciendis ratione? Exercitationem, accusamus velit.que dignissimos facilis, nesciunt quas inventore aliquam perferendis officia asperiores placeat quis doloremque atque, vero, ipsum voluptatem amet sunt dolore. Eius laudantium, maiores incidunt vitae maxime culpa. Odio minima, eum quo vero aspernatur perspiciatis architecto enim placeat aliqptatum reiciendis possimus provident, earum laboriosam aliquam, rerum ut! </header>
+    <footer>footer Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam voluptates molestias harum nisi in dolor ratione, itaque, praesentium beatae sunt quae, saepe asperiores atque sit vero aut est maiores quasi. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias enim consequuntur et autem quasi, nesciunt doloribus doloremque? Ipsam id odit cum</footer>
+  </div>
+</body>
+</html>

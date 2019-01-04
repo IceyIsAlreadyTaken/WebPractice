@@ -5,67 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+  </style>
   <script>
-    function isLeapYear(year) {
+    function isLeapYear(year) { //是否闰年
       if ((year % 4 == 0 && year % 100 !=0)||(year % 400 ==0 )) {
         return true
       } else {
         return false
       }
     }
-    function weekdayof(year,month) {
-      var counter=0
-      for(var a=1901;a<=year;a++){
-        if (a % 400==0 || (a % 4 == 0 && a % 100 != 0)){
-          counter+=1
+    function weekdayof(year,month) {//某一年的某一月的第一天是星期几
+      var counter = 1
+      for(var a = 1900;a < year;a++) {
+        if (isLeapYear(a)) {
+          counter += 366
+        } else {
+          counter += 365
         }
       }
-      switch(month){
-        case 1:
-          counter=counter+1
-          break;
-        case 2:
-          counter=counter+32
-          break;
-        case 3:
-          counter=counter+60
-          break;
-        case 4:
-          counter=counter+91
-          break;
-        case 5:
-          counter=counter+121
-          break;
-        case 6:
-          counter=counter+152
-          break;
-        case 7:
-          counter=counter+182
-          break;
-        case 8:
-          counter=counter+213
-          break;
-        case 9:
-          counter=counter+244
-          break;
-        case 10:
-          counter=counter+274
-          break;
-        case 11:
-          counter=counter+305
-          break;
-        case 12:
-          counter=counter+335
-          break;
+      for(var a = 1;a < month;a++) {
+        counter += monthdayof(year,a)
       }
-      // if(((n-1900)*365+counter)%7==0)
-      // {
-      //   console.log(7)
-      // }else{
-      //   console.log(((n-1900)*365+counter)%7)
-      // }
+      return counter % 7
     }
-    function monthdayof(year,month) {
+    function monthdayof(year,month) {//返回月份天数
       switch (month) {
         case 1:
         case 3:
@@ -88,13 +52,70 @@
           break;
       }
     }
-    function monthCal(year,month) {
-      var starDay = weekdayof(year,month)
-      document.write("")
+    function monthName(n) { //返回月份名字
+      switch (n) {
+        case 1:
+          return "January"
+          break;
+        case 2:
+          return "February"
+          break;
+        case 3:
+          return "March"
+          break;
+        case 4:
+          return "April"
+          break;
+        case 5:
+          return "May"
+          break;
+        case 6:
+          return "June"
+          break;
+        case 7:
+          return "July"
+          break;
+        case 8:
+          return "August"
+          break;
+        case 9:
+          return "September"
+          break;
+        case 10:
+          return "October"
+          break;
+        case 11:
+          return "November"
+          break;
+        case 12:
+          return "December"
+          break;
+      }
+      
     }
+    function monthCall(year,month) {
+      var starDay = weekdayof(year,month)
+      document.write('<table style="border:1px solid;color:red;text-align:right;"  text-align:"center"><caption>' + monthName(month) + '</caption>')
+      document.write('<tbody ><tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr>')
+      document.write('<tr>')
+      for (var a = 0;a < weekdayof(year,month);a++) {
+        document.write('<td></td>')
+      }  
+      for (var i = 1;i <= monthdayof(year,month);i++) {
+        document.write('<td>' + i + '</td>')
+        if ((i + starDay) % 7 == 0) {
+          document.write('</tr><tr>')
+        }
+      }
+      document.write('</tr></tbody></table>')
+    }
+    monthCall(2019,1)
+    monthCall(2019,2)
+    monthCall(2019,3)
+    monthCall(2019,4)
+    monthCall(2019,5)
   </script>
 </head>
 <body>
-  
 </body>
 </html>

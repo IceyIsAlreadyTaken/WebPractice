@@ -10,6 +10,5 @@ var moveZeroes = function(nums) {
   for(let a = 0;a < b;a++) {
       nums.push(0)
   }
-  return nums
 };
-//Runtime: 76 ms, faster than 24.90% of JavaScript online submissions for Move Zeroes.
+//Runtime: 64 ms, faster than 74.05% of JavaScript online submissions for Move Zeroes.

@@ -13,7 +13,7 @@ var isUgly = function(num) {
   }
   if (num == 1) {
       return true
-  }else {
+  } else {
       return false
   }
 };
