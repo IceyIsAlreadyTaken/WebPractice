@@ -1,0 +1,44 @@
+<div>
+<script>
+var start = -3.14*2
+var end = 3.14*2
+var step = 0.24
+var factor = 30
+var f = (x,y) => 50 * (Math.sin(x) + Math.cos(y))
+var z
+for (var x = start; x < end; x += step) {
+  for (var y = start; y < end; y += step) {
+    z = f(x,y)
+    document.write(`
+      <span style="
+        background-color:hsl(${z},70%,50%);
+        transform: translate3d(${x*factor}px,${y*factor}px,${z}px) rotateY(${-Math.atan(Math.cos(x))}rad) rotateX(${Math.atan(-Math.sin(y))}rad)"></span>
+    `)
+  }
+}
+</script>
+
+</div>
+<style>
+  div {
+    margin: auto;
+    margin-top: 100px;
+    width: 500px;
+    height: 500px;
+    background-color: rgba(0,255,0,0.3);
+    transform: perspective(1000px) rotateX(80deg) rotateZ(0deg);
+    transform-style: preserve-3d;
+    transition: transform 30s linear;
+  }
+  div:hover {
+    transform: perspective(1000px) rotateX(580deg) rotateZ(1180deg);
+  }
+  span {
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    background-color: red;
+  }
+</style>

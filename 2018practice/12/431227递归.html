@@ -32,11 +32,12 @@
       return n
     }
 
-    function  fei(n) { //斐波那切数列
-      if(n==1 || n==2) {
-        return 1
+    //斐波那切数列 时间复杂度 O(2^n)
+    function  fei(n) { 
+      if(n == 0 || n == 1) {
+        return n
       }else {
-        return fei(n-1) +fei (n-2)
+        return fei(n-1) + fei(n-2)
       }
     }
 
@@ -96,7 +97,7 @@
       }
     }
 
-    //上楼梯上十级台阶，一次可以上一阶，两阶
+    //上楼梯上十级台阶，一次可以上一阶，两阶 复杂度为O(2^n)
     function find(num,route) {
       if (num == 10) { 
         console.log(route)
