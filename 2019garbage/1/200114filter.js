@@ -1,17 +1,3 @@
-let content = [
-  {"name": "Emma de Milliano", "sex": "f",
-   "born": 1876, "died": 1956,
-   "father": "Petrus de Milliano",
-   "mother": "Sophia van Damme"},
-  {"name": "Carolus Haverbeke", "sex": "m",
-   "born": 1832, "died": 1905,
-   "father": "Carel Haverbeke",
-   "mother": "Maria van Brussel"}
-]
-let a = JSON.stringify(content)
-let b = JSON.parse(a)
-
-//ancestry  祖先血统
 var ANCESTRY_FILE = JSON.stringify([
   {"name": "Carolus Haverbeke", "sex": "m", "born": 1832, "died": 1905, "father": "Carel Haverbeke", "mother": "Maria van Brussel"},
   {"name": "Emma de Milliano", "sex": "f", "born": 1876, "died": 1956, "father": "Petrus de Milliano", "mother": "Sophia van Damme"},
@@ -54,12 +40,23 @@ var ANCESTRY_FILE = JSON.stringify([
   {"name": "Jacobus Bernardus van Brussel", "sex": "m", "born": 1736, "died": 1809, "father": "Jan van Brussel", "mother": "Elisabeth Haverbeke"}
 ])
 var ancestry = JSON.parse(ANCESTRY_FILE)
-console.log(ancestry.length)
-
-
-function map(array,transform) {
-  var mapped = [];
-  for (let i = 0; i < array.length;i++)
-    mapped.push(transform(array[i]));
-  return mapped;
+//console.log(ancestry.length)
+//过滤出小于25岁的年轻人
+function filter(array,test) {
+  var passed = []
+  for (var i = 0;i < array.length;i++) {
+    if (test(array[i])) {
+      passed.push(array[i])
+    }
+  }
+  return passed
 }
+
+console.log(filter(ancestry,function(person) {
+  return person.born > 1900 && person.born < 1925
+}))
+
+//filter也是array的标准方法，筛选后返回筛选通过的函数
+ancestry.filter(function(person) {
+  return person.sex == 'f'
+})
