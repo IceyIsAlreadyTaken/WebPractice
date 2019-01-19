@@ -1,3 +1,5 @@
+//filter 过滤数组
+//filter() 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素
 var ANCESTRY_FILE = JSON.stringify([
   {"name": "Carolus Haverbeke", "sex": "m", "born": 1832, "died": 1905, "father": "Carel Haverbeke", "mother": "Maria van Brussel"},
   {"name": "Emma de Milliano", "sex": "f", "born": 1876, "died": 1956, "father": "Petrus de Milliano", "mother": "Sophia van Damme"},
@@ -42,6 +44,7 @@ var ANCESTRY_FILE = JSON.stringify([
 var ancestry = JSON.parse(ANCESTRY_FILE)
 //console.log(ancestry.length)
 //过滤出小于25岁的年轻人
+//实现filter函数
 function filter(array,test) {
   var passed = []
   for (var i = 0;i < array.length;i++) {
@@ -52,11 +55,15 @@ function filter(array,test) {
   return passed
 }
 
+//实现
 console.log(filter(ancestry,function(person) {
   return person.born > 1900 && person.born < 1925
 }))
+//这个return 是if里的判断
 
 //filter也是array的标准方法，筛选后返回筛选通过的函数
 ancestry.filter(function(person) {
   return person.sex == 'f'
 })
+//箭头函数简写
+ancestry.filter(person => person.sex == 'f')

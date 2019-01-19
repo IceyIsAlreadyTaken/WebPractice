@@ -1,14 +1,11 @@
-//
-var ary = [2,3,4,5,7]
-var sum = {}
-for (let i = 0;i < ary.length;i++) {
-  sum =(sum[ary[i]] = i,sum)
-}
-return sum
-
+//init 初始值
 // reduce 三个参数 数组，操作函数，初始值
-
 function reduce(ary,reducer,initVal) {
+  var start = 0
+  if (arguments.length == 2) { //传入两个参数时，默认数组第一项为默认值
+    initVal = ary[0]
+    start = 1
+  }
   for(var i = 0; i < ary.length;i++) {
     initVal = reducer(initVal,ary[i],i,ary)
   }
@@ -24,20 +21,37 @@ reduce([1,2,3,4,5],(max,curr) => { //求乘积
 },1)
   
 reduce([1,2,3,4,5],(max,curr) => { //求和
-  return max * curr
+  return max + curr
 },0)
 
-function filter(ary, test) {
-  return ary.reduce((result, currItem, i, ary) => {
-    if (test(currItem, i, ary)) {
-      result.push(currItem)
-    }
-    return result
-  }, [])
-}
+//课本代码，返回最早出生的人
+ancestry.reduce((a,b) => {
+  if (b.born < a.born) {
+    return b
+  } else {
+    return a
+  }})
 
-//使用 reduce 实现 map
-???
+//返回奇数数组 相当于实现了filter函数
+[1,2,3,4,5,6,7].reduce((init,ele) => {
+  if (ele % 2 == 1) {
+   init.push(ele)     //不能直接写 return 因为push不返回数组
+  }
+  return result
+},[])
+
+//reduce实现map
+[1,2,3,4,5].reduce((init,ele) => {
+  init.push(ele * ele)
+  return init
+},[])
+//简写
+[1,2,3,4,5].reduce((init,ele) => {
+  return init.push(ele * ele),init
+},[])
+//简写
+[1,2,3,4,5].reduce((init,ele) => (init.push(ele * ele),init),[])
+
 
 // map标准方法是什么
 // reduce标准方法是什么
