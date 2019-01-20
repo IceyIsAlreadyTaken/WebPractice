@@ -49,3 +49,5 @@ function map(ary,mapper) {
   }
   return result
 }
+
+ancestry.map(ele => ele.sex)
