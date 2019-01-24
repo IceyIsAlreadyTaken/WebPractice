@@ -76,3 +76,12 @@ function f(a,b,c) {
 
 f2 = bind(f, null, 1,2)
 f2(5) // 8
+
+
+
+//apply
+var a = [1,2,3,4,5,6,7,8,9,10]
+Math.max.apply(null,a)
+//apply方法会把数组 a 的每一项传给max
+//这个方法接受一个参数数组并使用这些参数并调用其所属的函数
+//apply接受数组也接受类数组对象，如arguments

@@ -71,7 +71,7 @@ function ary2tree(ary,rootPos = 0) {
     return null
   }
   return {
-    val:ary[rootPost],
+    val:ary[rootPos],
     left:ary2tree(ary,rootPos * 2 + 1),
     right:ary2tree(ary,rootPos * 2 + 2)
   }
@@ -80,12 +80,41 @@ function ary2tree(ary,rootPos = 0) {
 
 //将二叉树root放入一个数组
 //根结点放在rootPos的位置
-function tree2ary(root, rootPos = 0) {
-
-
+var ary = []
+function tree2ary(root, ary = [], rootPos = 0) {
+  if (!root) {
+    return null
+  }
+  ary[rootPos] = root.val
+  tree2ary(root.left,ary,rootPos * 2 + 1)
+  tree2ary(root.right,ary,rootPos * 2 + 2)
+  return ary
 }
 
 
+//leetcode 将数组转换成树 ?
+//队列方式
+function ary2treeLC(ary) {
+  if (ary.length == 0) {
+    return null
+  }
+  var queue = []
+  var root = {
+    val:ary[0],
+    left:null,
+    right:null
+  }
+  queue.push(root)
+  for(var val of ary) {
+    if (val) {
+      var node = {
+        val:val,
+        left:null,
+        right:null
+      }
+    }
+  }
+}
 
 
 //树的遍历
