@@ -8,11 +8,6 @@ function hasOwn(obj,action) {
 }
 
 
-//返回一个以proto为原型的对象
-function create(proto) {
-  var a = Object.create(proto)
-  return a
-}
 
 //实现assign函数
 function assign(target,...sources) {
