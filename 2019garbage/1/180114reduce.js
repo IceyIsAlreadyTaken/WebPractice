@@ -6,7 +6,7 @@ function reduce(ary,reducer,initVal) {
     initVal = ary[0]
     start = 1
   }
-  for(var i = 0; i < ary.length;i++) {
+  for(var i = start; i < ary.length;i++) {
     initVal = reducer(initVal,ary[i],i,ary)
   }
   return initVal
@@ -56,3 +56,29 @@ ancestry.reduce((a,b) => {
 // map标准方法是什么
 // reduce标准方法是什么
 // 晕晕
+
+
+// 抄代码 实现reduce
+function reduce(ary,reducer,initialvalue) {
+  var start = 0
+  if (arguments.length == 2) {
+    start = 1
+    initialvalue = ary[0]
+  }
+  for (let i = start; i < ary.length;i++) {
+    initialvalue = reducer(initialvalue,ary[i],i,ary)
+  }   
+  return initialvalue
+}
+
+function reduce(ary,reducer,initialvalue) {
+  var start = 0
+  if (arguments.length == 2) {
+    start = 1
+    initialvalue = ary[0]
+  }
+  for (let i = start;i < ary.length;i++) {
+    initialvalue = reducer(initialvalue,ary[i],i,ary)
+  }
+  return initialvalue
+}

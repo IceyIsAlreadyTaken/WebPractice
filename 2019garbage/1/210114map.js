@@ -44,10 +44,33 @@ var ancestry = JSON.parse(ANCESTRY_FILE)
 //实现map函数
 function map(ary,mapper) {
   var result = []
-  for (let a = 0;a < ary.length;a++) {
+  for (let i = 0;i < ary.length;i++) {
     result.push(mapper(ary[i],i,ary))
   }
   return result
 }
 
 ancestry.map(ele => ele.sex)
+
+//抄代码
+function map(ary,mapper) {
+  var result = []
+  for (let i = 0;i < ary.length;i++) {
+    result.push(mapper(ary[i],i,ary))
+  }
+  return result
+}
+function map(ary,mapper) {
+  var result = []
+  for (let i = 0;i < ary.length;i++) {
+    result.push(mapper(ary[i],i,ary))
+  }
+  return result
+}
+function map(ary,mapper) {
+  var result = []
+  for (let i = 0;i < ary.length;i++) {
+    result.push(mapper(ary[i],i,ary))
+  }
+  return result
+}

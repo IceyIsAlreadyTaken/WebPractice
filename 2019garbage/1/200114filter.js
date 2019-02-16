@@ -67,3 +67,34 @@ ancestry.filter(function(person) {
 })
 //箭头函数简写
 ancestry.filter(person => person.sex == 'f')
+
+
+
+//抄代码 实现filter函数
+function filter(ary,test) {
+  var passed = []
+  for (let i = 0;i < ary.length;i++) {
+    if (test(ary[i],i,ary)) {
+      passed.push(ary[i])
+    }
+  }
+  return passed
+}
+function filter(ary,test) {
+  var passed = []
+  for (let i = 0;i < ary.length;i++) {
+    if (test(ary[i],i,ary)) {
+      passed.push(ary[i])
+    }
+  }
+  return passed
+}
+function filter(ary,test) {
+  var passed = []
+  for (let i = 0;i < ary.length;i++) {
+    if (test(ary[i],i,ary)) {
+      passed.push(ary[i])
+    }
+  }
+  return passed
+}

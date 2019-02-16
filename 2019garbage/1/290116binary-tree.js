@@ -12,10 +12,19 @@
 
 //左子树，右子树，根结点，叶子结点
 
+//BST
 //二叉搜索树（Binary Search Tree(BST),也称二叉搜索树、有序二叉树(ordered binary tree)，排序二叉树(sorted binary tree),是指一棵空树（null)或者具有下列性质的二叉树：
 //1.左子树 上所有结点的值均小于它的根结点的值（一定要整个左子树都要小于根结点）
-//2.右子树 上所有结点的值均大于等于它的根节点的值（一定要整个右子树都要大于等于根结点）
+//2.右子树 上所有结点的值均大于它的根节点的值（一定要整个右子树都要大于根结点）
 //3.Recursively(递归)，左、右子树也分别满足二叉搜索树
+//排序二叉树的，访问，搜索，插入，删除的平均时间复杂度都是O(logn),最坏的情况为 O(n)
+//常见的平衡二叉搜索树有：
+// AVL树
+// 红黑树
+// Treap
+
+
+
 
 //满二叉树：每一层节点都是满的，满足2^(i-1)
 //完全二叉树：假如深度为h,从1~(h-1)层的节点都排满,第h层所有的结点都连续集中在最左边，这就是完全二叉树.
@@ -91,7 +100,6 @@ function tree2ary(root, ary = [], rootPos = 0) {
   return ary
 }
 
-
 //leetcode 将数组转换成树 (用一个额外数组来保存非空节点)
 //方法一
 function ary2treeLC(ary) {
@@ -128,6 +136,7 @@ function ary2treeLC(ary) {
   }
   return rootNode
 }
+
 //方法二 队列方式
 function condensedArray2Tree(ary) {
   if (ary.length == 0) {
@@ -188,21 +197,17 @@ function tree2aryLC(root) {
 //先序遍历（先遍历根结点，再遍历左节点，右节点）
 //中序遍历 (左节点，中节点，右节点)
 //后序遍历（左节点，右节点，中节点）
+//无论采用哪种便利方法，每个节点都访问一次且仅访问一次，故时间复杂度都是 O（n)
+//在递归遍历中，递归工作栈的栈的深度恰好为树的深度，所以在最坏情况下，二叉树是有n个结点且深度为n的单支树，遍历算法的空间复杂度为 O(n)
 
 //先序遍历
 // 绕着轮廓走
-function preOrderTraverse(root,action = console.log) {
-  if(root) {
-    action(root.val)
-    preOrderTraverse(root.left,action)
-    preOrderTraverse(root.right,action)
-  }
-}
+rerr
 
 //中序遍历
 // 用一条垂直的线扫描
 function inOrderTraverse(root,action = console.log) {
-  if(root.left) {
+  if(root) {
     inOrderTraverse(root.left,action)
     action(root.left)
     inOrderTraverse(root.right,action)
@@ -217,6 +222,12 @@ function postOrderTraverse(root,action = console.log) {
     action(root.val)
   }
 }
+
+//可借助栈，将二叉树的递归遍历算法转换为非递归算法
+
+
+
+
 
 
 //Binary search tree
@@ -239,5 +250,4 @@ function quickSort(ary) {
     return ary
     return ary.slice()
   }
-
 }

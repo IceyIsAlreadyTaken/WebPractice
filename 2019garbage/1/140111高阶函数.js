@@ -169,3 +169,27 @@ jiegou(1,2,3,4,5)
 //a = 1
 //b = [2,3,4,5]
 //用在函数形参里为剩余参数
+
+
+
+/**
+ * 炒代码 forEach
+ */
+//实现forEach   写Leetcode 看着 forEach 太陌生了抄3遍
+function forEach(ary,action) {
+  for (let i = 0; i < ary.lenght;i++) {
+    action(ary[i],i,ary)
+  }
+}
+
+function forEach(ary,action) {
+  for (let i = 0;i < ary.length;i++) {
+    action(ary[i],i,ary)
+  }
+}
+
+function forEach(ary,action) {
+  for (let i = 0;i < ary.length; i++) {
+    action(ary[i],i,ary)
+  }
+}
