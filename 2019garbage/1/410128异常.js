@@ -20,10 +20,14 @@ function look() {
 try {
   console.log('You see',look())
 } catch (e) {
-  console.log(e) //e.message 只显示错误信息不显示调用栈
-}                 //e.stack  打印出调用栈信息
-
-console.log("继续前进！")
+  console.log(e)
+  console.log(e.message) 
+  console.log('//e.message 只显示错误信息不显示调用栈')//e.message 只显示错误信息不显示调用栈
+  console.log(e.stack)
+  console.log('//e.stack  打印出调用栈信息') 
+  console.log('抓到异常后会运行这句话以及后边的东西')
+}                 
+console.log("抛出异常后仍然能够继续运行后边的内容")
 
 //=====================================================
 a()
