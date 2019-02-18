@@ -44,7 +44,16 @@ function selectSort(ary) {
   return ary
 }
 
+function mergeSort(ary) {
 
+}
+
+function quickSort(ary) {
+  if(ary.length < 2) {
+    return ary
+    return ary.slice()
+  }
+}
 
 
 

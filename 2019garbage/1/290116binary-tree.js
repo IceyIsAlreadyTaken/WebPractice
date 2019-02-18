@@ -202,14 +202,13 @@ function tree2aryLC(root) {
 
 //先序遍历
 // 绕着轮廓走
-rerr
 
 //中序遍历
 // 用一条垂直的线扫描
 function inOrderTraverse(root,action = console.log) {
   if(root) {
     inOrderTraverse(root.left,action)
-    action(root.left)
+    action(root.val)
     inOrderTraverse(root.right,action)
   }
 }
@@ -229,25 +228,53 @@ function postOrderTraverse(root,action = console.log) {
 
 
 
-
-//Binary search tree
-//将val插入BST中，并返回bst的根结点
+/**
+ * 
+ * Binary search tree
+ * 将val插入BST中，并返回bst的根结点
+ */
 function insertIntoBST(bst,val) {
-  let bst = {
-    val = val[0],
-    left:null,
-    right:null
+  if (!bst) {
+    return {
+      val:val,
+      left:null,
+      right:null
+    }
+  } else {
+    if (val >= bst.val) {
+      bst.right = insertIntoBST(bst.right,val)
+    } else {
+      bst.left = insertIntoBST(bst.left,val)
+    }
+    return bst
   }
 }
 
-
-function mergeSort(ary) {
-
-}
-
-function quickSort(ary) {
-  if(ary.length < 2) {
-    return ary
-    return ary.slice()
+//对数组转换成排序二叉树,并进行中序遍历
+// 时间复杂度 O(nlogn)
+// 数组为有序时时间复杂度会退化到 O(n^2)
+// 
+function bstSort(ary) {
+  var bst = null
+  for (let a of ary) {
+    bst = insertIntoBST(bst,a)
   }
+  var result = []
+  inOrderTraverse(bst,it => result.push(it))
+  return result
 }
+
+//简写
+function bstSort(ary) {
+  var result = []
+  inOrderTraverse(ary.reduce(insertIntoBST,null),it => result.push(it))
+  return result
+}
+
+
+//生成随机数组
+var a = new Array(100)
+a.fill(100).map(it => it*Math.random()).map(it => Math.round(it))
+
+
+na

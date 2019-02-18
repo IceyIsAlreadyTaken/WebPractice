@@ -190,9 +190,18 @@ var match = /\d+/.exec('one two 100')
 match = ["100", index: 8, input: "one two 100", groups: undefined]
 
 var tt = /(\d{2}){2}-(\d{2})-(\d{2})/.exec('this is 2019-02-17')
+//["2019-02-17", "19", "02", "17", index: 8, input: "this is 2019-02-17", groups: undefined]
+//数组里出现的是最后一次匹配的字符串
+var tt = /(\d{2}){2}-(\d{2})-(\d{2}) (foo)?(or)/.exec('this is 2019-02-17 or 2012-99-99')
+//["2019-02-17 or", "19", "02", "17", undefined, "or", index: 8, input: "this is 2019-02-17 or 2012-99-99", groups: undefined]
+//没有匹配到的话显示 undefined
+/f(oo(bar))/.exec('foobar')
+// ["foobar", "oobar", "bar", index: 0, input: "foobar", groups: undefined]
 
-
-
+var quotedText = /'([^']*)'/
+quotedText.exec("she said 'hello'")
+//["'hello'", "hello", index: 9, input: "she said 'hello'", groups: undefined]
+//贪婪模式 尽可能匹配多的字母
 
 
 
