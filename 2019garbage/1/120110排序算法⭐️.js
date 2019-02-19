@@ -1,3 +1,5 @@
+
+
 //冒泡排序 最优写法，无法再优化写法
 //冒泡排序算法的运作如下：
 // 1.比较相邻的元素。如果第一个比第二个大，就交换他们两个。
@@ -44,6 +46,9 @@ function selectSort(ary) {
   return ary
 }
 
+//归并排序
+//时间复杂度为O(N*logN)
+//空间复杂度为O(N)
 function mergeSort(ary) {
 
 }
