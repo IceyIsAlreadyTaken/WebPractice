@@ -25,13 +25,19 @@ s.replace(/\b(fbi|cia)\b/g,function(str){
 //"the CIA and FBI"
 
 var stock = '1 lemon, 2 cabbages, and 101 eggs'
-function minusOne(match,amount,unit){
-  amount = NUmber(amount) - 1
+function minusOne(match,amount,unit){ //匹配值，$1,$2
+  amount = Number(amount) - 1
   if (amount == 1) {
     unit = unit.slice(0,unit.length - 1)
-  } else if (amout ==0) {
+  } else if (amount ==0) {
     amount = 'no'
   }
   return amount + ' ' + unit
 }
-stock.replace(/(\d+) (\w)/)
+stock.replace(/(\d+) (\w)/g, minusOne)
+
+//贪婪模式
+function stripComments(code) {
+  return code.replace(/\/\/.*/g,'\n')  //删除掉//后边的注释
+             .replace(/\/\*[^]*\*\//g,'\n') //删除/*后边的东西
+}
