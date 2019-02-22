@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      margin:0px;
+      padding:0px;
+    }
+    img {
+      height:100px;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <img src="../timg.jpeg" alt="地球">
+  </div>  
+</body>
+<script>
+  var earth = document.querySelector('img')
+  var angle = 0
+  var lastTime = null
+  function animate(time) {
+    if (lastTime != null) {
+      angle += (time - lastTime) * 0.001
+    }
+    console.log(time)
+    lastTime = time
+    earth.style.top = 200 + (Math.sin(angle) * 100) + 'px'
+    earth.style.left = 200 + (Math.cos(angle) * 100) + 'px'
+    requestAnimationFrame(animate)
+  }
+  requestAnimationFrame(animate)
+</script>
+</html>

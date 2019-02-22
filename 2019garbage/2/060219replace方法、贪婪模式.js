@@ -36,8 +36,21 @@ function minusOne(match,amount,unit){ //匹配值，$1,$2
 }
 stock.replace(/(\d+) (\w)/g, minusOne)
 
+
 //贪婪模式
 function stripComments(code) {
   return code.replace(/\/\/.*/g,'\n')  //删除掉//后边的注释
              .replace(/\/\*[^]*\*\//g,'\n') //删除/*后边的东西
 }
+
+//非贪婪模式
+function stripComments(code) {
+  return code.replace(/\/\/.*/g,'\n')  //删除掉//后边的注释
+             .replace(/\/\*[^]*？\*\//g,'\n') //删除/*后边的东西
+}
+
+function stripComments(code) {
+  return code.replace(/\/\/.*|\/\*[^]*?\*\//g,'') 
+}
+//.*? 加问号表示让点尽可能的出现的少 
+//(+? 、 *？ 、 ？？ 、 {}?) 表示会尽可能少的匹配这些符号

@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+</head>
+<body>
+  <p><span id="one"></span></p>
+  <p><span id='two'></span></p>
+</body>
+  <script>
+    function time(name,action) {
+      var start = Date.now()
+      action()
+      console.log(name,'took',Date.now() - start,'ms')
+    }
+
+    time('naive',function(){
+      var target = document.getElementById("one")
+      while (target.offsetWidth < 2000) {
+        target.appendChild(document.createTextNode('X'))
+      }
+    })//39ms
+
+    time('clever',function() {
+      var target = document.getElementById('two')
+      target.appendChild(document.createTextNode('XXXXX'))
+      var total = Math.ceil(2000 / (target.offsetWidth / 5))
+      for (var i = 5;i < total;i++) {
+        target.appendChild(document.createTextNode('X'))
+      }
+    }) //1ms 
+  </script>
+</html>
+<!-- //元素的起始位置 宽和高 包含border
+ offsetWiddth
+ offestHeight
+ //忽略border
+ clientWidth
+ clientHeight
+
+ //获取屏幕中某个元素精确位置的最有效方法
+ //返回一个对象包含top、bottom、left和right四个属性
+ getBoundingClientRect
+
+ getClientRects() //返回这个元素生成的所有矩形 返回一个类数组
+ //全局变量
+ pageXOffset 和 pageYOffset 获取
+
+ //如果程序反复读取DOM布局信息或者修改 DOM,回应发大量布局计算，导致运行非常缓慢 -->

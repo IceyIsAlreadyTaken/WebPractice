@@ -98,3 +98,19 @@ function traverse(root, action) {
     traverse(root.right, action)
   }
 }
+
+document.all
+//拿到文档的所有标签
+document.all.id 
+//拿到文档所有指定id的标签
+document.all.name
+//拿到稳当所有指定name的标签
+
+
+function elt(nodeName,...children) {
+   var a = document.createElement(nodeName)
+   for (let i = 0;i < children.length;i++) {
+     a.appendChild(children[i])
+   }
+   return a 
+}
