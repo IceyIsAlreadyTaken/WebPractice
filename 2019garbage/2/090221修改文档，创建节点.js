@@ -55,7 +55,7 @@ p = document.createElement('p')
 p.appendChild(document.createElement('a'))
 p.firstChild.appendChild(document.createTextNode('foo'))
 
-$0.normalize()//合并相邻的主注释节点
+$0.normalize()//合并相邻的注释节点
 
 
 //elt函数 

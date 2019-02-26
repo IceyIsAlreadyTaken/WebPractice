@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 点击一个节点，他的事件会向上传播，父节点也会拿到子节点的事件 -->
+  <p>
+    <button>点击</button>
+  </p>
+  <script>
+  //stopPropagation阻止事件传播，但是却无法阻止同一个层级元素后续事件的传播，上述例子中在第二个事件添加了stopPropagation，父级元素事件不再传播，但是同级别的元素P第三次事件还是触发了。
+
+  //stopImmediatePropagation不管同级与否，但凡添加了，后续或者父级元素的事件都阻止了，体现出了Immediate的意义
+    var button = document.querySelector('button')
+    button.addEventListener('mousedown',function(){
+      console.log('button-click')
+      //     event.stopImmediatePropagation()  立即阻止时间冒泡
+    })
+
+    var p = document.querySelector('p')
+    p.addEventListener('mousedown',function(event){
+      console.log('p-click')
+      //    event.stopPropagation()  //阻止下一层的事件冒泡
+    })
+
+    var body = document.body
+    body.addEventListener('mousedown',function(){
+      console.log('body-click')
+    })
+
+    var win = document
+    win.addEventListener('mousedown',function(e){
+      console.log('win-click',e.target,e.srcElement)  //srcElement更有语义一些
+    })
+  </script>
+</body>
+</html>

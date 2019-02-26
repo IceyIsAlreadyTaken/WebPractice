@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <p>Click this  document to activate the handler</p>
+  <p>单击此文档以激活处理程序</p>
+  <button>点我点我~~这个button有点牛逼</button>
+  <button onclick="console.log('onlick!!!!!!!!!!!')">onclick是啥？</button><br><br><br>
+  <button>移除监听事件，只能点一次</button>
+  <script>
+    //在全局添加了addEventListener 监听函数
+    // addEventListener('click',function(){
+    //   alert('你点击了窗口')
+    // })
+
+    //将监听事件绑定在button上边
+    var button = document.querySelector('button')
+    button.addEventListener('click',function(){
+      console.log('你点击了button按钮')
+      //alert('你点击了button')
+    })
+    button.addEventListener('click',function(){
+      console.log('this是=>',this,'dom所属对象')
+      //alert('你点击了button')
+    })
+    button.addEventListener('click',function(){
+      console.log('第三个监听事件')
+      //alert('你点击了button')
+    })
+
+    //onclick
+    var button2 = document.querySelectorAll('button')[1]
+    button2.onclick = function(){console.log('onclick~~~!')} //把行内样式覆盖掉了
+
+    //removecEventListener 移除监听事件 //
+    var button3 = document.querySelectorAll('button')[2]
+    button3.addEventListener('click',removef)
+    function removef() {
+      console.log('remove监听只能点一次')
+      button3.removeEventListener('click',removef)
+    }
+    button3.addEventListener('click',removef)
+  </script>
+</body>
+</html>

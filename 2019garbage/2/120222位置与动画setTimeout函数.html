@@ -36,5 +36,23 @@
     requestAnimationFrame(animate)
   }
   requestAnimationFrame(animate)
+
+
+  //setTimeout(f,wait) 函数，wait 最小写成1，不能写成0
+  //setTimeout(f,wait) 函数是只有在系统空闲的时候才运行
+
+  setTimeout(function(){
+    console.log(1)
+  },1000) //1000ms 1秒后运行
+  var n = Date.now()
+  while(Date.now() - n < 2000){} //空转两秒
+  console.log(2)
+  // 先出现2 在出现1  因为运行完while时setTimeout函数已经超时了，所以先打出2紧接着打1
+
+   setTimeout(function f(){
+     console.log(Date.now())
+     window.last = setTimeout(f,1000);
+   },1000)
+   clearTimeout(last)
 </script>
 </html>

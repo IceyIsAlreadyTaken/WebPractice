@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <button>0</button>
+    <button>0</button>
+    <button>0</button>
+    <button>0</button>
+    <button>0</button>
+    <button>0</button>
+    <button>0</button>
+    <button>0</button>
+    <button>0</button>
+    <button class = 'foo'>0</button>
+    <span class = 'foo'>0</span>
+  </div>
+  <script>
+    div = document.querySelector('div')
+    div.addEventListener('click',function(event){
+      //console.log(event.target.childNodes)
+      //event.target.childNodes[0].nodeValue++
+      // if ((event.target.tagName == 'BUTTON') && (event.target.classList.contains('foo'))) {
+      //   event.target.innerHTML++
+      // }
+
+      if (event.target.matches('button.foo')) {
+        event.target.innerHTML++
+      }
+    })
+    //contains
+
+    //找下标
+    div.addEventListener('click',function(event){
+      if (event.target.matches('button')) {
+        console.log(Array.from(div.children).findIndex(it => it == event.target))
+      }
+    })
+  </script>
+</body>
+</html>
