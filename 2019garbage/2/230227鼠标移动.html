@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <p>拖动这个条，改变它的长度</p>
+  <div style = "background:orange;width:60px;height:30px;"></div>
+  <script>
+    var lastx;
+    var rect = document.querySelector("div")
+    rect.addEventListener("mousedown",function(event){
+      console.log(event.buttons)
+      if (event.buttons == 1) { //左键
+        lastx = event.pageX
+        addEventListener('mousemove',moved)
+        event.preventDefault()  //阻止默认行为，阻止掉鼠标选中文字
+      }
+    })
+
+    // function buttonPressed(event) { //看鼠标的左键是否按下去
+    //   if (event.buttons == null) { //看浏览器支持which还是buttons
+    //     return event.which != 0
+    //   } else {
+    //     return event.buttons != 0
+    //   }
+    // }
+    function moved(event) {
+      // console.log(event.which)
+      if (event.buttons == 1) { //event.which == 1
+        var dist = event.pageX - lastx
+        var newWidth = Math.max(20,rect.offsetWidth + dist)
+        rect.style.width = newWidth +'px'
+        lastx = event.pageX
+      } else {
+        removeEventListener("mousemove",moved)
+      } 
+    }
+    // addEventListener('mousemove',function(event){
+    //   console.log(event.which,'鼠标在移动')
+    // })
+  </script>
+</body>
+</html>

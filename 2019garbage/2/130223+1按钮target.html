@@ -18,7 +18,6 @@
     <button>0</button>
     <button>0</button>
     <button class = 'foo'>0</button>
-    <span class = 'foo'>0</span>
   </div>
   <script>
     div = document.querySelector('div')
@@ -36,11 +35,53 @@
     //contains
 
     //找下标
-    div.addEventListener('click',function(event){
-      if (event.target.matches('button')) {
-        console.log(Array.from(div.children).findIndex(it => it == event.target))
+    //事件代理
+    // div.addEventListener('click',function(event){
+    //   if (event.target.matches('button')) {
+    //     console.log(Array.from(div.children).findIndex(it => it == event.target))
+    //   }
+    // })
+    
+    //对每一个button按钮增加事件
+    var btns = document.querySelectorAll('div button')
+    //for (var i = 0;i < btns.length;i++) {
+      //1.
+      // btns[i].addEventListener('click',function(){
+      //   console.log(i) //此时打印出的下标为10，无法打印出每个元素真正的下标
+      // })
+
+      //2.对每一个函数创建一个i
+      //btns[i].addEventListener('click',function a(){
+      //  var j = i 
+      //  return function b(){
+      //    console.log(j)
+      //  }
+      //}())      //没理解清楚
+
+      //3.
+      // btns[i].addEventListener('click',function a(i){
+      //   return function() {
+      //     console.log(i)
+      //   }
+      // }(i))
+    //}
+      //4.https://www.cnblogs.com/fly_dragon/p/8669057.html 参考这篇文章对i的表达
+      // i虽然在全局作用域声明，但是在for循环体局部作用域中使用的时候，变量会被固定，不受外界干扰
+      // for (let i = 0;i < btns.length;i++) {
+      //   btns[i].addEventListener('click',function a(){
+      //     console.log(i)
+      //   })
+      // }
+      
+      //5.创建了十个作用域，每个作用域的i都不同
+      for (var i = 0;i < btns.length;i++) {
+        (function(i){
+            btns[i].addEventListener('click',function b(){
+              console.log(i)
+            })
+        }(i)) //加括号让function变成表达式可以直接调用，不加括号的话就是一个声明语句，会提升变量
       }
-    })
+    
   </script>
 </body>
 </html>

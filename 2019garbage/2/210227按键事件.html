@@ -1,0 +1,105 @@
+<p> 按键事件</p>
+
+<script>
+
+// 按键的频率由用户在电脑上调整
+
+
+
+
+
+  //a 65
+  addEventListener('keydown',function(event){
+    if (event.keyCode == 65) {
+      document.body.style.backgroundColor = 'yellow'
+    }
+  })
+  addEventListener('keyup',function(event){
+    if (event.keyCode == 65) {
+      document.body.style.backgroundColor = ''
+    }
+  })
+  //q 81
+  addEventListener('keydown',function(event){
+    if (event.keyCode == 81) {
+      document.body.style.backgroundColor = 'black'
+    }
+  })
+  addEventListener('keyup',function(event){
+    if (event.keyCode == 81) {
+      document.body.style.backgroundColor = ''
+    }
+  })
+  //w 87
+  addEventListener('keydown',function(event){
+    if (event.keyCode == 87) {
+      document.body.style.backgroundColor = 'green'
+    }
+  })
+  addEventListener('keyup',function(event){
+    if (event.keyCode == 87) {
+      document.body.style.backgroundColor = ''
+    }
+  })
+  //e 69
+  addEventListener('keydown',function(event){
+    if (event.keyCode == 69) {
+      document.body.style.backgroundColor = 'pink'
+    }
+  })
+  addEventListener('keyup',function(event){
+    if (event.keyCode == 69) {
+      document.body.style.backgroundColor = ''
+    }
+  })
+  //s 83
+  addEventListener('keydown',function(event){
+    if (event.keyCode == 83) {
+      document.body.style.backgroundColor = 'blue'
+    }
+  })
+  addEventListener('keyup',function(event){
+    if (event.keyCode == 83) {
+      document.body.style.backgroundColor = ''
+    }
+  })
+  //d 68
+  addEventListener('keydown',function(event){
+    if (event.keyCode == 68) {
+      document.body.style.backgroundColor = 'red'
+    }
+  })
+  addEventListener('keyup',function(event){
+    if (event.keyCode == 68) {
+      document.body.style.backgroundColor = ''
+    }
+  })
+  
+  //command+1
+  addEventListener('keydown',function(event){
+    if (event.keyCode == 49 && event.metaKey == true) {
+      var h1 = document.createElement('h1')
+      h1.innerText = '你按了command+1键'
+      document.body.appendChild(h1)
+    }
+  })
+  addEventListener('keyup',function(event){
+    if (event.keyCode == 49 && event.metaKey == false) {
+      document.body.removeChild(document.body.querySelector('h1'))
+    }
+  })
+  
+  //b  没太懂keypress有什么作用
+  addEventListener('keypress',function(event){
+    if (event.keyCode == 66) {
+      console.log(event)
+      var h1 = document.createElement('h1')
+      h1.style.color = 'red'
+      h1.innerText = 'BBBBB'
+      document.body.appendChild(h1)
+    }
+  })
+
+  //为元素增加焦点 要为期添加tabindex属性
+  $0.setAttribute('tabindex','9')
+</script>

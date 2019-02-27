@@ -1,0 +1,128 @@
+<script>
+  //递归下降 recursive descent
+  //内容递归，编写的也是递归的
+var str = '{"a":1,"b":true,"b":[[[[1]]]],c":"foo","d":[null,"2",{"x":1,"y":false}]}'
+//var str = '{"d":[{"y":false}]}'
+//使用闭包把其他函数隐藏到闭包当中
+//JSON.stringify({a:1,b:2,c:[[[[[[1]]]]]]})
+
+
+var parseJSON = (function(){
+  var i 
+  var str
+  return function parseJSON(input){
+    str = input
+     i = 0
+    return parseValue()
+  }
+
+  function parseValue() {  //做路由
+    var c = str[i]
+    if (c == '"') {
+      return parseString()
+    }
+
+    if (c == '{') {
+      return parseObject()
+    }
+    
+    if (c == '[') {
+      return parseArray()
+    }
+
+    if (c == 't') {
+      return parseTrue()
+    }
+
+    if (c == 'f') {
+      return parseFalse()
+    }
+
+    if (c == 'n') {
+      return parseNull()
+    }
+
+    return parseNumber()
+  }
+
+  function parseObject() { //{"foo":333}
+    var obj = {}
+    i++
+    if (str[i] == '}') {
+      i++
+      return obj
+    }
+    do {
+      var key = parseString()
+      i++ //跳过冒号
+      var val = parseValue()
+      obj[key] = val
+      if (str[i] == ',') {
+        i++
+      } else if (str[i] == '}') {
+        i++
+        return obj
+      }
+    } while (true)
+
+  }
+
+  function parseString() {  //没问题
+    var start = i
+    i++
+    while(str[i] !== '"') {
+      i++
+    }
+    i++
+    return str.slice(start + 1,i - 1)
+  }
+
+  function parseArray() { //
+    var ary = []
+    i++
+    if (str[i] == ']') {
+      return ary
+    }
+    do {
+      var val = parseValue()
+      ary.push(val)
+      if (str[i] == ',') {
+        i++
+      } else if (str[i] == ']') {
+        i++
+        return ary
+      }
+    } while(true)
+  }
+
+  function parseTrue() {  //没问题
+    i += 4
+    return true
+  }
+
+  function parseFalse() {  //没问题
+    i += 5
+    return false
+  }
+
+  function parseNull() {  //没问题
+    i += 4
+    return null
+  }
+
+  function parseNumber() {  //没问题
+    var start = i
+    while(isDigit(str[i])) {
+      i++
+    }
+    return Number(str.slice(start,i))
+  }
+
+  function isDigit(c) {    //没问题
+    return /^[0-9]$/.test(c)
+  }
+
+}())
+
+
+</script>

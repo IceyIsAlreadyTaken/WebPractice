@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <p>
+      <button>按钮！</button>
+    </p>
+  </div>
+  <script>
+    var div = document.querySelector('div')
+    var p = document.querySelector('p')
+    var btn = document.querySelector('button')
+    div.addEventListener('click',function(){
+      console.log('div捕获')
+    },true)
+    div.addEventListener('click',function(){
+      console.log('div---冒泡')
+    },false)//默认false
+    p.addEventListener('click',function(e){
+      console.log('p捕获')
+      //e.stopPropatation()
+    },true)
+    p.addEventListener('click',function(e){
+      console.log('p捕获2')
+    },true)
+    p.addEventListener('click',function(e){
+      console.log('p---冒泡')
+      //e.stopPropatation() //阻止事件往剩下的函数传
+    },false)
+    btn.addEventListener('click',function(){
+      console.log('btn捕获')
+    },true)
+    btn.addEventListener('click',function(){
+      console.log('btn---冒泡')
+      console.log(event)
+    },false)
+
+    //window.addEventListener('beforeunload',xxx,{
+      //passive:true //明确告诉浏览器该事件处理函数不会调用e.preventDefault(),让浏览器在可能的情况下下让默认行为更早发生（如与该事件处理函数同步发生）
+      //一般用来优化滚动性能
+    //})
+  </script>
+</body>
+</html>
+
