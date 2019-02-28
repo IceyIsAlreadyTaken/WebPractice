@@ -25,24 +25,27 @@
     var body= document.querySelector('body')
     var div = document.querySelector('div')
     var p = document.querySelector('p')
-    body.addEventListener('mouseover',function(){
-      console.log('body over')
+    // body.addEventListener('mouseover',function(){
+    //   console.log('body over')
+    // })
+    // body.addEventListener('mouseout',function(){
+    //   console.log('body out')
+    // })
+    div.addEventListener('mouseover',function(e){
+      console.log('div over',e.relatedTarget)
     })
-    body.addEventListener('mouseout',function(){
-      console.log('body out')
+    div.addEventListener('mouseout',function(e){
+      console.log('div out',e.relatedTarget)
     })
-    div.addEventListener('mouseover',function(){
-      console.log('div over')
+    p.addEventListener('mouseover',function(e){
+      console.log('p over',e.relatedTarget)
     })
-    div.addEventListener('mouseout',function(){
-      console.log('div out')
+    p.addEventListener('mouseout',function(e){
+      console.log('p out',e.relatedTarget)
     })
-    p.addEventListener('mouseover',function(){
-      console.log('p over')
-    })
-    p.addEventListener('mouseout',function(){
-      console.log('p out')
-    })
+    //坑点
+    //对于 mouseover 事件来说，该属性是鼠标指针移到目标节点上时所离开的那个节点。
+    //对于 mouseout 事件来说，该属性是离开目标时，鼠标指针进入的节点。
   </script>
 </body>
 </html>
