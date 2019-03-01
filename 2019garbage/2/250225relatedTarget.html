@@ -17,19 +17,21 @@
         }
       }
     }
+    
+    //对于 mouseover 事件来说，该属性是鼠标指针移到目标节点上时所离开的那个节点。
     para.addEventListener('mouseover',function(event) {
       if (!isInside(event.relatedTarget,para)) {
         para.style.color = 'red'
       }
     })
+
+    //对于 mouseout 事件来说，该属性是离开目标时，鼠标指针进入的节点。
     para.addEventListener('mouseout',function(event) {
       if (!isInside(event.relatedTarget,para)) {
         para.style.color = ''
       }
     })
-
-    //对于 mouseover 事件来说，该属性是鼠标指针移到目标节点上时所离开的那个节点。
-    //对于 mouseout 事件来说，该属性是离开目标时，鼠标指针进入的节点。
+    
   </script>
 </body>
 </html>

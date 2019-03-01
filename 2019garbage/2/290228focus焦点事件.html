@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <p>Name:<input type="text" data-help="your full name"></p>
+  <p>Age:<input type="text" data-help="Ages in years"></p>
+  <p id = 'help'></p>
+  <script>
+    //当元素获得焦点时，浏览器会触发其上的focus事件。方式去焦点时触发blur事件  
+    //focus 和 blur 不冒泡 但是在会出现在捕获阶段
+    document.querySelector('input').addEventListener('focus',console.log,true)
+    //
+    var help = document.querySelector('p#help')
+    var fields = document.querySelectorAll('input') //fields字段
+    for (var i = 0; i < fields.length;i++) {
+      fields[i].addEventListener('focus',function(event){
+        var text = this.getAttribute('data-help')
+        help.innerText = text  //innerText或者textContent都可以
+      })
+      fields[i].addEventListener('blur',function(event){
+        help.textContent = ''
+      })
+    }
+
+    //窗口也有焦点和离开事件
+    //
+    window.addEventListener('focus',function(){
+      console.log('xxxxxxxxxxxxx焦点')
+    })
+    window.addEventListener('blur',function(){
+      console.log('xxxxxxxxxxxxx离开焦点')
+    })
+    window.onblur = function(){
+      console.log('你离开了')
+    }
+    window.onfocus = function(){
+      console.log('你来了')
+    }
+  </script>
+</body>
+</html>

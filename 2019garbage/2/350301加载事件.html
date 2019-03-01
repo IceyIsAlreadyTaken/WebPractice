@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <img src="https://pic4.zhimg.com/80/v2-89bf8b72fb612a1e2f348ed0b3e0689f_hd.jpg" alt="">
+  <script>
+    //老浏览器中
+    console.log(document.readyState)
+    document.addEventListener('readystatechange',function(e){
+      console.log(document.readyState)
+    })
+
+    addEventListener('DOMContentLoaded',console.log) // dom加载后 加载
+
+    document.addEventListener('load',console.log) 
+    addEventListener('load',console.log) //很少使用
+    
+    //打开浏览器网络 蓝色的线是domready 
+    //红色的线是load事件
+
+    // 当初始的 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像和子框架的完成加载。
+    //另一个不同的事件 load 应该仅用于检测一个完全加载的页面。 在使用 DOMContentLoaded 更加合适的情况下使用 load 是一个令人难以置信的流行的错误，所以要谨慎。
+    //注意：DOMContentLoaded 事件必须等待其所属script之前的样式表加载解析完成才会触发。
+  </script>
+</body>
+</html>

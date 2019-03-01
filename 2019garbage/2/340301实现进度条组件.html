@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .progressbar-outer{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+    }
+    .progressbar-inner{
+      height: 5px;
+      width:0%;
+      background: red;
+      opacity:1;
+      transition: width 1s,opacity 1s 1s;
+    }
+    /* 复习css居中 */
+  </style>
+</head>
+<body>
+  <script>
+    //实现组建的时候js 和 css 要成文件可以让别人引进来
+    class ProgressBar {
+      constructor(){
+        this.curr = 0
+        this.outer = document.createElement('div')
+        this.inner = document.createElement('div')
+        this.outer.appendChild(this.inner)
+        this.outer.className = 'progressbar-outer'
+        this.inner.className = 'progressbar-inner'
+      }
+
+      start() {
+        this.set(3)
+        document.body.appendChild(this.outer)
+      }
+
+      increase(val){
+        this.set(this.curr + val)
+      }
+
+      set(val){
+        this.curr = val
+        this.inner.style.width = this.curr + '%'
+      }
+
+      end(){
+        this.curr = 100
+        this.inner.style.width = this.curr + '%'
+        this.inner.style.opacity = 0
+        //或者把 var self = this
+        setTimeout(function(){
+          document.body.removeChild(this.outer)
+        }.bind(this),2000) //看this值要看这个函数是怎么调用的
+        //或者使用箭头函数
+        // setTimeout(() => {
+        //   document.body.removeChild(this.outer)
+        // },1000)
+      }
+    }
+  </script>
+</body>
+</html>

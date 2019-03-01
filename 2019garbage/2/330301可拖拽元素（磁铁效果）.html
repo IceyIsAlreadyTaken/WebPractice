@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  .drag {
+    border: 1px solid;
+    position:absolute;
+    width:100px;
+    height:100px;
+    top:0px;
+    left:0px;
+  }
+  </style>
+</head>
+<body>
+  <div class = "drag" style = "top:0;left:0;background-color: green;"></div> 
+  <div class = "drag" style = "top:0;left:0;background-color: red;"></div> 
+  <div class = "drag" style = "top:0;left:0;background-color: blue;"></div> 
+  <div class = "drag" style = "top:0;left:0;background-color: orange;"></div> 
+  <div class = "drag" style = "top:0;left:0;background-color: tan;"></div> 
+  <script>
+    // 在js中操作的的是元素的内联样式而不是css样式
+    // 在js中操作的的是元素的内联样式而不是css样式
+    // 在js中操作的的是元素的内联样式而不是css样式
+    // 在js中操作的的是元素的内联样式而不是css样式
+    // 在js中操作的的是元素的内联样式而不是css样式
+    // 在js中操作的的是元素的内联样式而不是css样式
+    // 在js中操作的的是元素的内联样式而不是css样式
+    // 在js中操作的的是元素的内联样式而不是css样式
+    // 在js中操作的的是元素的内联样式而不是css样式
+    // 在js中操作的的是元素的内联样式而不是css样式
+
+    // var drag = document.querySelector('.drag')
+    //console.log(drag)
+
+    var mousePrevX
+    var mousePrevY
+    var drag
+    var maxZ = 0
+    var dragx
+    var dragy
+    function move(event){
+      var dx = event.clientX - mousePrevX
+      var dy = event.clientY - mousePrevY
+      var left = parseInt(dragx) + dx
+      var top = parseInt(dragy) + dy
+      if (top < 30) { //限制上边界
+        top = 0
+      }
+      if (left < 30) { //限制下边界
+        left = 0
+      }
+      if (top > innerHeight - 122) {
+        top = innerHeight - 102
+      }
+      if (left > innerWidth - 122) {
+        left = innerWidth - 102
+      }
+      drag.style.top = top + 'px'
+      drag.style.left = left + 'px'
+
+    }
+
+    addEventListener('mousedown',function(e){ //鼠标按下
+      if (e.target.matches('.drag')) {
+        drag = e.target
+        drag.style.zIndex = maxZ++
+        mousePrevX = e.clientX
+        mousePrevY = e.clientY
+        dragx = parseInt(drag.style.left)
+        dragy = parseInt(drag.style.top)
+        addEventListener('mousemove',move)
+      }
+    })
+
+    addEventListener('mouseup',function(e){
+      removeEventListener('mousemove',move)
+    })
+  </script>
+</body>
+</html>

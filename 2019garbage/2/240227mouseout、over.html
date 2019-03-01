@@ -31,21 +31,24 @@
     // body.addEventListener('mouseout',function(){
     //   console.log('body out')
     // })
-    div.addEventListener('mouseover',function(e){
+    div.addEventListener('mouseenter',function(e){
       console.log('div over',e.relatedTarget)
     })
-    div.addEventListener('mouseout',function(e){
+    div.addEventListener('mouseleave',function(e){
       console.log('div out',e.relatedTarget)
     })
-    p.addEventListener('mouseover',function(e){
+    p.addEventListener('mouseenter',function(e){
       console.log('p over',e.relatedTarget)
     })
-    p.addEventListener('mouseout',function(e){
+    p.addEventListener('mouseleave',function(e){
       console.log('p out',e.relatedTarget)
     })
     //坑点
     //对于 mouseover 事件来说，该属性是鼠标指针移到目标节点上时所离开的那个节点。
     //对于 mouseout 事件来说，该属性是离开目标时，鼠标指针进入的节点。
+
+    //用mouseenter/mouseleave来代替 mouseover/mouseout
+    //避免很多坑
   </script>
 </body>
 </html>
