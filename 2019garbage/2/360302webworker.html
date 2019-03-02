@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var worker = new Worker('./370302worker.js')
+    // function mul(a,b) {
+    //   var start = Date.now()
+    //   while(Date.now() - start < 10000){}
+    //   return a*b
+    // }
+
+    function calc(){
+      var a = + input1.value  //还有这种操作？
+      var b = +input2.value
+      // console.log(mul(a,b))
+      worker.postMessage(a)
+      worker.addEventListener('message',function(e){
+        console.log(e.data)
+      })
+    }
+
+    //worker要在网址下运行 /2-26
+  </script>
+  <input type="text" id="input1">
+  <input type="text" id="input2">
+  <button onclick = 'calc()'>mul</button>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <textarea name="" id="" cols="30" rows="10"></textarea>
+  <script>
+    //防抖 防抖就是一件事频繁发生的时候，停止的时间超过了指定的时间，事件发生
+  var textarea = document.querySelector('textarea')
+  var timeout
+  textarea.addEventListener('keydown',function(){
+    clearTimeout(timeout)
+    timeout = setTimeout(function(){
+      console.log('你停止打字了')
+    },1000)
+  })
+  </script>
+</body>
+</html>
