@@ -10,4 +10,19 @@ function debounce(f,duration){
   }
 }
 
+//节流
 el.addEventListener('mousemove',_.throttle(f,500))
+
+function throttle(f,duration){
+  var lastRunTime = 0
+  return function(...args) {
+    var now = Date.now()
+    if (now - lastTime > duration) {
+      lastRunTime = now
+      return f.call(this,...args)
+    }
+  }
+}
+
+//lodash 复杂的多
+//必考题

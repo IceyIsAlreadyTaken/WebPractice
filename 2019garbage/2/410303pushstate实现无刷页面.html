@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>页面的内容与url同步更新，但页面不重新加载</title>
+</head>
+<body>
+  <header>头部</header>
+  <div>
+    <ul>
+      <li><a href="/001">001</a></li>
+      <li><a href="/002">002</a></li>
+      <li><a href="/003">003</a></li>
+    </ul>
+    <div class = "content">
+      主页
+    </div>
+  </div>
+  <footer>页脚</footer>
+  <script>
+    // history.pushState() 让ul发生变化
+    //history.pushState({},'','/foo/bar') //第一个对象记录去往页面的一些记录，一般为空，第二个参数为标题，第三个参数为相对路径或者绝对路径
+    //输入后，浏览器的前进后退已经记录下来了
+    // history.replaceState()
+
+    // window.popstate() 用户点击前进后退，这个事件都会触发
+    // window.onpopstate() 是由通过history.pushState()或者 history.replaceState()方法使得浏览器地址发生变化时触发。
+
+    //每当处于 激活状态的 历史记录条目 发生变化时,popstate事件就会在对应window对象上触发. 如果当前处于激活状态的历史记录条目是由history.pushState()方法创建,或者由history.replaceState()方法修改过的, 则popstate事件对象的state属性包含了这个历史记录条目的state对象的一个拷贝.
+
+    // 调用history.pushState()或者history.replaceState()不会触发popstate事件. popstate事件只会在浏览器某些行为下触发, 比如点击后退、前进按钮(或者在JavaScript中调用history.back()、history.forward()、history.go()方法).
+    var ul = document.querySelector('ul')
+    var content = document.querySelector('.content')
+    ul.addEventListener('click', e =>{ //事件冒泡
+      e.preventDefault()
+      var url = e.target.href
+      history.pushState(null,'001',url)
+      content.textContent = e. target.url                        //innerHTML
+    })
+  </script>
+</body>
+</html>
