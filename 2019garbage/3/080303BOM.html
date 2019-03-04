@@ -62,7 +62,7 @@
       * 'http://example.com:8080'
       * http://www.baidu.com/a.html
       * http://www.baidu.com:8080/b.html
-    * href 地址栏里的完整URL，包含hash
+    * href 地址栏里的完整URL，包含hash /更改跳转到网址
     * search 第一个?后面#前面的内容，即query string部分，也叫查询字符串query string
       * http://example.com/a/b/c.html?foo=bar&c=d#abcdef?iekjdsf
     * reload() 刷新页面
@@ -102,6 +102,7 @@
       * 现代浏览器中，可以用这个方法实现URL的改变但页面不刷新
       * 以此实现 pjax => pushState + ajax
     * replaceState(参数同上)
+          替换掉页面
     * go(number) 前进， history.go(5)/(-1)
           history.pushState({},'','url')
     * back()/forward()   history.forward()
@@ -115,7 +116,7 @@
         * 360 QQ 事件
         * 扣扣保镖
       * 会在发送http请求时放进User-Agent首部里
-        * 服务器同样可以根据这个头来判断请求是来自手机还是PC，以此返回不同的页面内容
+        * 服务器同样可以根据这个头来判断请求是来自手机还是PC，以此返回不同的页面内容，（微信扫二维码或者支付宝扫二维码
           * HTTP 响应头里有一个首部：
           ```
           HTTP/1.1 302 removed temper
@@ -126,11 +127,12 @@
     * 还有很多其它的属性，但基本不用，各位可以自行在控制台中查看
 
 * window
-  * name
-  * opener
+  * name 字符串 window.name 赋值无效 （不要用name)
+            窗口不变，切换页面，name值不变，因为绑定到window 上
+  * opener  可以访问到当前页面是从哪个链接打开的
     * 可以使用这个特性实现跨页面的颜色选择器
     * 蠕虫
-  * open
+  * open （最重要的方法
     * 打开一个新窗口
     * https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open
       * javascript:window.open(
@@ -139,7 +141,9 @@
         'left=200,top=100,width=800,height=666')
 
         open(url, title, {
-          menubar: true,
+          menubar: true, //菜单栏
+          addressbar:false,  //地址栏
+          toolbar:false,  //工具栏
           top: 200,
           left: 300,
           width: 500,
@@ -154,6 +158,7 @@
   * scrollBy/To
   * status
     * 以前浏览器还有状态栏时，显示在状态栏上的文字
+    * 打开网页时的左下角
   * window.document.title
     * 设置网页的标题
   * top
@@ -164,10 +169,11 @@
     * 让窗口获取或者失去焦点
     * on blur/focus
       * 不少考试系统
-  * window.getComputedStyle(node, [pseudoElementSelector])
+  * window.getComputedStyle(node, [pseudoElementSelector])   可以拿到所有的样式包括伪元素的样式
     * window.getComputedStyle(document.body)
+     可以拿到css的样式
     * window.getComputedStyle(document.body, 'before')
-  * stop()停止加载页面
+  * stop()停止加载页面   相当于点击地址栏的×
   * 
 * 相关文档请自行查询MDN
   * mdn

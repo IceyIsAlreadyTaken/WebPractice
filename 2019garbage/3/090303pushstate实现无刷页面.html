@@ -37,8 +37,19 @@
       e.preventDefault()
       var url = e.target.href
       history.pushState(null,'001',url)
-      content.textContent = e. target.url                        //innerHTML
+      content.textContent = e.target.innerHTML
+        //innerHTML  getContentFromServert(a.href)
     })
+
+    window.addEventListener('popstate',e => {
+      var url = location.href
+      var path = location.pathname
+      console.log(path)
+      var c = path.slice(1)
+      content.innerHTML = c
+    })
+
+    //02-27 用改变hash的方法跳转 
   </script>
 </body>
 </html>

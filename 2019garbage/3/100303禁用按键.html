@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text">
+  <script>
+    var input = document.querySelector('input') //query 质疑疑问
+    input.addEventListener('keypress', e => {
+      console.log(e)
+      if (['Q','W','X'].includes(e.key)) {
+        e.preventDefault()
+        var start = input.selectionStart
+        input.value = input.value.slice(0,input.selectionStart) + '*' +  input.value.slice(input.selectionEnd)
+        input.selectionStart = input.selectionEnd = start + 1
+      }
+    })
+
+    //粘贴也禁止，拦截粘贴事件
+    //paste
+    input.addEventListener('paste',e => {
+      e.preventDefault()
+      var pastedText = e.clipboardData.getData('Text') //获得数据
+      pastedText = pastedText.replace(/[WQX]/g,'*')
+      var start = input.selectionStart
+      input.value = input.value.slice(0,input.selectionStart) + pastedText + input.value.slice(input.selectionEnd)
+
+      input.selectionStart = input.selectionEnd = start + pastedText.length
+      //光标问题 谷歌搜索 selectionStart selectionEnd
+      // e.preventDefault()
+    })
+
+    //通过控制台也无法修改input输入框的值
+    //getter setter
+    
+    var descriptor = Object.getOwnPropertyDescriptor(input.__proto__,'value')
+    // input.value = xxx
+    // preSetter.call(input,xxx)
+
+    Object.defineProperty(input,'value',{
+      set: function(val) {
+        val = val.replace(/[WQX]/g,'*')
+        descriptor.set.call(this,val)
+        //爆栈 通过赋值的时候，this.value又调用了 set函数，等于一直在调用，所以爆栈了
+        //通过自有属性拦截，然后通过原型上的setter函数把值改掉
+      },
+      get: function() {
+        return descriptor.get.call(this)
+      }
+    })
+  </script>
+</body>
+</html>
