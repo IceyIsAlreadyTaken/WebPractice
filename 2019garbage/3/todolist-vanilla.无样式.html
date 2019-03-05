@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    ul.show-active li.completed {
+      display:none;
+    }
+    ul.show-completed li:not(.completed) {
+      display:none;
+    }
+   .completed span{
+      text-decoration: line-through;
+   }
+   #todoList li input.edit{
+     display: none;
+   }
+   /* 计数器 */
+   /* 坑点:计数器重置的标签为他的作用域 */
+   body {
+     counter-reset: items-left; 
+   }
+   #todoList li:not(.completed) {
+     counter-increment: items-left;
+   }
+   .items-left::before{
+     content:counter(items-left);
+   }
+   
+  </style>
+</head>
+
+<body>
+  <div>
+    <!-- 输入框 -->
+    <header>
+      <h1>todos</h1>
+      <input type="checkbox" id = "selectAll">
+      <input type = "text"  id = "todoInput" placeholder="What need to be done?">
+      <!-- 浏览器可以直接以id拿到这个元素 -->
+    </header>
+    <!-- 任务列表 -->
+    <section class = "main">
+      <ul id = "todoList"></ul> 
+    </section>
+    <!-- 底栏 -->
+    <footer class = "footer">
+      <span class = "items-left"> item(s) left</span>
+      <span id = 'toggleCategory'> <!-- 拴紧分类 -->
+        <label><input type="radio" value = 'all' name = 'current-show' checked>ALL</label>
+        <label><input type="radio" value = 'active' name = 'current-show'>Active</label>
+        <label><input type="radio" value = 'completed' name = 'current-show'>Completed</label>
+      </span>
+      <button class = '' id = "clearCompleted">Clear completed</button>
+    </footer>
+  </div>
+</body>
+  <script>
+    var todoInput = document.querySelector('#todoInput') 
+    var todoList = document.querySelector('#todoList')
+    var toggleCatetory = document.querySelector('#toggleCategory')
+    var selectAll = document.querySelector('#selectAll')
+    var clearCompleted = document.querySelector('#clearCompleted')
+
+    todoInput.addEventListener("keydown",e => {
+      if (e.key == "Enter" && todoInput.value.trim() != '')  {
+        var checkbox = document.createElement('input')
+        checkbox.type = 'checkbox'
+        checkbox.addEventListener('change',function(e) {
+           li.classList.toggle('completed') //toggle拴紧
+           if (Array.from(todoList.children).every(li => li.classList.contains('completed'))){
+             selectAll.checked = true
+           } else {
+            selectAll.checked = false
+           }
+        })
+        var span = document.createElement('span')
+        span.textContent = todoInput.value.trim() //用textcontent 用户输入html时就坏了
+        todoInput.value = ''
+        var edit = document.createElement('input')
+        edit.type = 'text'
+        edit.classList.add('edit')
+        edit.value = span.textContent
+        var button = document.createElement('button')
+        button.innerText = 'X'
+        var li = document.createElement('li')
+        li.appendChild(checkbox)
+        li.appendChild(span)
+        li.appendChild(edit)
+        li.appendChild(button)
+        todoList.appendChild(li)
+        //监听button事件X
+        button.addEventListener('click', e => {
+          todoList.removeChild(li)
+          // var parent = button.parentNode
+          // console.log(parent)
+          // todoList.removeChild(parent)
+        })
+        selectAll.checked = false
+      }
+    })
+
+    toggleCatetory.addEventListener('click',function(e) {
+
+      //坑点，点击label的话，label会点击控制元素，同时label的点击事件也会冒泡上去，一共冒泡两个事件
+      if (e.target.tagName == 'INPUT') { //e.target.matches('input)
+        todoList.classList.remove('show-all')
+        todoList.classList.remove('show-active')
+        todoList.classList.remove('show-completed')
+        todoList.classList.add('show-' + e.target.value)
+      }
+    })
+  
+    selectAll.addEventListener('change',function(e) {
+      if (e.target.checked) {
+        Array.from(todoList.children).forEach(it => {
+          it.classList.add('completed')
+          it.firstElementChild.checked = true
+        })
+      } else {
+        Array.from(todoList.children).forEach(it => {
+          it.classList.remove('completed')
+          it.firstElementChild.checked = false
+        })
+      }
+    })
+
+    function toggleClear() {
+      if (Array.from(todoList.children).some(li => li.classList.contains)){
+        
+      }
+    }
+  </script>
+</html>

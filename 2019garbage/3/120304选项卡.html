@@ -13,6 +13,8 @@
     <div data-tabname = 'About'>about me</div>
   </div>
 
+  <!-- 从上边的结构变成下边的结构 -->
+
   <!-- <ul>  
     <li><button>Home</button></li>
     <li><button>List</button></li>
@@ -30,17 +32,24 @@
       var ul = document.createElement('ul')
       var childrenWrapper = document.createElement('div')
 
-      children.forEach(child => {
+      children.forEach((child,i) => {
         child.style.display = 'none'
         childrenWrapper.appendChild(child)
         var li = document.createElement('li')
         var btn = document.createElement('button')
+
+        btn.addEventListener('click',e =>{
+          children.forEach(it => it.style.display = 'none')
+          children[i].style.display = 'block'
+        })
+
+
         btn.innerText = child.dataset.tabname //自定义属性
         li.appendChild(btn)
         ul.appendChild(li)
       })
       children[0].style.display = 'block'
-      
+
       node.appendChild(ul)
       node.appendChild(childrenWrapper)
     }
