@@ -12,24 +12,34 @@
     ul.show-completed li:not(.completed) {
       display:none;
     }
-   .completed span{
-      text-decoration: line-through;
-   }
-   #todoList li input.edit{
-     display: none;
-   }
-   /* 计数器 */
-   /* 坑点:计数器重置的标签为他的作用域 */
-   body {
-     counter-reset: items-left; 
-   }
-   #todoList li:not(.completed) {
-     counter-increment: items-left;
-   }
-   .items-left::before{
-     content:counter(items-left);
-   }
-   
+    .completed span{
+        text-decoration: line-through;
+    }
+    #todoList li input.edit{
+      display: none;
+    }
+    /* 计数器 */
+    /* 坑点:计数器重置的标签为他的作用域 */
+    body {
+      counter-reset: items-left; 
+    }
+    #todoList li:not(.completed) {
+      counter-increment: items-left;
+    }
+    .items-left::before{
+      content:counter(items-left);
+    }
+
+    #clearCompleted:not(.has-completed) {
+      display:none;
+    }
+    .editing span:first-of-type {
+      display:none;
+    }
+    #todoList  li.editing input.edit {
+      display: inline;
+    }
+
   </style>
 </head>
 
@@ -48,7 +58,7 @@
     </section>
     <!-- 底栏 -->
     <footer class = "footer">
-      <span class = "items-left"> item(s) left</span>
+      <span class = "items-left">item(s) left</span>
       <span id = 'toggleCategory'> <!-- 拴紧分类 -->
         <label><input type="radio" value = 'all' name = 'current-show' checked>ALL</label>
         <label><input type="radio" value = 'active' name = 'current-show'>Active</label>
@@ -76,14 +86,23 @@
            } else {
             selectAll.checked = false
            }
+           toggleClear()
         })
         var span = document.createElement('span')
-        span.textContent = todoInput.value.trim() //用textcontent 用户输入html时就坏了
+        span.textContent = todoInput.value.trim() //用textcontent 用 textHTMl 的话用户输入html时就坏了
+        span.addEventListener('dblclick',function(e){ //双击事件触发
+          li.classList.add('editing')
+          edit.focus()
+        })
         todoInput.value = ''
         var edit = document.createElement('input')
         edit.type = 'text'
         edit.classList.add('edit')
         edit.value = span.textContent
+        edit.addEventListener('blur',function(e){
+          span.textContent = edit.value.trim()
+          li.classList.remove('editing')
+        })
         var button = document.createElement('button')
         button.innerText = 'X'
         var li = document.createElement('li')
@@ -95,6 +114,7 @@
         //监听button事件X
         button.addEventListener('click', e => {
           todoList.removeChild(li)
+          toggleClear()
           // var parent = button.parentNode
           // console.log(parent)
           // todoList.removeChild(parent)
@@ -104,7 +124,6 @@
     })
 
     toggleCatetory.addEventListener('click',function(e) {
-
       //坑点，点击label的话，label会点击控制元素，同时label的点击事件也会冒泡上去，一共冒泡两个事件
       if (e.target.tagName == 'INPUT') { //e.target.matches('input)
         todoList.classList.remove('show-all')
@@ -126,12 +145,27 @@
           it.firstElementChild.checked = false
         })
       }
+      toggleClear()
     })
 
-    function toggleClear() {
-      if (Array.from(todoList.children).some(li => li.classList.contains)){
-        
+    clearCompleted.addEventListener('click',function(e) {//绑定事件点击删除全部选中的部分
+      Array.from(todoList.children).forEach(li => {
+        if(li.classList.contains('completed')){
+          console.log(li)
+          todoList.removeChild(li)
+        }
+      })
+      selectAll.checked = false
+      toggleClear()
+    })
+
+    function toggleClear() {//选项前的框改变，全选框改变，删除符号，点击全部删除后 四个
+      if (Array.from(todoList.children).some(li => li.classList.contains('completed'))) {
+        clearCompleted.classList.add('has-completed')
+      } else {
+        clearCompleted.classList.remove('has-completed')
       }
     }
   </script>
+  <!-- 亮点总结：左下角的计数器在进行全选，加入新选项，切换状态，清除所有的状况下都要响应，如果要求绑定事件的话就需要绑定多个事件，非常麻烦；但是css里的计数器就可以非常好的解决这个问题，改变样式后，浏览器回流，然后重绘。 -->
 </html>

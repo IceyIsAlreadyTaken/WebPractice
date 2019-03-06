@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 内存泄漏：没有使用的内容占着内存又没有释放 -->
+  <script>
+    Object.prototype[Symbol.iterator]
+
+
+
+
+
+    function forof(iterable, action) {
+      if (typeof iterable.next !== 'function') {
+        iterable = iterable[Symbol.iterator]()
+      }
+      var generated = iterable.next()
+      while (!generated.done) {
+        var ret = action(generated.value)
+        if (ret === false) {
+          iterable.return()
+          break
+        }
+        generated = iterable.next()
+      }
+    }
+
+    function forof(iterable, action) {
+      if (typeof iterable.next !== 'function') {
+        iterable = iterable[Symbol.iterator]()
+      }
+      var generated = iterable.next()
+      while (!generated.done) {
+        var ret = action(generated.value)
+        if (ret === false) {
+          iterable.return()
+          break
+        }
+        generated = iterable.next()
+      }
+    }
+
+    Object.prototype[Symbol.iterator] = function* () {
+      for (var key in this) {
+        if (this.hasOwnProperty(key)) {
+          var val = this[key]
+          yield val
+        }
+      }
+    }
+
+    Object.prototype[Symbol.iterator] = function () {
+      var keys = Object.keys(this)
+      var i = 0
+      return {
+        next: () => {
+          return {
+            value: this[keys[i++]],
+            done: i > keys.length
+          }
+        }
+      }
+    }
+
+
+    Number.prototype[Symbol.iterator] = function() {
+      for (var i = 1;i < this;i++) {
+        
+      }
+    }
+    for(var n of 10) {
+      console.log(10)
+    }
+  </script>
+</body>
+
+</html>
