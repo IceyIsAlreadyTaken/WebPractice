@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div id = 'app'>
+    <!-- 用这个 div 代理事件 -->
+    <div class = 'wrapper'>
+
+    </div>
+  </div>
+</body>
+  <script>
+    var data = {
+      showing:'all',
+      todos:[{
+        content:'eat',
+        completed:false
+      },{
+        content:'drink',
+        completed:true
+      },{
+        content:'drive',
+        completed:false
+    }]
+  }
+
+    localStorage.todoListData = JSON.stringify(data)
+
+    var wrapper = document.querySelector('.wrapper')
+
+    wrapper.innerHTML = data2html(data)
+
+    function data2html(data){
+      return `
+      <div>
+        <!-- 输入框 -->
+        <header>
+          <h1>todos</h1>
+          <input type="checkbox" id = "selectAll" ${data.todos.every(it => it.completed) ? 'checked' : ''}>
+          <input type = "text"  id = "todoInput" >
+        </header>
+
+        <!-- 任务列表 -->
+        <section class = "main">
+          <ul id = "todoList">
+            ${data.todos.map(it => {
+              return `
+                <li class = '${it.completed ? 'completed' : 'active'}'>
+                  <input type = 'checkbox' ${it.completed ? 'checked' : ''}/>
+                  <span>${it.content}</span>
+                  <input type = 'text' class = 'edit' value = 'eat dinner'/>
+                  <span class="del">&times;</span>
+                </li>`
+            }).join('')}  
+          </ul> 
+        </section>
+
+        <!-- 底栏 -->
+        <footer class = "footer">
+          <span>${data.todos.filter(it => !it.completed).length} item(s) left</span>
+          <span id = 'toggleCategory'> 
+            <label><input type="radio" ${data.showing =='all' ? 'checked' : ''}value = 'all' name = 'current-show' checked>ALL</label>
+            <label><input type="radio" ${data.showing =='active' ? 'checked' : ''}value = 'active' name = 'current-show'>Active</label>
+            <label><input type="radio" ${data.showing =='completed' ? 'checked' : ''}value = 'completed' name = 'current-show'>Completed</label>
+          </span>
+          ${
+            data.todos.some(it => it.completed) ? `<button class = '' id = "clearCompleted">Clear completed</button>` : ''
+          }
+
+          
+        </footer>
+      </div>
+      `
+    }
+  </script>
+  
+</html>
