@@ -6,7 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
-
+    .completed span:first-of-type{
+        text-decoration: line-through;
+    }
   </style>
 </head>
 
@@ -19,25 +21,108 @@
   </div>
 </body>
   <script>
-    var data = {
+    var data = JSON.parse(localStorage.todoListData) || {
+      editingIndex:-1,
       showing:'all',
       todos:[{
-        content:'eat',
-        completed:false
-      },{
-        content:'drink',
-        completed:true
-      },{
         content:'drive',
-        completed:false
+        completed:false,
     }]
   }
 
-    localStorage.todoListData = JSON.stringify(data)
+    localStorage.todoListData = JSON.stringify(data)  //将数据储存在本地浏览器中
 
     var wrapper = document.querySelector('.wrapper')
 
-    wrapper.innerHTML = data2html(data)
+    render()
+
+    wrapper.addEventListener('click',function(e){ //删除按键
+      if (e.target.matches('.del')) {
+        data.todos.splice(+e.target.dataset.index,1)
+        render()
+      }
+    })
+
+    wrapper.addEventListener('click',function(e){ //选择按钮 
+      if (e.target.matches('li > input[type = "checkbox"]')){
+        data.todos[e.target.dataset.index].completed = e.target.checked//数组读的下标是字符串
+        render()
+      }
+    })
+
+    wrapper.addEventListener('click',function(e){ //全选按钮
+      if (e.target.matches('input#selectAll')){
+        if (data.todos.every(it => it.completed)) {
+          data.todos.forEach(it => it.completed = false)
+        } else {
+          data.todos.forEach(it => it.completed = true)
+        }
+        render()
+      }
+    })
+
+    wrapper.addEventListener('click',function(e){ //切换展示类型
+      if (e.target.matches('label input')) {
+        data.showing = e.target.value
+        render()
+      }
+    })
+
+    wrapper.addEventListener('click',function(e){ //清除完成项
+      if (e.target.matches('#clearCompleted')) {
+        data.todos = data.todos.filter(it => !it.completed)
+        render() 
+      }
+    })
+
+    wrapper.addEventListener('keyup',function(e){ //input输入
+      if (e.target.matches('#todoInput')) {
+        if (e.keyCode == 13) {
+          var todo = e.target.value.trim()
+          if (!todo) {
+            return
+          }
+          data.todos.push({
+            content:todo,
+            completed:false,
+          })
+          render() 
+          document.querySelector('#todoInput').focus()
+        } 
+      }
+    })
+
+    wrapper.addEventListener('dblclick',function(e){ //双击打开 Input
+      if (e.target.matches('li span.content')) {
+        data.editingIndex = +e.target.dataset.index //拿到自定义属性
+        render()
+        document.querySelector('li input.edit').focus()
+      }
+    })
+
+    wrapper.addEventListener('keyup',function(e){  //修改 content
+      if (e.target.matches('li input.edit') && e.keyCode == 13) {
+        var idx = e.target.dataset.index
+        data.todos[idx].content = e.target.value
+        data.editingIndex = -1
+        render()
+      }
+    })
+
+    //blur不会冒泡，因此用focusout拿到事件
+    wrapper.addEventListener('focusout',function(e){  //移开焦点
+      if (e.target.matches('li input.edit')) {
+        var idx = e.target.dataset.index
+        data.todos[idx].content = e.target.value
+        data.editingIndex = -1
+        render()
+      }
+    })
+
+    function render(){
+      wrapper.innerHTML = data2html(data)  //将数据写入到html中
+      localStorage.todoListData = JSON.stringify(data)
+    }
 
     function data2html(data){
       return `
@@ -51,14 +136,24 @@
 
         <!-- 任务列表 -->
         <section class = "main">
-          <ul id = "todoList">
-            ${data.todos.map(it => {
+          <ul id = "todoList" class = "show-all">
+            ${data.todos.filter(it => {
+              if (data.showing == 'all') {
+                return true
+              } else if (data.showing == 'active') {
+                return !it.completed
+              } else if (data.showing == 'completed') {
+                return it.completed
+              }
+            }).map((it,idx) => {
               return `
                 <li class = '${it.completed ? 'completed' : 'active'}'>
-                  <input type = 'checkbox' ${it.completed ? 'checked' : ''}/>
-                  <span>${it.content}</span>
-                  <input type = 'text' class = 'edit' value = 'eat dinner'/>
-                  <span class="del">&times;</span>
+                  <input data-index = "${idx}" type = 'checkbox' ${it.completed ? 'checked' : ''}/>
+                  ${
+                    idx != data.editingIndex ? 
+                    `<span class='content' data-index="${idx}">${it.content} </span>` : `<input type = 'text' data-index="${idx}" class = 'edit' value = '${it.content}'/>`
+                  }
+                  <span class="del" data-index = "${idx}">&times;</span>
                 </li>`
             }).join('')}  
           </ul> 
@@ -68,20 +163,50 @@
         <footer class = "footer">
           <span>${data.todos.filter(it => !it.completed).length} item(s) left</span>
           <span id = 'toggleCategory'> 
-            <label><input type="radio" ${data.showing =='all' ? 'checked' : ''}value = 'all' name = 'current-show' checked>ALL</label>
-            <label><input type="radio" ${data.showing =='active' ? 'checked' : ''}value = 'active' name = 'current-show'>Active</label>
-            <label><input type="radio" ${data.showing =='completed' ? 'checked' : ''}value = 'completed' name = 'current-show'>Completed</label>
+            <label><input type="radio" ${data.showing =='all' ? 'checked' : ''} value = 'all' name = 'current-show' checked>ALL</label>
+            <label><input type="radio" ${data.showing =='active' ? 'checked' : ''} value = 'active' name = 'current-show'>Active</label>
+            <label><input type="radio" ${data.showing =='completed' ? 'checked' : ''} value = 'completed' name = 'current-show'>Completed</label>
           </span>
           ${
             data.todos.some(it => it.completed) ? `<button class = '' id = "clearCompleted">Clear completed</button>` : ''
           }
-
-          
         </footer>
       </div>
       `
     }
+
+
+
+
+
+
+    //写一个函数抽象代理事件，某selector的某event触发的时候，执行handler
+    //ancestor 祖先元素触发event事件，触发的DOM是 selector的话执行handler函数
+    function delegate(ancestor,event,selector,handler) {
+      ancestor.addEventListener(event,function(e){
+        if (e.target.matches(selector)){
+          handler.call(e.target,e)
+        }
+      })
+    }
+
+    EventTarget.prototype.delegate = function(event,selector,handler){
+      ancestor.addEventListener(event,function(e) {
+        if (e.target.matches(selector)) {
+          handler.call(e.target,e)
+        }
+      })
+    }
+
+    // wrapper.delegate('click','input.edit',function(){
+
+    // })
+
+    // delegate(wrapper,'click','input.edit',function(e){
+
+    // })
+
+
   </script>
-  
-  <!-- 明天写 -->
+  <!-- 对于无样式的版本，进化一点的版本是用 jQuery 来写 ，不过jQuery现在已经逐渐退出历史舞台了-->
 </html>

@@ -98,3 +98,12 @@ function filter(ary,test) {
   }
   return passed
 }
+
+function filter(ary,test) {
+  var passed = []
+  for (let i = 0;i <ary.length;i++) {
+    if (test(ary[i],i,ary)) {
+      passed.push(ary[i])
+    }
+  }
+}
