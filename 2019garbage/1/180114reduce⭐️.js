@@ -94,3 +94,39 @@ function reduce(ary,reducer,initialValue) {
   }
   return initialValue
 }
+
+function reduce(ary,reducer,initialValue) {
+  var start = 0
+  if (arguments.length == 2)  {
+    start = 1
+    initialValue = ary[0]
+  }
+  for (let i = start;i < ary.length;i++) {
+    initialValue = reducer(initialValue,ary[i],i,ary)
+  }
+  return initialValue
+}
+
+function reduce(ary,reducer,initialValue) {
+  var start = 0
+  if (arguments.length == 2) {
+    start = 1
+    initialValue = ary[0]
+  }
+  for (let i = start;i < ary.length;i++) {
+    initialValue = reducer(initialValue,ary[i],i,ary)
+  }
+  return initialValue
+}
+
+function reduce(ary,reducer,initialValue) {
+  var start = 0
+  if (arguments.length == 2) {
+    start = 1
+    initialValue = ary[0]
+  }
+  for (let i = start;i < ary.length;i++) {
+    initialValue = reducer(initialValue,ary[i],i,ary)
+  }
+  return initialValue
+}
