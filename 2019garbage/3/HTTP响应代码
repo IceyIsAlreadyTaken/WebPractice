@@ -1,0 +1,39 @@
+数据包在TCP各层的叫法。
+
+应用层	    报文（message）
+传(运)输层	报文段（segment）
+网络层	    分组（packet）
+数据链路层	 帧（frame）
+物理层	    比特（bit）
+
+先说说我们在开发中会经常遇到的。
+200 OK：成功收到服务器返回的报文;
+404 Not Found：服务器不存在请求的资源 ;
+502 Bad Gateway：得到错误的响应;
+
+
+成功响应
+200 OK，客户端资源请求成功；
+201 Created，创建新资源请求成功；
+202 Accepted，请求已经接收到，但还未响应；（从英语角度上，个人认为这里是不是应该用received）
+
+重定向
+300 Mutiple Choice，被请求的资源有一系列可供选择的回馈信息；
+301 Moved Permanently，被请求的资源已永久移动到新位置；
+302 Found，请求的资源在现状临时从不同的URI响应请求；
+307 Temporary Redirect，请求的资源现状临时从不同的URI响应请求。；
+308 Permanent Redirect，请求的资源永久移动到另一个URI；
+
+客户端响应
+400 Bad Request，服务器看不懂客户端传来的请求；
+403 FOrbidden，服务器已理解请求但拒绝执行；
+404 Not Found，请求的资源不存在服务器上；
+
+服务端响应
+500 Internal Server Error，服务器不知道如何是好；
+501 Not Implemented，此请求方法不被服务器支持且无法被处理；
+502 Bad Gateway，服务器得到一个错误响应；
+503 Service Unavailable，服务器不可用没有准备好处理请求；
+504 Gateway Timeout，服务器作为网关不能及时得到响应；
+505 HTTP Version Not Supported,服务器不支持请求中所使用的HTTP协议版本；
+--------------------- 
