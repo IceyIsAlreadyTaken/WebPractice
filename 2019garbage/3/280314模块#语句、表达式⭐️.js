@@ -1,3 +1,4 @@
+//立即执行函数 IIFE
 (function() {
   function square(X) {
     return x * x
@@ -16,7 +17,7 @@
 Array.prototype.isxxx = function(){}
 //这种方式会把 isxxx变成可枚举属性  for in 会直接把这个枚举出来
 //只有写 Polyfill的时候才能用这种方式 
-
+//polyfill 在老浏览器实现新浏览器的功能
 
 
 //例子 报错会报错在左括号的部分，因为这个是函数声明
@@ -24,3 +25,14 @@ function () {
   var a = 8
   console.log(a)
 }
+
+//函数表达式
+//语句      有明确的开始和结束，语句没有返回结果
+//函数声明
+
+
+
+
+(function(){
+  console.log(1)
+}())

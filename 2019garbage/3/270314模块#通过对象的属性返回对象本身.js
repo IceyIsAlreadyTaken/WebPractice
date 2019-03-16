@@ -1,4 +1,8 @@
-//通过对象的属性访问到这个对象本身
+
+
+//将name变量隐藏起来
+
+//通过对象的属性返回这个对象本身
 
 var dayName = function() {
   var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
