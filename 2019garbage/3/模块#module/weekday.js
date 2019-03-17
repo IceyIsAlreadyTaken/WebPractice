@@ -1,3 +1,5 @@
+var _ = require2('lodash.js')
+console.log(_)
 var names =['Sunday','Monday','Saturday']
 exports.weekday =  {
   number:function(name) {
@@ -8,3 +10,4 @@ exports.weekday =  {
   }
 }
 
+ 
