@@ -39,7 +39,7 @@
       return module.exports
     }
   }
-  global.require2 = require2
+  this.require2 = require2
 }())
 debugger;
 //把只把require函数暴露给全局变量
