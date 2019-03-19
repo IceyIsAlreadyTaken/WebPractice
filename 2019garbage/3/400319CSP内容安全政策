@@ -1,0 +1,34 @@
+CSP  在页面的响应头中加的属性，来限制这个页面能干什么不能干什么
+
+
+Content-Security-Policy:   内容安全策略
+
+
+default-src 'none'
+
+base-uri 'self'
+
+block-all-mixed-content 阻止混合（协议）内容https页面不能请求http资源
+
+connect-src 'self' uploads.github.com www.githubstatus.com collector.githubapp.com api.github.com www.google-analytics.com github-cloud.s3.amazonaws.com github-production-repository-file-5c1aeb.s3.amazonaws.com github-production-upload-manifest-file-7fdce7.s3.amazonaws.com github-production-user-asset-6210df.s3.amazonaws.com wss://live.github.com
+  页面中的js可以连接的目标服务器
+
+font-src github.githubassets.com 本页面可以使用哪些服务器上的字体文件
+
+form-action 'self' github.com gist.github.com form的action属性可以为哪个服务器
+
+frame-ancestors 'none' 哪些页面能够做为自己的iframe祖先
+
+frame-src render.githubusercontent.com 本页可以用iframe嵌套来自哪个服务器的页面
+
+img-src 'self' data: github.githubassets.com identicons.github.com collector.githubapp.com github-cloud.s3.amazonaws.com *.githubusercontent.com
+图片可以来源于哪些服务器
+
+manifest-src 'self'
+
+media-src 'none'
+
+script-src github.githubassets.com js脚本能够来自哪个服务器
+
+style-src 'unsafe-inline' github.githubassets.com
+样式文件可以来源于哪个服务器：可以为内联，也可以为远程资源

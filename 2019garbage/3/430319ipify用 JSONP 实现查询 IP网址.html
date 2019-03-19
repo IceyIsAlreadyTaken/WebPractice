@@ -1,0 +1,40 @@
+<script>
+  jsonp('https://api.ipify.org?format=jsonp',function(data){
+    var h1 = document.createElement('h1')
+    h1.innerHTML = "您的ip地址为 " + data.ip
+    document.body.appendChild(h1)
+  },function(){},function(){})
+
+  function jsonp(url,callback,errCallback,timeoutCallback) {
+  var callbackName = 'JSONP_CALLBACK_' + Date.now() + '_' + Math.random().toString().slice(2)
+  window[callbackName] = callback
+  url = url + '&callback=' + callbackName
+
+  var runned = false
+
+  var script = document.createElement("script")
+  script.src = url
+
+  script.onerror = function(e){  //抛错
+    if(!runned) {
+      errCallback(e)
+      reuued = true
+    }
+  }
+  //因为script标签有可能加载很多，所以不希望加载完都在 DOM中所以加载完把他们删除掉
+  script.onload = function(){   //成功
+    if (!runned) {
+      document.head.removeChild(script)
+      delete window[callbackName]
+      runned = true
+    }
+  }
+  setTimeout(() => {            //失败
+    if (!runned) {
+      timeoutCallback()
+      runned = true
+    }
+  },10000)
+  document.head.appendChild(script)
+}
+</script>
