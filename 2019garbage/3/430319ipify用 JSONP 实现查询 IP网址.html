@@ -5,6 +5,8 @@
     document.body.appendChild(h1)
   },function(){},function(){})
 
+
+  //自己实现的 JSOP
   function jsonp(url,callback,errCallback,timeoutCallback) {
   var callbackName = 'JSONP_CALLBACK_' + Date.now() + '_' + Math.random().toString().slice(2)
   window[callbackName] = callback
