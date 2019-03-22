@@ -26,11 +26,12 @@
  * 可以在js里使用（？= expr)(...)(desired) 来模拟回顾型零宽断言
  */
 
+ 
  /**
   * 管道符号（|）表示从其左侧的模式和右侧的模式任意选择一个进行匹配
   */
 
-  var animalCount = /b\d+ (pig|cow|chicken)s?\b/
+  var animalCount = /\d+ (pig|cow|chicken)s?\b/
   animalCount.test('15 pigs')
   //true
   animalCount.test('15 pigchickens')

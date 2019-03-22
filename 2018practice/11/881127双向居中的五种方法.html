@@ -22,6 +22,7 @@
       right: 0;
       margin: auto;
     }
+
     .d2{
       text-align: center;
       line-height: 300px;
@@ -32,15 +33,19 @@
       vertical-align: middle;
       display: inline-block;
     }
+
+
     .d3{
       display: table-cell;
       vertical-align: middle;
       text-align: center;
     }
-    .d3 span{
+    /* .d3 span{
       display: inline-block;
       width: 160px;
-    }
+    } */
+
+
     .d4 span{
       position: absolute;
       top:50%;
@@ -49,6 +54,8 @@
       height: 20px;
       transform: translateX(-50%) translateY(-50%);
     }
+
+
     .d5 {
       display: flex;
       justify-content: center;
@@ -60,17 +67,17 @@
   </style>
 </head>
 <body>
-  <h2>定位居中</h2>
+  <h2>1.定位居中</h2>
   <hr>
   <div class="d1">
     <span>不写宽度或高度则宽度或高度将会被拉长</span>
   </div>
 
 
-  <h2>行内居中</h2>
+  <h2>2.行内居中</h2>
   <hr>
-  <div class="d2">fafa
-    <span>行LoremLoremxxxxx hjbj harum nisi omnis d</span>
+  <div class="d2">
+    <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates omnis porro dicta reiciendis quod corrupt</span>
     <!-- 为什么div里面文字的行高和span 一样高 -->
     <!-- 为什么div 里设置的行高没用 选中的选取不和下面的一样高--> 
     <!-- 答：选取无任何意义，不用在意 -->
@@ -78,21 +85,21 @@
   </div>
 
 
-  <h2>表格居中</h2>
+  <h2>3.表格居中</h2>
   <hr>
   <div class="d3">
     <span>表格居中</span>
   </div>
 
 
-  <h2>tranform 居中</h2>
+  <h2>4.tranform 居中</h2>
   <div class="d4">
     <span>transform 居中</span>   
   </div>
 
 
   
-  <h2>flex 居中</h2>
+  <h2>5.flex 居中</h2>
   <div class="d5">
     <span>justify-content:center</span> 
   </div>

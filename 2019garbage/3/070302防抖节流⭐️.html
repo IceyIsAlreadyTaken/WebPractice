@@ -12,7 +12,8 @@
   <p></p>
   <script>
     //防抖 防抖就是一件事频繁发生的时候，停止的时间超过了指定的时间，事件发生
-    
+    //debounce:在多次操作后最后运行一次        
+
     var textarea = document.querySelector('textarea')
     var timeout
     textarea.addEventListener('keydown',function(){
@@ -24,24 +25,67 @@
 
     //节流
     //相应'mousemove'事件显示当前鼠标坐标，频率为250ms
-    function displayCoords(event) {
-      var p = document.querySelector('p')
-      p.textContent = 'Mouse at ' + event.pageX + ',' + event.pageY;
-    }
+    //trottle:降低运行频率
+    // var p = document.querySelector('p')
+    // function displayCoords(event) {
+    //   p.textContent = 'Mouse at ' + event.pageX + ',' + event.pageY;
+    // }
+    // var scheduled = false
+    // var lastEvent
+    // addEventListener('mousemove',function(event){
+    //   lastEvent = event
 
-    var scheduled = false
-    var lastEvent
-    addEventListener('mousemove',function(event){
-      lastEvent = event
-      if(!scheduled) {
-        scheduled = true
-        //事件监听发生和setTimeout 发生的顺序
-        setTimeout(function(){
-          scheduled = false;
-          displayCoords(lastEvent)
-        },250)
-      }
-    })
+    //   if(!scheduled) {
+    //     scheduled = true
+    //     //事件监听发生和setTimeout 发生的顺序
+    //     setTimeout(function(){
+    //       scheduled = false;
+    //       displayCoords(lastEvent)
+    //     },250)
+    //   }
+
+    // })
   </script>
+
+
+  <script>
+  //==============抄代码复习
+  //防抖  debounce
+  //多次操作后运行最后一次
+  // var textarea = document.queryselector("textarea")
+  // var timeout
+  // textarea.addEventListener('keydown',function(){
+  //   clearTimeout(timeout)
+  //   timeout = setTimeout(() => {
+  //     console.log("停止打字了")
+  //   }, 1000);
+  // })
+  
+
+  //节流 throttle
+  //降低运行频率
+
+  var p  = document.querySelector("p")
+  function pcontent(event){
+    p.textContent = "鼠标的坐标⭕️" + event.pageX + " , " + event.pageY
+  }
+  var lastEvent
+  var lock = false
+  addEventListener('mousemove',function(event){     //给全局增加事件
+    lastEvent = event
+    console.log(event)
+    if(!lock) {
+      lock = true
+      setTimeout(()=>{
+        lock = false
+        pcontent(event)
+      },100)
+    }
+  })
+  </script>
+
+
+
+
 </body>
 </html>

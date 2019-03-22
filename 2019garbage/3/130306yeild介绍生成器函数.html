@@ -1,0 +1,240 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 内存泄漏：没有使用的内容占着内存又没有释放 -->
+  <script>
+
+    //生成器函数
+    //
+    //斐波那契额求和 
+    var sum = 0
+    var a = 0
+    var b = 1
+    for (var i = 0;i < 10;i++) {
+      sum += b
+      b = a + b
+      a = b - a
+    }
+
+    //========= 
+    function fibb(n) {
+      var result = {}
+      var a = 0
+      var b = 1
+      for (var i = 0; i < n;i++) {
+        result.push(b)
+        b = a + b
+        a = b - a
+      }
+      return result
+    }
+
+    var sum = 0
+    for (var item of fibb(10)) {
+      sum += item
+    }
+
+    //========
+
+    function * fibb(n) {
+      var a = 0
+      var b = 1
+      for (var i = 0; i < n;i++) {
+        b = b + a
+        a = b - a
+        yield a
+      }
+      //return   xxx  最后一次调用时 值为return 的返回值
+    } 
+
+    var fibb10 = fibb(10)
+    fibb10.next() => {value: xxxx  , done:false/true}
+
+    //遍历迭代器
+    for (var val of fibb10) {
+      console.log(val)
+    }
+    
+    //=======
+
+    function * test() {
+      try {
+        var a = yield 1 
+      } catch {
+        yield 3
+      }
+      //console.log(a)  //暂停在等号的右边
+      yield 2           
+    }
+
+    var a = test()
+    a.next()
+
+    a.next(666) ///给next传的参数就是yield的结果
+
+
+    a.return(xxx) //从暂停的语句直接返回 {value:xxx,done:true}
+    a.throw(88)  //从暂停的语句直接抛出错误 //Uncaught88
+
+    //=========
+
+    var sum = 0
+    var fibb10 = fibb(10)
+    var g = fibb10.next()
+    whlie(!g.done) {
+      sum += g.value
+      g = fibb10.next()
+    }
+    console.log(sum)
+
+    //==========
+
+    function * alp(){
+      yield 'a'
+      yield * roman()
+      yield 'b'
+      yield 'c'
+      yield 'e'
+    }
+
+    function * nums(){
+      yield 0
+      yield 1
+      yield 2
+      yield 3
+      yield 4
+      yield 5
+    }
+    function * roman(){
+      yield 'I'
+      yield 'II'
+      yield 'III'
+      yield 'VI'
+      yield 'V'
+    }
+
+    function * hexdigits() {
+      yield * nums()
+      yield * alp()
+    }
+
+    var test = hexdigits()
+    test.next()
+
+
+    function * hexdigits() {
+      yield * [1,2,3,4,5]
+      yield * alp()
+    }
+
+    [...hexdigits()]
+    [0, 1, 2, 3, 4, 5, "a", "I", "II", "III", "VI", "V", "b", "c", "e"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //====
+    //实现for of函数
+    Object.prototype[Symbol.iterator]
+
+
+
+
+
+    function forof(iterable, action) {
+      if (typeof iterable.next !== 'function') {
+        iterable = iterable[Symbol.iterator]()
+      }
+      var generated = iterable.next()
+      while (!generated.done) {
+        var ret = action(generated.value)
+        if (ret === false) {
+          iterable.return()
+          break
+        }
+        generated = iterable.next()
+      }
+    }
+
+    function forof(iterable, action) {
+      if (typeof iterable.next !== 'function') {
+        iterable = iterable[Symbol.iterator]()
+      }
+      var generated = iterable.next()
+      while (!generated.done) {
+        var ret = action(generated.value)
+        if (ret === false) {
+          iterable.return()
+          break
+        }
+        generated = iterable.next()
+      }
+    }
+
+    Object.prototype[Symbol.iterator] = function* () {
+      for (var key in this) {
+        if (this.hasOwnProperty(key)) {
+          var val = this[key]
+          yield val
+        }
+      }
+    }
+
+    Object.prototype[Symbol.iterator] = function () {
+      var keys = Object.keys(this)
+      var i = 0
+      return {
+        next: () => {
+          return {
+            value: this[keys[i++]],
+            done: i > keys.length
+          }
+        }
+      }
+    }
+
+
+    Number.prototype[Symbol.iterator] = function() {
+      for (var i = 1;i < this;i++) {
+        
+      }
+    }
+    for(var n of 10) {
+      console.log(10)
+    }
+
+    //==============
+    //...展开语法 
+    //浅复制  貌似是深复制
+    a = {x:1,y:2,z:{a:"???",c:{ttt:31231}}} 
+    b = {
+      foo:213123,
+      bar:4321,
+      ...a
+    }
+    
+
+
+  </script>
+</body>
+
+</html>
