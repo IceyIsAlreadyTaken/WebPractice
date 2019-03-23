@@ -19,12 +19,13 @@
       margin: 0px;
     }
     li{
-      /* padding: 0px;
+      xbox-sizing:border-box;
+      /* padding: 0px; 
       margin: 0px;  */
       width: 100px;
       height: 100px;
-      xborder: 1px solid;
-      padding: 1px;
+      border: 1px solid;
+      xpadding: 1px;
     }
     li:nth-of-type(n+4){
       margin-left: 100px;
@@ -42,10 +43,15 @@
       position: relative;
       z-index: 2;
       background-color: red;
-      margin-left: -20px;
-      margin-right: -20px;
       height: calc(100% + 40px);
-      margin-top: -20px;
+      margin:-20px -20px 0px -20px; 
+      xmargin-right: -20px;
+      xmargin-left: -20px;
+      xmargin-top: -20px;
+      /* 为什么负margin-bottom失效 */
+      /* 顶部的margin为负值时会把这个框向上拉 */
+      /* margin-top为负值不会增加高度，只会产生向上位移 */
+      /* margin-bottom为负值不会产生位移，会减少自身的供css读取的高度 */
     }
   </style>
 </head>
