@@ -56,17 +56,65 @@ function selectSort(ary) {
 //归并排序
 //时间复杂度为O(N*logN)
 //空间复杂度为O(N)
+// 1.把 n 个元素看成 n 个长度为 l 的有序子表
+// 2.进行两两归并使记录关键字有序，得到 n/2 个长度为 2 的有序子表
+// 3.重复第 2 步直到所有记录归并成一个长度为 n 的有序表为止。
 function mergeSort(ary) {
+  if(ary.length < 2) {
+    return ary
+  }
+  var middle = parseInt(ary.length / 2) //相当于 Math.floor()
+  var left = ary.slice(0,middle)
+  var right = ary.slice(middle)
 
+  return merge(mergeSort(left),mergeSort(right))
 }
+
+function merge(left,right) {
+  var result = []
+  var i = 0; j = 0;
+  while(i < left.length && j < right.length) {
+    if (left[i] > right[j]) {
+      result.push(right[j])
+      j++
+    } else {
+      result.push(left[i])
+      i++
+    }
+  }
+  while(i < left.length) {
+    result.push(left[i])
+    i++
+  }
+  while(j < right.length) {
+    result.push(right[j])
+    j++
+  }
+  return result
+ }
 
 
 //快速排序
+//（1）在数据集之中，选择一个元素作为"基准"（pivot）。
+//（2）所有小于"基准"的元素，都移到"基准"的左边；所有大于"基准"的元素，都移到"基准"的右边。
+//（3）对"基准"左边和右边的两个子集，不断重复第一步和第二步，直到所有子集只剩下一个元素为止。
+
 function quickSort(ary) {
   if(ary.length < 2) {
     return ary
-    return ary.slice()
   }
+  var markIndex = parseInt(ary.length / 2)
+  var mark = ary.splice(markIndex,1)[0]
+  var left = []
+  var right = []
+  for (var i = 0; i < ary.length;i++) {
+    if (ary[i] < mark) {
+      left.push(ary[i])
+    } else {
+      right.push(ary[i])
+    }
+  }
+  return quickSort(left).concat([mark],quickSort(right))
 }
 
 
@@ -78,6 +126,6 @@ function quickSort(ary) {
 
 // 冒泡排序：稳定（可以写成不稳定）
 // 选择排序：不稳定
-// bst/插入排序：稳定
+// BST/插入排序：稳定
 // 归并排序：稳定（可以写成不稳定）
 // 快速排序：不稳定

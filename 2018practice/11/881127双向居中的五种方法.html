@@ -12,10 +12,11 @@
       height: 300px;
       position: relative;
     }
+    /* 绝对定位使用margin auto居中 */
     .d1 span{
+      position: absolute;
       width: 100px; 
       height: 100px;
-      position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
@@ -23,9 +24,10 @@
       margin: auto;
     }
 
+    /* 行内块垂直居中 */
     .d2{
-      text-align: center;
       line-height: 300px;
+      text-align: center;
     }
     .d2 span{
       line-height: normal;
@@ -45,7 +47,7 @@
       width: 160px;
     } */
 
-
+    /* 绝对定位使用transform居中 */
     .d4 span{
       position: absolute;
       top:50%;
@@ -72,6 +74,13 @@
   <div class="d1">
     <span>不写宽度或高度则宽度或高度将会被拉长</span>
   </div>
+  <!-- 
+    2个关键点：
+    1.上下左右均0位置定位；
+    2.margin: auto 
+  -->
+  <!-- https://www.zhangxinxu.com/wordpress/2013/11/margin-auto-absolute-%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/ -->
+  <!-- 小tip: margin:auto实现绝对定位元素的水平垂直居中 -->
 
 
   <h2>2.行内居中</h2>

@@ -1,0 +1,18 @@
+闭合浮动的办法：
+
+
+    6种触发BFC
+    1.包含块display:inline-block
+    2.包含块display:flow-root
+    3.包含块display:table
+
+    4.包含块float:left/right
+    5.包含块overflow:hidden/auto/scroll
+    6.包含块position:absolute
+    
+    5种父元素被常规流元素撑高，常规流元素通过清除浮动下移
+    1.在底部加一个100%宽的行内块元素，借此撑高包含块
+    2.包含块定高
+    3.在底部加一个0高块元素，清除左右浮动
+    4.用包含块的伪元素实现上一种
+    5.<br clear="both">
