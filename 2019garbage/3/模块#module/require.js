@@ -1,7 +1,3 @@
-
-
-
-
 (function(){
   var cache = Object.create(null)
   var fs = require('fs')
