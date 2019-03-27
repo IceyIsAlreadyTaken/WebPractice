@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/3/模块#module/require.js"
+      "program": "${workspaceFolder}/3/550326HTTP模块.js"
     }
   ]
 }

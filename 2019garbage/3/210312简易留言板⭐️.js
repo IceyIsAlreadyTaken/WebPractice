@@ -7,7 +7,7 @@
 
 
 // \r 回到行首   \n 是换行
-// nodemon 在文件修改后自动重启
+// nodemon命令行工具 在文件修改后自动重启
 // 输入console.log() 控制台总会把内容打出后在把光标移动到下一行
 const net = require('net')
 const port = 8000
