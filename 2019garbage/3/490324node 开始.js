@@ -1,5 +1,5 @@
 //tldr 一个查询命令意思的命令行工具  node 写的
-//Too long; didn't read.
+//Too long; didn't read.  亿万里也出现了这个台词
 //tldr l
 
 

@@ -42,7 +42,7 @@ p2 = p.then(function(value){
 //====================================
 p = new Promise(function(resolve,reject){
 
-  setTimeout(() => resolve(999),30000)
+  setTimeout(() => resolve(999),10000)
 })
 p.then(function(v){console.log(v)})
 //30秒后打出 999
@@ -55,7 +55,8 @@ new Promise(function(resolve,reject) {
   return val * val
 },function(reason) {
   return reason + 2
-}).then(function(val) {
+})
+.then(function(val) {
   console.log(val)     //7
 },function(r) {
   console.log(r)
