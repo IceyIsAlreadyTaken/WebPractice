@@ -4,7 +4,7 @@
 
 // var server = net.createServer()
 
-// server.on('connection',conn => {  //TCP链接
+// server.on('connection',conn => {  //TCP链接监听事件
 //   conn.on('data',data => {
 //     data = data.toString()
 //     data.split('\r\n')
@@ -26,15 +26,15 @@
 //
 
 
-//HTTP 模块
-//HTTP 模块是基于 TCP 封装好的模块
+//HTTP 模块 node最重要的模块
+//HTTP 模块是基于 TCP 封装好的模块，提供了 HTTP 的服务器和客服端
 
+//服务器端
 const http = require('http')
+const server = http.createServer() //底层是 HTTP 协议
 const port = 8089
 
-const server = http.createServer() //底层是 HTTP 协议
-
-server.on('request',(request,response) => {
+server.on('request',(request,response) => { //监听请求
   //可以拿到请求的各种字段
   //req.url
   //req.method
@@ -54,7 +54,14 @@ server.on('request',(request,response) => {
     您的浏览器为 ${request.headers['user-agent']}
   `)//响应体
 
-  // 拿到请求体 发 post 请求体才能拿到
+
+
+  //浏览器端发请求
+  //xhr = new XMLHttprequest()
+  //xhr.open('POST','/baz)
+  // xhr.send(JSON.stringify({a:1,b:2}))
+
+  // 拿到请求体发 post 请求体才能拿到
   var body = ''
   request.on('data',data => {
     body += data.toString()
@@ -75,15 +82,18 @@ server.on('request',(request,response) => {
   response.end()
 })
 
-server.listen(port,() => {
+server.listen(port,() => { //不需要this 跟操作系统打交道
   console.log('listening on port监听',port)
 })
 
 
 //可以读到请求相关的
-//request 里的socket属性 是承载 HTTP链接的 TCP 属性
+//request 里的socket属性 是承载 HTTP链接的 TCP 
 // request.socket === request.client
 
 //可以读到响应相关的
 //http的请求与响应是走在同一个 TCP 链接上的
 // request.socket === response.connection
+
+
+//request.rawHeaders 

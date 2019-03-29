@@ -7,7 +7,15 @@
 //fulfilled: 意味着操作成功完成。
 //rejected: 意味着操作失败。
 //函数一般叫executor 执行器
-//当异步任务顺利完成且返回结果值时，会调用 resolve 函数；而当异步任务失败且返回失败原因（通常是一个错误对象）时，会调用reject 函数。
+//当异步任务顺利完成且返回结果值时，会调用 resolve 函数；返回一个有值的成功状态的promise
+//而当异步任务失败且返回失败原因（通常是一个错误对象）时，会调用reject 函数。
+//then
+//成功状态的promise调取then，会把值传给这个then地第一个函数，正常返回值的话视为成功
+//,并将返回值变成一个含有返回值的成功状态的promise
+// 如果是throw的话则视为失败，并返回一个失败状态的promise
+
+
+
 var p = new Promise(function executor(resolve,reject){  //this没有明确设定，设置成箭头函数也可以
    //resolve 成功，函数
    //reject 失败函数

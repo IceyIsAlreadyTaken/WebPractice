@@ -176,7 +176,7 @@ Buffer.from([1,2,4,18,77])
 Buffer.from([0xe6,0x88,0x91]) //e68891
 Buffer.from([0xe6,0x88,0x91]).toString()
 //'我'
-//ES6新增的 arrayBuffer
+//ES6新增的 arrayBuffer 在语言中创建内存片段
 
 Buffer.from('5oiR','base64')
 //<Buffer e6 88 91>
@@ -186,68 +186,25 @@ Buffer.from('e68891','utf8')
 //<Buffer 65 36 38 38 39 31>
 os.endianness()
 
-
+b = Buffer.alloc(16)
+//内存中的储存方式
+b.writeDoubleBE(3.14,0) //从零开始写八个字节 转成双精度浮点数
+//<Buffer 40 09 1e b8 51 eb 85 1f 00 00 00 00 00 00 00 00>
+b.writeDoubleLE(3.14,0) //把字节序颠倒过来
+//字节内部的位没有变，只是字节颠倒了
 //大端序 小端序
 
+
+//=======================================================
 //ArrayBuffer
+ab = new ArrayBuffer(16) //声明后不能直接用
+
+abint8 = new Int8Array(ab)
+abint8[0] = 120
+//负数在内存中以补码方式存在 要对数字取反加一
+//待研究。。。。。⭐️ 数字的转换块晕了
+
+//=======================================================
+//util 判断类型的函数 实用工具
 
 
-
-
-//util 判断类型的函数
-
-
-
-
-function readFilePromise(path) {
-  return new Promise((resolve,reject) => {
-    fs.readFile(path,function(err,result) {
-      if (err) {
-        reject(err)
-      } else {
-        resolve(result)
-      }
-    })
-  })
-}
-
-//返回promise
-function  writeFilePromise(path,content) {
-  return new Promise((resolve,reject) => {
-    fs.writeFile(path,content,function(err,result){
-      if(err) {
-        reject(err)
-      } else {
-        resolve(result)
-      }
-    })
-  })
-}
-
-//把一个函数由callback 返回结果的函数 转换成返回promise的函数
-function promisify(f) {
-  return function(...args){
-    return new Promise((resolve,reject) => {
-      f(...args,(err,result) => {
-        if(err) {
-          reject(err)
-        } else {
-          resolve(result)
-        }
-      })
-    })
-  }
-}
-
-
-//把一个函数由callback返回的转换为promise返回的函数
-function callbackify(f) {
-  return function(...args) {
-    var callback = args.pop()
-    f(...args).then(value => {
-      callback(null,value)
-    },reason => {
-      callback(reason,null)
-    })
-  }
-}
