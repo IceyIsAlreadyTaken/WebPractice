@@ -25,7 +25,7 @@ const port = 8088
 server.on('request',(req,res) => {  //需要告诉浏览器打开文件的 MIME type
   //浏览器通常使用MIME类型（而不是文件扩展名）来确定如何处理文档；因此服务器设置正确以将正确的MIME类型附加到响应对象的头部是非常重要的。
   //res.setHeader('Content-Type','text/html;charset=UTF-8')
-  var urlObj = url.parse(decodeURIComponent(req.url))
+  var urlObj = url.parse(decodeURIComponent(req.url)) 
   var finalPath = path.join(base,urlObj.pathname)  //注意中文url解析问题
   // res.write(`    
   //   您正在用 ${req.method} 方法请求${req.url} <br><br>
