@@ -118,7 +118,7 @@
 //服务器重启 sudo reboot
 
 //===================================================
-//基于tmux 的封装 少记一些快捷键   byobu
+//基于tmux 的封装 少记一些快捷键   byobu（方便一点
 //f1 f2 f3....
 
 
@@ -147,11 +147,19 @@
 // acme.sh命令行可以用了
 // just issue acert 新建一个证书！！！
 // acme.sh --issue -d example.com
-//acme.sh --issue -d tls.realeago.com:8000 --standalone
+//acme.sh --issue -d tls.realeago.com --standalone
 
 //把 这个cert 和 key 文件 传给 https模块
-//
+//[Tue Apr  2 19:34:42 CST 2019] Your cert is in  /root/.acme.sh/realeago.com/realeago.com.cer
+// [Tue Apr  2 19:34:42 CST 2019] Your cert key is in  /root/.acme.sh/realeago.com/realeago.com.key
+// [Tue Apr  2 19:34:42 CST 2019] The intermediate CA cert is in  /root/.acme.sh/realeago.com/ca.cer
+// [Tue Apr  2 19:34:42 CST 2019] And the full chain certs is there:  /root/.acme.sh/realeago.com/fullchain.cer
+//终于他妈比的调好了。。。  
+//去tm的80端口
 
+//证书有效期3个月，2个月会重新帮你生成下证书
+// 服务器需重启一次 因为证书内容更换了
+// 重启下就行
 
 
 //如何同时访问 http和https两个网站
@@ -161,10 +169,21 @@
 //解决1024以下端口无法监听的问题
 
 
+//http跳转到https
+//把地址栏的协议头改为https
+res.setHeader('Content-Type','text/html')
+res.end(`
+  <script>
+    location.protocol = 'https:'
+  </script>  
+  `)
 
 
-
-
+//hsts HTTP Strict Transport Security HTTP严格传输安全
+//网站可以选择使用HSTS策略，来让浏览器强制使用HTTPS与网站进行通信，以减少会话劫持风险[1][2]。
+//https://zh.wikipedia.org/zh-hans/HTTP%E4%B8%A5%E6%A0%BC%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8
+//307 浏览器收到这个请求头的时候
+//用户首次访问某网站是不受HSTS保护的。这是因为首次访问时，浏览器还未收到HSTS，所以仍有可能通过明文HTTP来访问。解决这个不足当前有两种方案，一是浏览器预置HSTS域名列表，Google Chrome、Firefox、Internet Explorer和Microsoft Edge实现了这一方案[11][12]。二是将HSTS信息加入到域名系统记录中。但这需要保证DNS的安全性，也就是需要部署域名系统安全扩展。截至2016年这一方案没有大规模部署。
 
 
 
