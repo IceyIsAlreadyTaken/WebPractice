@@ -1,5 +1,14 @@
 //npm i express
 //koa 
+//创建 packjason 把依赖的模块写到dependencies 中
+// {
+//   'dependencies':{
+//     'express':"4.16.3"
+//   }
+// }
+//之后在这个文件夹运行npm install就会把所用的模块安装好
+
+
 
 var express = require('express')
 
@@ -66,3 +75,57 @@ server.listen(port,() => {
 // http.createServer((req,res) => { 
 
 // })
+
+//==========================================
+//express 中实现了use方法后其他大多数方法都可以实现
+server.get('/bar',function(req,res,next) {
+  xxxxx
+})
+
+server.use(function(req,res,next) {
+  if (req.method === 'GET' && res.url === '/bar') {
+    xxxx
+  } elsd {
+    next()
+  }
+})
+
+//================listen方法
+function listen() {
+  var server = http.createServer(this)
+  return server.listen.appply(server.arguments)
+}
+
+
+//=========================use方法实现
+server.middlewares = []
+server.use = function(middleware) {
+  this.middlewares.push(middleware)
+}
+function server(incoming,res) {
+  var i = 0
+  function next(){
+    server.middlewares[i++] (incoming,res,next)
+  }
+  next()
+}
+//一坨函数串成一个 reduce解决这个问题
+var funcs = [function(next) {
+  console.log(1)
+  next()
+},function(next) {
+  console.log(2)
+  setTimeout(next,2000)
+},function(next) {
+  console.log(3)
+  next()
+},function(next) {
+  console.log(4)
+}]
+var server = funcs.reduceRight((preNext,f) => {
+  return function next(){
+    return f(preNext)
+  }
+},() => {})
+
+server()
