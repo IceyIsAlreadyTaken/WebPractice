@@ -127,5 +127,5 @@ var server = funcs.reduceRight((preNext,f) => {
     return f(preNext)
   }
 },() => {})
-
+ 
 server()
