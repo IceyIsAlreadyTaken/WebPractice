@@ -7,12 +7,15 @@
 //   }
 // }
 //之后在这个文件夹运行npm install就会把所用的模块安装好
+//dependecies作用 记录代码在运行时依赖的东西，上传时忽略 node_modles，其他文件上传
+//下载后  运行npm install 就会把依赖安装好
 
 
-
+//在 app 目录中安装 Express，然后将其保存在依赖项列表中。例如：
+//npm install express --save
 var express = require('express')
 
-var server = express()
+var server = express()  //
 
 var port  = 8095
 
@@ -78,22 +81,23 @@ server.listen(port,() => {
 
 //==========================================
 //express 中实现了use方法后其他大多数方法都可以实现
-server.get('/bar',function(req,res,next) {
+server.get('/bar',function(req,res,next) { //请求 /bar 才会进入这个中间件，否则都跳过
   xxxxx
 })
 
+//get 等价写法
 server.use(function(req,res,next) {
   if (req.method === 'GET' && res.url === '/bar') {
     xxxx
-  } elsd {
+  } else {
     next()
   }
 })
 
-//================listen方法
+//================node内部 listen方法实现
 function listen() {
   var server = http.createServer(this)
-  return server.listen.appply(server.arguments)
+  return server.listen.apply(server.arguments)
 }
 
 
