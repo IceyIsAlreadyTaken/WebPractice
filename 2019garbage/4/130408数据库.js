@@ -21,9 +21,9 @@
 //下载 SQLlite
 //.help
 
-//一定要用分号结束
-//create table users(id,name,password);
 //创建名为users的表
+//create table users(id,name,password);
+//一定要用分号结束
 
 //插值
 // insert into users values(1,'zs,'123456');
@@ -50,8 +50,92 @@
 //.headers on 
 
 
+//w3c例子
+//改列名
+//SELECT Address as Addr,City as Location FROM Customers
+
+//去重 city
+//select distinct city from customers
+//select distinct city,xxx from customers  唯一组合
+
+//  where
+//SELECT * FROM Customers where CustomerId > 30 and CustomerId < 40;
+//SELECT * FROM Customers where city = 'Caracas';
+//SELECT * FROM Customers where city != 'Caracas';
+//SELECT * FROM Customers where city != 'Caracas' or CustomerId > 30 ;
 
 
+//弱类型
+//设置列数据的偏好类型
+//查出来的时候数据库会尽量提供(转换)给你偏好的类型
+//create table foo (id  int,name string,content string,ts int)
+
+
+//Order by xx,xx ...     ASC|DESC 升序或者降序
+//SELECT * FROM Customers order by City desc;
+
+//insert into table_name
+//values 
+//插入指定列的内容
+//inseret into table_name (id,content) values (5,'hello')
+//其他未填的则为空
+
+
+//Update
+//UPdate table_name
+//set column1 = value1,column2 = value2
+//where condition
+
+//select top
+//select * from users limit 2 //查询前两个
+//select * from users limit 2，5 //查询2-5
+
+//select max(id) from users 
+
+
+//group by
+//select sum,COuntry from customers group by country order by sum desc 
+
+
+//sqlite 里一个文件就是一个数据库 
+
+
+//drop 删除一个表
+//sqllite 不支持改列名 删除列
+
+//select Into 把查询的内容插入到新表中
+//insert into xxxx select * from table_name
+
+//加载多个表
+// .databases 显示当前加载的表
+//attach test as se;
+// .tables
+
+//constraints 设定这个表必须班组的条件
+// creat table user3(
+//   id integer ,
+//   name string primary key,
+//   password not null
+// );
+
+//索引
+//当数据库数据非常大时为数据库建立索引，提高查询效率
+//.schema   查看索引
+
+
+//建立视图
+//
+
+//连表查询 join
+//select * from posts join users on posts.userid=users.id where posts.id=4
+// inner left
+
+
+
+//在语言中使用的话，需要绑定
+//npm sqlite3 是call
+
+//csv 格式的文件支持直接导入sqlite
 //http://www.runoob.com/sqlite
 //https://www.w3schools.com/sql/default.asp
 //
