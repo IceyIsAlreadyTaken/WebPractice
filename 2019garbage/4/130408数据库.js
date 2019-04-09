@@ -135,6 +135,16 @@
 //在语言中使用的话，需要绑定
 //npm sqlite3 是call
 
+
+
+//连接数据库
+//db = new sqlite3.Database('foo.sqlite3')
+//db = mysql.connect('mysql://localhost:3306/simple-bbs')
+
+
+//npm
+//sqlite3
+
 //csv 格式的文件支持直接导入sqlite
 //http://www.runoob.com/sqlite
 //https://www.w3schools.com/sql/default.asp

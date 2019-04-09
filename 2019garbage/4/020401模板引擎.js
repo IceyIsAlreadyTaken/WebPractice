@@ -21,7 +21,8 @@ function data(d) {
 //还有针对 HTML优化的模板引擎,减少 HTML 书写的模板引擎
 
 //jade 专门针对html的模板,可以写的含块
-//pug  jade改名为pug   可以做一些运算
+//pug  jade改名为pug   可以做一些运算 常用
+//ejs ...
 //https://pugjs.org/api/getting-started.html
 
 

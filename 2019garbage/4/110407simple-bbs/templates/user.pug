@@ -2,6 +2,7 @@ extends layout.pug
 
 block content 
   if user
+    h2 用户
     div= user.name
 
     div
@@ -10,5 +11,11 @@ block content
         each post in posts
           li
             a(href="/post/" + post.id)= post.content
+      h2 他发表的评论
+      ul
+        each comment in comments
+          li 
+            h5= comment.postTitle
+            p= comment.content
   else
     |没有您要找的用户         
