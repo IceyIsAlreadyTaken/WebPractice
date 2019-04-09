@@ -11,11 +11,16 @@ block content
         each post in posts
           li
             a(href="/post/" + post.id)= post.content
+            | 
+            a(href="/delete-post/" + post.id) 删除
       h2 他发表的评论
       ul
         each comment in comments
           li 
-            h5= comment.postTitle
+            h5
+            span= comment.postTitle
+            | 
+            a(href="/delete-comment/" + comment.id) 删除
             p= comment.content
   else
     |没有您要找的用户         

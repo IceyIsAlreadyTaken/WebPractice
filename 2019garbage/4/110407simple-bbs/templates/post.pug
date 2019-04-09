@@ -7,6 +7,7 @@ block content
       span= new Date(post.timestamp).toLocaleString()
       span 
         a(href="/user/" + post.userId) 发帖人:#{post.name}
+        img(width = 30 src="/avatars/" + post.avatar,alt=post.name)
     div= post.content
 
     ul 
@@ -14,6 +15,7 @@ block content
         li
           div
             span= new Date(comment.timestamp).toLocaleString()  
+            img(width = 30 src="/avatars/" + comment.avatar,alt=comment.name)
             span
               | 
               a(href="/user/" + comment.userId)= comment.name

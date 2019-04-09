@@ -3,6 +3,8 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const sqlite = require('sqlite')
 const cookieParser = require('cookie-parser')
+const multer = require('multer') //上传
+const upload = multer({dest:path.join(__dirname,'./user-uploaded')}) //上传文件夹
 
 
 const app = express()
@@ -87,22 +89,28 @@ app.use((req,res,next) => {  //打印服务器接到的请求
 })
 
 app.use('/static',express.static(__dirname + '/static'))
+app.use('/avatars',express.static(__dirname + '/user-uploaded'))
 app.use(cookieParser('fdsafsaf'))//传一个密码，随便写
 app.use(bodyParser.urlencoded())  //请求体解析后放在 req.body
 
+app.use(async (req,res,next) => {
+  req.user = await db.get('SELECT * FROM users WHERE id=?',req.signedCookies.userId)
+  next()
+})
+
 app.get('/',async (req,res,next) => {
   var posts = await db.all('SELECT * FROM posts')
-  res.render('index.pug',{posts})//{posts:posts}
+  res.render('index.pug',{posts,user:req.user})//{posts:posts}
 })
 
 
 //发帖
 app.route('/add-post')
   .get((req,res,next) => {
-    res.render('add-post.pug')
+    res.render('add-post.pug',{user:req.user})
   })
   .post(async (req,res,next) => {
-    console.log(req.body,req.cookies,req.signedCookies)
+    //console.log(req.body,req.cookies,req.signedCookies)
     if (req.signedCookies.userId) {
       await db.run('INSERT INTO posts (userId,title,content,timestamp) VALUES (?,?,?,?)',req.signedCookies.userId,req.body.title,req.body.content,Date.now())
       //查询存入帖子的 
@@ -114,18 +122,19 @@ app.route('/add-post')
   })
 
 
-//注册页面
+//注册页面 
 app.route('/register')  //去掉地址的.html
   .get((req,res,next) => {
     res.render('register.pug')
     // res.sendFile(path.join(__dirname,'./static/register.html'))
   })
-  .post(async (req,res,next) => {
+  .post(upload.single('avatar'),async (req,res,next) => {
+    //console.log(req.file,req.body)
     var user = await db.get('SELECT * FROM users WHERE name=?',req.body.username)
     if (user) {
       res.end('name has been used')
     } else {
-      await db.run('INSERT INTO users (name,password) VALUES (?,?)',req.body.username,req.body.password)
+      await db.run('INSERT INTO users (name,password,avatar) VALUES (?,?,?)',req.body.username,req.body.password,req.file.filename)
       res.redirect('/login')
     }
   })
@@ -133,7 +142,7 @@ app.route('/register')  //去掉地址的.html
 //登录
 app.route('/login')
   .get((req,res,next) => {
-    res.render('login.pug')
+    res.render('login.pug' )
   })
   .post(async (req,res,next) => {
     var user = await db.get("SELECT * FROM users WHERE name=? and password=?",req.body.username,req.body.password)
@@ -155,32 +164,37 @@ app.get('/logout',(req,res,next) => {
 
 //用户
 app.get('/user/:userId',async (req,res,next) => {
-  var user = await db.get('SELECT * FROM users WHERE id=?',req.params.userId)
-  if (user) {
+  if (req.user) {
     var userPosts = await db.all('SELECT * FROM posts WHERE userId=?',req.params.userId)
     var userComments = await db.all('SELECT comments.*,title as postTitle FROM comments JOIN posts ON comments.postId=posts.id WHERE comments.userId=?',req.params.userId)
 
     res.render('user.pug',{
-      user,
+      user:req.user,
       posts:userPosts,
       comments:userComments,
     })
   } else {
-    res.render('user.pug',{user:null})
+    res.render('user.pug',{user:req.user})
   }
 })
 
 
 //帖子
 app.get('/post/:postId',async (req,res,next) => {
-  var post = await db.get('SELECT posts.*,name FROM posts JOIN users ON posts.userId=users.id WHERE posts.id = ?',req.params.postId)
+  var post = await db.get('SELECT posts.*,name,avatar FROM posts JOIN users ON posts.userId=users.id WHERE posts.id = ?',req.params.postId)
   //console.log(post)
   if(post) {
-    var comments = await db.all('SELECT comments.*,name FROM comments JOIN users ON comments.userId=users.id WHERE postId =?',req.params.postId)
-    res.render('post.pug',{post,comments}) //ES6语法属性和方法的简写
+    var comments = await db.all('SELECT comments.*,name,avatar FROM comments JOIN users ON comments.userId=users.id WHERE postId =?',req.params.postId)
+    res.render('post.pug',{post,comments,user:req.user}) //ES6语法属性和方法的简写
   } else {
     res.status(404).render('post-not-find.pug')
   }
+})
+
+//删除帖子
+app.get('/delete-post/:postId',async (req,res,next) => {
+  var post = db.get('SELECT * FROM posts WHERE id=?',req.params.postId)
+  if (req.params.postId)
 })
 
 //接评论的请求
