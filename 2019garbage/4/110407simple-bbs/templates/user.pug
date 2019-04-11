@@ -10,7 +10,9 @@ block content
       ul
         each post in posts
           li
-            a(href="/post/" + post.id)= post.content
+            a(href="/post/" + post.id)= post.title
+            | 
+            span= post.content
             | 
             a(href="/delete-post/" + post.id) 删除
       h2 他发表的评论

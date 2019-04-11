@@ -21,7 +21,7 @@
 //document.cookie = 'xxx；expires=' + new Date()
 
 
-
+//httpOnly:true
 
 //http://bubkoo.com/2014/04/21/http-cookies-explained/
 //cookie 详解

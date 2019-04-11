@@ -13,6 +13,7 @@ const port = 8900
 
 var dbPromise = sqlite.open(path.join(__dirname,'./bbs'),{Promise})
 var db
+var sessions ={}
 
 
 
@@ -93,6 +94,13 @@ app.use('/avatars',express.static(__dirname + '/user-uploaded'))
 app.use(cookieParser('fdsafsaf'))//传一个密码，随便写
 app.use(bodyParser.urlencoded())  //请求体解析后放在 req.body
 
+app.use(function sessionMiddleware(req,res,next) {
+  if (!req.cookies.sessionId) {
+    res.cookie('sessionId',Math.random().toString(16).substr(2))
+  }
+  next()
+})
+
 app.use(async (req,res,next) => {
   req.user = await db.get('SELECT * FROM users WHERE id=?',req.signedCookies.userId)
   next()
@@ -134,7 +142,7 @@ app.route('/register')  //去掉地址的.html
     if (user) {
       res.end('name has been used')
     } else {
-      await db.run('INSERT INTO users (name,password,avatar) VALUES (?,?,?)',req.body.username,req.body.password,req.file.filename)
+      await db.run('INSERT INTO users (name,password,avatar) VALUES (?,?,?)',req.body.username,req.body.password,req.file && req.file.filename)
       res.redirect('/login')
     }
   })
@@ -145,6 +153,10 @@ app.route('/login')
     res.render('login.pug' )
   })
   .post(async (req,res,next) => {
+    if (req.body.captcha != sessions[req.cookies.sessionId].captcha) {
+      res.end('captcha not corect!!!!!!!!!!!!!!!!!!')
+      return
+    }
     var user = await db.get("SELECT * FROM users WHERE name=? and password=?",req.body.username,req.body.password)
     if (user) {
       res.cookie('userId',user.id,{
@@ -155,6 +167,26 @@ app.route('/login')
       res.end('username or password is not correct')
     }
   })
+
+
+//验证码
+app.get('/captcha',async (req,res,next) => {
+  var captcha = Math.random().toString().substr(2,4)
+  sessions[req.cookies.sessionId] = {
+    captcha:captcha
+  }
+
+  res.setHeader('Content-Type','image/svg+xml')
+  res.end(`
+  <svg width="100"
+  height="50"
+  version="1.1"
+  xmlns="http://www.w3.org/2000/svg">
+    <text x="0" y="20">${
+      captcha
+    }</text>
+  </svg>`)
+})
 
 //登出 前端把cookie 删掉 后端清除cookie
 app.get('/logout',(req,res,next) => {
@@ -193,8 +225,13 @@ app.get('/post/:postId',async (req,res,next) => {
 
 //删除帖子
 app.get('/delete-post/:postId',async (req,res,next) => {
-  var post = db.get('SELECT * FROM posts WHERE id=?',req.params.postId)
-  if (req.params.postId)
+  var post = await db.get('SELECT * FROM posts WHERE id=?',req.params.postId)
+  if (post && req.user) {
+    if  (post.userId == req.user.id) {
+      await db.run('DELETE FROM posts WHERE id =?',post.id)
+    }
+  } 
+  res.redirect(req.headers.referer) //跳回到发帖的页面
 })
 
 //接评论的请求

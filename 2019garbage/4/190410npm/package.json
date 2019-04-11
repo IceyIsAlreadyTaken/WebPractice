@@ -1,0 +1,9 @@
+{
+  "name":"190410npm",
+  "description": "190410npm",
+  "version": "0.0.1",
+  "main": "index.js",
+  "bin": {
+    "190410npm":"./bin/cli.js"
+  },
+}

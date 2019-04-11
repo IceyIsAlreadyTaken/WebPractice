@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p>FOO</p>
+    <input type="text" v-model="message">
+    <input type="checkbox" v-model="torf" true-value="foo" false-value="bar">
+    <p>{{torf}}</p>
+
+    <fieldset>
+      <legend>Gender</legend>
+      <input type="radio" v-model='gender' value="male">
+      <input type="radio" v-model='gender' value="female">
+      <input type="radio" v-model='gender' value="gay">
+      <input type="radio" v-model='gender' value="les">
+      <em>{{gender}}</em>
+    </fieldset>
+
+    <div :title="title" v-on:click="addTodo">{{message.repeat(5)}}</div>
+    <ul>
+      <li v-for="todo in todos">
+        {{todo}}
+      </li>
+    </ul>
+    <p>BAR</p>
+
+    <div v-if='torf'>你能看到我么</div>
+    <button v-on:click='ttof'>开关</button>
+  </div>
+</body>
+<script src="vue-2.6.10.js"></script>
+<script>
+  var app = new Vue({
+    el:'#app',
+    data:{
+      gender:'male',
+      message:'hello world',
+      title:'shuxingzhi',
+      todos:['eat','drink','code','sleep'],
+      torf:'foo',
+    },
+    methods:{
+      addTodo:function(){
+        app.$data.todos.push(Math.random())
+      },
+      ttof:function() {
+        if(app.$data.torf){
+          app.$data.torf = false
+        } else {
+          app.$data.torf = true
+        }
+      }
+    }
+    // 数据一旦变化会立刻更新视图
+  })
+
+  //双向绑定 有的地方也称为 MVVM   Model -> View View -> Model
+  //双向绑定 适用于所有input 元素
+</script>
+</html>

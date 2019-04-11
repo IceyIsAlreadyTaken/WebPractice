@@ -2,6 +2,16 @@ extends layout.pug
 
 block content
   form(action="/login" method="post")
+    |用户名
     input(type="text" name="username")
+    br
+    |密码
     input(type="password" name="password")
+    br
+    |验证码
+    input(type="text" name="captcha")
+    img(src="/captcha")
+    br
     button 登录
+    //- 验证码作用之一就是防止暴力破解
+    //- sessionid 一个浏览器一个sessionid

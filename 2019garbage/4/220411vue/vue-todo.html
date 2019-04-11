@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <input type="checkbox" @click='toggleSelectAll' :checked="todos.every(it=> it.done)">
+      <input type="text" @keyup.enter="addTodo" v-model.trim="todoText"> <!-- 语法糖 -->
+    </div>
+    <ul>
+      <li v-for="(todo,index) of showingTodos(todos,showingCategory)">
+        <input type="checkbox" v-model="todo.done">
+        {{todo.content}}
+        <span @click="delTodo(index)">&times;</span>
+      </li>
+    </ul>
+    <div>
+      <span> 
+        {{todos.filter(it => !it.done).length}} item{{todos.filter(it => !it.done).length > 1 ? 's' : ''}} left
+      </span>
+      <span>
+        <label><input type="radio" v-model="showingCategory" value ="all"> all </label>
+        <label><input type="radio" v-model="showingCategory" value ="active"> active </label> 
+        <label><input type="radio" v-model="showingCategory" value ="completed"> completed </label>
+      </span>
+      <button @click="clearCompleted" v-if="todos.some(it => it.done)">Clear completed</button>
+    </div>
+  </div>
+</body>
+
+
+<script src="vue-2.6.10.js"></script>
+<script>
+  var app = new Vue({
+    el:'#app',
+    data:{
+      showingCategory:'all',
+      todoText:'',
+      todos:[{
+        content:'eat',
+        done:false,
+      },{
+        content:'sleep',
+        done:false,
+      },{
+        content:'work',
+        done:false,}],
+    },
+    methods:{
+      showingTodos: function (todos,cate) {
+        if (cate === 'all') {
+          return todos
+        }
+        if (cate === 'active') {
+          return todos.filter(it => it.done === false)
+        }
+        return todos.filter(it => it.done === true)
+      },
+      toggleSelectAll:function() {
+        if (app.todos.every(it => it.done)) {
+          app.todos.forEach(it => it.done = false)
+        } else {
+          app.todos.forEach(it => it.done = true)
+        }
+      },
+      clearCompleted() {
+        app.$data.todos = app.$data.todos.filter(it => !it.done)
+      },
+      delTodo:function(index) {
+        app.$data.todos.splice(index,1)
+      },
+      addTodo:function(e) {
+        if (app.$data.todoText) {
+          app.$data.todos.push({
+            content:app.$data.todoText,
+            done:false,
+          })
+          app.$data.todoText = ''
+        }
+      }
+    }
+  })
+</script>
+</html>
