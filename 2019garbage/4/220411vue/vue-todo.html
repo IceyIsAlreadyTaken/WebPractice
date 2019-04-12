@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    .completed .todo-content {
+      text-decoration:line-through;
+    }
+  </style>
 </head>
 <body>
   <div id="app">
@@ -13,22 +18,23 @@
       <input type="text" @keyup.enter="addTodo" v-model.trim="todoText"> <!-- 语法糖 -->
     </div>
     <ul>
-      <li v-for="(todo,index) of showingTodos(todos,showingCategory)">
+      <li v-for="(todo,index) of showingTodos" :class="{active:!todo.done,completed:todo.done}">
         <input type="checkbox" v-model="todo.done">
-        {{todo.content}}
+        <span class="todo-content">{{ todo.content }}</span>
+        <input type="text" v-model="todo.content">
         <span @click="delTodo(index)">&times;</span>
       </li>
     </ul>
     <div>
       <span> 
-        {{todos.filter(it => !it.done).length}} item{{todos.filter(it => !it.done).length > 1 ? 's' : ''}} left
+        {{ leftTodosCount }} item {{ itemPlural }} left
       </span>
       <span>
         <label><input type="radio" v-model="showingCategory" value ="all"> all </label>
         <label><input type="radio" v-model="showingCategory" value ="active"> active </label> 
         <label><input type="radio" v-model="showingCategory" value ="completed"> completed </label>
       </span>
-      <button @click="clearCompleted" v-if="todos.some(it => it.done)">Clear completed</button>
+      <button @click="clearCompleted" v-if="showClearButton">Clear completed</button>
     </div>
   </div>
 </body>
@@ -38,7 +44,7 @@
 <script>
   var app = new Vue({
     el:'#app',
-    data:{
+    data:{ //原始数据
       showingCategory:'all',
       todoText:'',
       todos:[{
@@ -51,16 +57,27 @@
         content:'work',
         done:false,}],
     },
-    methods:{
-      showingTodos: function (todos,cate) {
-        if (cate === 'all') {
-          return todos
-        }
-        if (cate === 'active') {
-          return todos.filter(it => it.done === false)
-        }
-        return todos.filter(it => it.done === true)
+    computed: {  //数据推导
+      showClearButton: function() {
+        return this.todos.some(it => it.done)
       },
+      leftTodosCount: function () {
+        return this.todos.filter(it => !it.done).length
+      },
+      itemPlural: function () {
+        return this.todos.filter(it => !it.done).length > 1 ? 's' : ''
+      },
+      showingTodos: function () {
+        if (this.showingCategory === 'all') {
+          return this.todos
+        }
+        if (this.showingCategory === 'active') {
+          return this.todos.filter(it => it.done === false)
+        }
+        return this.todos.filter(it => it.done === true)
+      },
+    },
+    methods:{ //处理事件
       toggleSelectAll:function() {
         if (app.todos.every(it => it.done)) {
           app.todos.forEach(it => it.done = false)
