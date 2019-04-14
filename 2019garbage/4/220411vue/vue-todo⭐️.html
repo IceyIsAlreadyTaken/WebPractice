@@ -17,8 +17,8 @@
       <input type="checkbox" @click='toggleSelectAll' :checked="isAllSelected">
       <input type="text" @keyup.enter="addTodo" v-model.trim="todoText"> <!-- 语法糖 -->
     </div>
-    <ul>
-      <li v-for="(todo,index) of showingTodos" :class="{active:!todo.done,completed:todo.done}">
+     <ul> <!--临时变量在computed中访问不到 -->
+      <li v-for="(todo,index) of showingTodos" :class="todoItemClasses(todo)">
         <input type="checkbox" v-model="todo.done">
         <span class="todo-content" v-on:dblclick = "">{{ todo.content }}</span>
         <input type="text" v-model="todo.content">
@@ -59,7 +59,7 @@
     },
     computed: {  //由已存数据推导  getter
       isAllSelected:function(){
-        return todos.every(it => it.done)
+        return this.todos.every(it => it.done)
       },
       showClearButton: function() {
         return this.todos.some(it => it.done)
@@ -81,6 +81,12 @@
       },
     },
     methods:{ //处理事件
+      todoItemClasses:function(todo) {
+        return {
+          completed:todo.done,
+          active:!todo.done,
+        }
+      },
       toggleSelectAll:function() {
         if (this.isAllSelected) {
           app.todos.forEach(it => it.done = false)
