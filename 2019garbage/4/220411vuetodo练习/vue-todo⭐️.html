@@ -17,6 +17,7 @@
       <input type="checkbox" @click='toggleSelectAll' :checked="isAllSelected">
       <input type="text" @keyup.enter="addTodo" v-model.trim="todoText"> <!-- 语法糖 -->
     </div>
+    <!-- 在模板里使用的话不用this   vue会帮你找解析 -->
      <ul> <!--临时变量在computed中访问不到 -->
       <li v-for="(todo,index) of showingTodos" :class="todoItemClasses(todo)">
         <input type="checkbox" v-model="todo.done">
@@ -57,7 +58,8 @@
         content:'work',
         done:false,}],
     },
-    computed: {  //由已存数据推导  getter
+
+    computed: {  //由已存数据推导  computed 里的所有属性全部变成 getter
       isAllSelected:function(){
         return this.todos.every(it => it.done)
       },
@@ -80,6 +82,7 @@
         return this.todos.filter(it => it.done === true)
       },
     },
+
     methods:{ //处理事件
       todoItemClasses:function(todo) {
         return {
