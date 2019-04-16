@@ -10,7 +10,7 @@ block content
         img(width = 30 src="/avatars/" + post.avatar,alt=post.name)
     div= post.content
 
-    ul 
+    ul.comments
       each comment in comments
         li
           div
@@ -26,3 +26,30 @@ block content
       textarea(placeholder="请输入您的评论" name="content")  
       br
       button 提交评论
+
+block logic
+  script.
+    $(() => {
+      $('form').on('submit',async function(e) {
+        e.preventDefault()
+        var postId = $('input[name="postId"]').val()
+        var content = $('textarea[name="content"]').val()
+
+        var res = await axios.post('/add-comment',{
+          postId,
+          content,
+        })
+
+        $('ul.comments').append(`
+          <li>
+            <div>
+              <span>${new Date(res.data.data.comment.timestamp)}</span>
+              <img width="30" src="/avatars/${res.data.data.comment.avatar}" alt="${res.data.data.comment.name}">
+              <span> <a href="/user/${res.data.data.comment.userId}">${res.data.data.comment.name}</a></span>
+            </div>
+            <div>${content}</div>
+          </li>
+        `)
+
+      })
+    })

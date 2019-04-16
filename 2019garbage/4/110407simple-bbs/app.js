@@ -93,6 +93,7 @@ app.use('/static',express.static(__dirname + '/static'))
 app.use('/avatars',express.static(__dirname + '/user-uploaded'))
 app.use(cookieParser('fdsafsaf'))//传一个密码，随便写
 app.use(bodyParser.urlencoded())  //请求体解析后放在 req.body
+app.use(bodyParser.json())  //解析 axios json请求体
 
 app.use(function sessionMiddleware(req,res,next) {
   if (!req.cookies.sessionId) {
@@ -157,12 +158,21 @@ app.route('/login')
       res.end('captcha not corect!!!!!!!!!!!!!!!!!!')
       return
     }
-    var user = await db.get("SELECT * FROM users WHERE name=? and password=?",req.body.username,req.body.password)
+    var user = await db.get("SELECT id,name FROM users WHERE name=? and password=?",req.body.username,req.body.password) //md5加盐
     if (user) {
       res.cookie('userId',user.id,{
-        signed:true//签名后客服端无法伪造
+        signed:true,
+        httpOnly:true,
+        //签名后客服端无法伪造
+        //标记唯一客户端
       })
-      res.redirect('/') 
+      res.json({
+        code:0,
+        msg:'ok',
+        data:{
+          user:user
+        }
+      })
     } else {
       res.end('username or password is not correct')
     }
@@ -250,7 +260,19 @@ app.post('/add-comment',async (req,res,next) => {
       INSERT INTO comments (postId,userId,content,timestamp)
       VALUES (?,?,?,?)
     `,req.body.postId,req.signedCookies.userId,req.body.content,Date.now())
-    res.redirect('/post/' + req.body.postId)
+
+    var comment = await db.get(
+      `SELECT * FROM comments JOIN users ON comments.userId=users.id ORDER BY timestamp DESC LIMIT 1`
+    )
+
+    // res.redirect('/post/' + req.body.postId)
+    res.json({
+      code:0,
+      msg:'ok',
+      data:{
+        comment
+      }
+    })
   } else {
     res.end('not allowd to comment,you are not logged in')
   }

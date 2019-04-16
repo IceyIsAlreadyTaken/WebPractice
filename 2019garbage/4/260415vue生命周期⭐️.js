@@ -75,5 +75,31 @@ el('div',{
 
 //可以找一些 virtual dom 的一些实现
 
-// dom diff 算法 一般要 On^3 方
+// dom diff 算法 一般要 On^3 方   vue 是 On的算法
 // https://github.com/fiduswriter/diffDOM
+
+
+
+//小米应用商店整个是个网页
+//因为是个很大的入口，做广告的需求很大，所以要经常变化
+//vue性能太低，单单是初始化数据 getter 和 setter 过程就花费很长时间
+//后来用jQuery  性能提高了，但是很难维护
+
+
+//react reconciliation diff 算法
+
+
+//对于dom树 只对同级做对比
+//性能优化 +key值
+//有 Key 只闪一下
+//没有 key 全闪
+
+
+
+//异步更新队列
+//可能你还没有注意到，Vue 异步执行 DOM 更新。只要观察到数据变化，Vue 将开启一个队列，并缓冲在同一事件循环中发生的所有数据改变。
+//异步函数中是不能使用$0等为控制台提供的
+
+//react 是 更新dom时不会把所有数据都更新，每次只渲染一部分， 用户不会感受到卡顿
+//fiber  
+//或者使用 worker 线程

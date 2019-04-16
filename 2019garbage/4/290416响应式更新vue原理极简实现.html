@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="./diffDOM.js"></script>
+  <script>
+  //改完数据后 dom不会立即改
+  //等到调用栈函数完成后 更新完dom 才会改变 
+  //Vue.nextTick
+  var updateSchedulaed = false
+  var data = {
+    a:1,
+    b:2,
+    c:3
+  }
+  var el = document.querySelector('#app')
+
+  function render(data) {
+    var wrapper = document.createElement('section')
+    wrapper.innerHTML = `<div>
+      <span>${data.a}</span>
+      <span>${data.b}</span>
+      <span>${data.c}</span>
+    </div>`
+    return wrapper.firstChild
+  }
+
+  function update() {
+    var dom = render(data)
+    var dd = new diffDOM.DiffDOM()
+    var patch = dd.diff(el.firstChild,dom)
+    dd.apply(el.firstChild,patch)
+    // el.innerHTML = dom   //省略diff过程  直接赋值
+    updateSchedulaed = false
+  }
+
+  function observer(obj) {
+    function isObject(val) {
+      return Object.prototype.toString.call(val) === '[object Object]'
+    }
+
+    var copy = {}
+
+    for(let key in obj) {
+      if (isObject(obj[key])) {
+        copy[key] = observer(obj[key])
+      } else {
+        copy[key] = obj[key]
+      }
+
+      Object.defineProperty(obj,key,{
+        get:function() {
+          return copy[key]
+        },
+        set:function(val) {
+          console.log('you are setting me!')
+          if (!updateSchedulaed) {
+            Promise.resolve().then(update)
+            updateSchedulaed = true
+          }
+          if (isObject(val)) {
+            val = observer(val)
+          }
+          copy[key] = val
+        }
+      })
+      
+    }
+  }
+
+  observer(data)
+  update()
+</script>
+</body>
+</html>
+

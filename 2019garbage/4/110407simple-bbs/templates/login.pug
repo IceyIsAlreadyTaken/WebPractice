@@ -15,3 +15,23 @@ block content
     button 登录
     //- 验证码作用之一就是防止暴力破解
     //- sessionid 一个浏览器一个sessionid
+
+block logic
+  script.
+    console.log(1)
+    $(() => {
+      $('form').on('submit',async function(e){
+        e.preventDefault() 
+        try {
+          var req =  await axios.post('/login',{
+            username:$("input[name='username']").val(),
+            password:$("input[name='password']").val(),
+            captcha:$("input[name='captcha']").val(),
+          })
+          location.href = '/'
+        } catch(e) {
+          alert('用户名或者密码或者验证码错误❌')
+        }
+
+      })
+    })

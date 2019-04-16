@@ -21,8 +21,10 @@
      <ul> <!--临时变量在computed中访问不到 -->
       <li v-for="(todo,index) of showingTodos" :class="todoItemClasses(todo)">
         <input type="checkbox" v-model="todo.done">
-        <span class="todo-content" v-on:dblclick = "">{{ todo.content }}</span>
-        <input type="text" v-model="todo.content">
+        <span v-show="index != editingIndex" @dblclick="edit(index)" class="todo-content">{{ todo.content }}</span>
+        <input ref="editTodo" v-show="index == editingIndex" type="text" v-model="todo.content" @blur="editingIndex = -1">
+        <!-- ref功能 -->
+        <!-- 临时变量todo不能榜，临时变量指向的content可以 -->
         <span @click="delTodo(index)">&times;</span>
       </li>
     </ul>
@@ -46,6 +48,7 @@
   var app = new Vue({
     el:'#app',
     data:{ //原始数据
+      editingIndex:-1,    //记录当前编辑的条目
       showingCategory:'all',
       todoText:'',
       todos:[{
@@ -61,6 +64,9 @@
 
     computed: {  //由已存数据推导  computed 里的所有属性全部变成 getter
       isAllSelected:function(){
+        if (this.showingTodos.length == 0) {
+          return false
+        }
         return this.todos.every(it => it.done)
       },
       showClearButton: function() {
@@ -84,6 +90,13 @@
     },
 
     methods:{ //处理事件
+      edit(index) {
+        this.editingIndex = index
+        Vue.nextTick(() => {   //当前调用栈空了以后，下一轮事件循环editingIndex展现出来
+          //为了在数据变化之后等待 Vue 完成更新 DOM ，可以在数据变化之后立即使用 Vue.nextTick(callback) 。这样回调函数在 DOM 更新完成后就会调用。
+          this.$refs.editTodo[this.editingIndex].focus()
+        })
+      },
       todoItemClasses:function(todo) {
         return {
           completed:todo.done,
