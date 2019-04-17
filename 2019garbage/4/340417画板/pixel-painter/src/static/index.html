@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pixel Painter</title>
+  <style>
+    .canvas {
+      border:1px solid;
+      /* display: inline-block; */
+      width:max-content;
+    }
+    .row {
+      display: flex;
+
+    }
+    .dot {
+      width:10px;
+      height:10px;
+      border:1px solid;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="canvas">
+      <div class="row" v-for="(row,y) in pixelData">
+        <span @click="drawDot(x,y,color)" class="dot" v-for = "(dotColor,x)  in row" :style={background:dotColor}></span>
+      </div>
+    </div>
+    <label :style="{color:c}" v-for="c of commonColors">
+      <input type="radio"  :value="c" v-model="color">{{c}}
+    </label>
+  </div>
+</body>
+
+<script src="./vue-2.6.10.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data() {
+      return {
+        pixelData:[],
+        commonColors:['red','orange','yellow','green','aqua','blue','purple','black',],
+        color:'red',
+      }
+    },
+    methods:{
+      drawDot(x,y,color) {
+        this.ws.send(JSON.stringify({
+          type:'drawDot', 
+          x,y,color,
+        }))
+      }
+    },
+    mounted() {
+      var ws = new WebSocket('ws://localhost:9095')
+      this.ws = ws
+
+      //监听消息事件
+      ws.onmessage = ({data}) => {
+        data = JSON.parse(data)
+        if (data.type == 'init') {
+          this.pixelData = data.pixelData
+        } else if (data.type == 'updateDot') {
+          Vue.set(this.pixelData[data.y],data.x,data.color) 
+          //发现没有更新 vue对数组下标 不会更新
+        }
+      }
+
+
+    }
+  })
+</script>
+</html>
