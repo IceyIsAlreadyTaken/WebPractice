@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>{{foo}}</div>
+    <button-counter :start="5"></button-counter>
+    <button-counter :start="foo"></button-counter>
+    <button-counter :start = "66666"></button-counter>
+    <button-counter @increment="f1" @decrement="f1"></button-counter>
+    <!-- 这里绑定的事件的函数写在外边 -->
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+
+
+    <blog-post ref="counter" @enlarge-text="fz+=5" :post-font-size="fz" title="hello"  publishedAt="" comments="world"></blog-post> 
+
+  </div> 
+    <!-- HTML的自定义自闭和标签不允许使用 -->
+
+  <script src="./220411vuetodo练习/vue-2.6.10.js"></script>
+  <script>
+    //框架自己实现的自定义标签
+    //一个组建就是一个小的 vue实例
+    Vue.component('button-counter',{ //替换掉这个标签，不是放在里边
+      props:['start'],//声明接受的属性，属性值可在data中读到
+      //当一个值传递给一个 prop 特性的时候，它就变成了那个组件实例的一个属性。
+      
+      //template 只能有一个根元素  if else 判断后留下一个元素是可以的
+      template:`
+      <div>  
+        <button @click="dec">-</button>
+        <span>{{count}}</span>  
+        <button @click="inc">+</button><test></test>
+      </div>
+      `,
+      data(){  //data是个函数 只会运行一次
+        return {
+          count:this.start || 0,
+        }
+      },
+      watch:{
+        start:function(n,o){
+          console.log(n,o)
+        }
+      },
+      methods:{
+        inc() {
+          this.count++
+          this.$emit('increment',this.count)
+        },
+        dec() {
+          this.count--
+          this.$emit('decrement',this.count)
+        }
+      },
+      components:{
+        'test':{ //这个组建只能在上边的组建中使用，不能拿到外部使用
+          template:'<div>test组建</div>'
+        }
+      }
+    })
+
+    //评论组建
+    Vue.component('blog-post',{
+      props:['title','content','post-font-size','comments'],
+      template:`
+        <div>
+          <h3>{{title}}</h3>
+          <button @click="$emit('enlarge-text')">增大字号</button>  
+          <button @click="$emit('enlighten-text')">减小字号</button> 
+          <section :style="{fontSize:postFontSize + 'px'}">{{comments}}</section>
+        </div>
+      `,
+      methods:{
+      }
+      //@click="$emit('enlarge-text')" 告诉父组件放大所有博文字号
+    })
+    //同时子组件可以通过调用内建的 $emit 方法 并传入事件名称来触发一个事件
+    //v-on 监听 DOM事件 简写为 @
+    //v-bind 监听属性  简写 为:
+
+    var app = new Vue({
+      el:'#app',
+      data: {
+        count:0,
+        foo:88888888888888,
+        fz:15,
+      },
+      computed:{
+        count2() {
+          return this.count*2
+        }
+      },
+      mounted() {
+        console.log(this.$refs.counter)
+      },
+      methods:{
+        inc(){
+          this.count++
+        },
+        f1(currCount){
+          console.log('父组件触发了事件f1',currCount)
+        }
+      },
+    })
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <player 
+      @volumechange = "vc"
+      @pause
+      @resume
+      src="xx.mp4"
+      :initVolume="65" 
+      :autoplay="false"> </player>  
+  </div> 
+
+  <script src="./220411vuetodo练习/vue-2.6.10.js"></script>
+  <script>
+    //视频组件
+    Vue.component('player',{
+      props:['src','initVolume','autoplay'],
+      template:`
+        <section style="border:2px solid;width:300px;height:200px">
+          <div style="height:170px;border:2px solid">
+            {{isPlaying ? '正在播放:' + src : src + '已经暂停'}}
+          </div>
+          <button v-show="!isPlaying" @click="play"> > </button>
+          <button v-show="isPlaying" @click="pause"> || </button>
+          <input type="range" v-model="currentVolume"  max="100" min="0"/>
+        </section>
+      `,
+      data(){
+        return {
+          isPlaying:this.autoplay,
+          currentVolume:this.initVolume,
+        }
+      },
+      watch:{
+        currentVolume:function(newVal){
+          this.$emit('volumechange',newVal) //触发当前实例上的事件。附加参数都会传给监听器回调。
+        }
+      },
+      methods:{
+        play(){
+          this.isPlaying = true
+          this.$emit('resume')
+        },
+        pause(){
+          this.isPlaying = false
+          this.$emit('pause')
+        }
+      }
+
+    })
+
+    var app = new Vue({
+      el:'#app',
+      data: {
+
+      },
+      computed:{
+
+      },
+      methods:{
+        vc(volume){
+          console.log('current',volume)
+        },
+      },
+    })
+  </script>
+</body>
+</html>
+

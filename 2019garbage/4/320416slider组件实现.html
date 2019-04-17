@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <slider 
+    v-show = "showSlider"
+    :interval="800"
+    :sliders="['a.jpg','b.jpg','c.jpg','e.jpg','f.jpg']"
+    :indicators="true"
+    :buttons="true/false"
+    @prev;
+    @next
+    > </slider>  
+  </div> 
+
+  <script src="./220411vuetodo练习/vue-2.6.10.js"></script>
+  <script>
+    //轮播图组件
+    Vue.component('slider',{
+      props:['interval','sliders','indicators','buttons'],
+      //Prop 是你可以在组件上注册的一些自定义特性。当一个值传递给一个 prop 特性的时候，它就变成了那个组件实例的一个属性。
+      template:`
+        <section>
+          <div>
+            <ul>
+              <li v-show="index == currIndex" v-for="(img,index) in sliders">{{img}}</li>
+            </ul>
+          </div>
+          <ul v-show="indicators">
+            <li @click="currIndex = i - 1" v-for="i of sliders.length">{{i}}{{i - 1 ==currIndex ? '✅' : ''}}</li>
+          </ul>
+          <button @click="prev">Prev</button>
+          <button @click="next">Next</button>
+        </section>
+      `,
+      data(){
+        return {
+          currIndex:0
+        }
+      },
+      mounted() {
+       this.intervalId = setInterval(() => {
+         console.log('will next')
+          this.next()
+        },this.interval)
+      },
+      destoryed() {
+        clearInterval(this.intervalId)
+        console.log("关闭slider组件")
+      },
+      methods:{
+        prev(){
+          this.currIndex = (this.sliders.length + this.currIndex - 1) % this.sliders.length
+          this.$emit('prev',this.currIndex)
+        },
+        next(){
+          this.currIndex = (this.currIndex + 1) % this.sliders.length
+          this.$emit('next',this.currIndex)
+        }
+      }
+
+    })
+
+    var app = new Vue({
+      el:'#app',
+      data: {
+        showSlider:true,
+      },
+      computed:{
+
+      },
+      methods:{
+
+      },
+    })
+  </script>
+</body>
+</html>
+
