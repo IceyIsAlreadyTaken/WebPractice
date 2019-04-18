@@ -53,6 +53,8 @@
       destoryed() {
         clearInterval(this.intervalId)
         console.log("关闭slider组件")
+        //不知道为啥没有起作用
+        //destoryed 方法没有被调用可能是组建没有被真正销毁，而是储存在内存当中
       },
       methods:{
         prev(){

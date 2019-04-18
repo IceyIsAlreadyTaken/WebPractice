@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <list-input v-model ="list"></list-input>
+  </div>
+  <script src="./220411vuetodo练习/vue-2.6.10.js"></script>
+  <script>
+    Vue.component('list-input',{
+      props:['value'],
+      template:`<input type="text" v-model="listText" />`,
+      data() {
+        return {
+          listText:this.value.join(',')
+        }
+      },
+      watch:{
+        value:function(newVal) {
+          this.listText = this.value.join(',')
+        },
+        listText:function(newVal) {
+          this.$emit('input',newVal.split(/，\s*/g))
+        }
+      }
+    })
+
+    var app = new Vue({
+      el:'#app',
+      data:{
+        birthday:new Date(),
+        list:['a','b']
+      },
+    })
+  </script>
+</body>
+</html>

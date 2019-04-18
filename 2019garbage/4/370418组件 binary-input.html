@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <binary-input v-model ="num"></binary-input>
+  </div>
+
+  <script src="./220411vuetodo练习/vue-2.6.10.js"></script>
+  <script>
+    Vue.component('binary-input',{
+      props:['value'],
+      template:`
+        <div>
+          <input v-for ="(flag,index) of status" v-model="status[index]" type ="checkbox"></input>
+        </div>
+      `,
+      data() {
+        return {
+          status: this.value.toString(2).padStart(8,'0').split('').map(it => it ==='1')
+        }
+      },
+      watch:{
+        status:function(newVal){
+          var value = parseInt(newVal.map(it => Number(it)).join(''),2)
+          this.$emit('input',value)
+        },
+        value:function() {
+          this.status = this.value.toString(2).padStart(8,'0').split('').map(it => it ==='1')
+        }
+      }
+    })
+
+    var app = new Vue({
+      el:'#app',
+      data:{
+        birthday:new Date(),
+        list:['a','b'],
+        num:152
+      },
+    })
+  </script>
+</body>
+</html>

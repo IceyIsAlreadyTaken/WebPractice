@@ -35,7 +35,7 @@
 
 //========================================登录数据库插值，不要把用户输入的东西当代码拼接到语句中
 
-// SQL Injext
+// SQL injection
 
 //SQL注入 数据库查询拼接值
 // var user = await db.get('SELECT * FROM users WHERE name=?',req.body.username)
