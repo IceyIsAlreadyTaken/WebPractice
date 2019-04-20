@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <a href="#/">Home </a>
+    <a href="#/list">list</a>
+    <a href="#/about">about</a>
+  </div>
+
+  <section id="main">
+
+  </section>
+  <script type="text/template" id="home">
+    <h1>welcome home</h1>
+  </script>
+  <script type="text/template" id="list">
+    <ul>
+      <li><a href="#/post/1">1</a></li>
+      <li><a href="#/post/2">2</a></li>
+      <li><a href="#/post/3">3</a></li>
+      <li><a href="#/post/4">4</a></li>
+    </ul>
+  </script>
+  <script type="text/template" id="post">
+    <div>
+      <h3>{{title}}</h3>
+      <p>{{content}}</p>
+    </div>
+  </script>
+
+  <script type="text/template" id="about">
+    <div>
+      about me:
+      email:xxx
+      qq:xxx
+    </div>
+  </script>
+
+  <script>
+    var posts ={
+      1:{
+        title:'hello11',
+        content:'world1'
+      },
+      2:{
+        title:'helloooooooo',
+        content:'world2'
+      },
+      3:{
+        title:'hdsafasfaslo333',
+        content:'world33'
+      },
+      4:{
+        title:'hello4444',
+        content:'worlddsafs444'
+      }
+    }
+
+    window.onhashchange = function(){
+      var hash = location.hash
+      if (hash === '#/') {
+        loadView('home')
+      } else if (hash === '#/list') {
+        loadView('list')
+      } else if (hash === '#/about') {
+        loadView('about')
+      } else if (hash.startsWith('#/post/')) {
+        var id = hash.match(/#\/post\/(.+)/)[1]
+        var post = posts[id]
+        loadView('post',post)
+      }
+    }
+
+    window.onhashchange()
+
+    function loadView(tplName,data = {}) {
+      var tpl = document.getElementById(tplName).textContent
+      var main = document.getElementById('main')
+      var html = tpl.replace(/\{\{\s*(\w+?)\s*\}\}/g,(match,field) => {
+        return data[field]
+      })
+
+      main.innerHTML = html
+    }
+  </script>
+</body>
+</html>
