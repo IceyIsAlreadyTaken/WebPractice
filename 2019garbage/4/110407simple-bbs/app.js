@@ -112,6 +112,36 @@ app.get('/',async (req,res,next) => {
   res.render('index.pug',{posts,user:req.user})//{posts:posts}
 })
 
+//==========================
+//前后端分离 设计接口
+app.get('/api/posts',async (req,res,next) => {
+  var posts = await db.all('SELECT posts.*,users.name FROM posts JOIN users ON posts.userId=users.id')
+  res.json(posts)
+})
+//
+app.get('/api/post/:postId',async (req,res,next) => {
+  var post = await db.get(`
+  SELECT 
+    posts.*,users.name
+  FROM posts JOIN users ON posts.userId=users.id
+  WHERE posts.id=?
+  `,req.params.postId)
+  res.json(post)
+})
+app.get('/api/user/:userId',async (req,res,next) => {
+  var user = await db.get(`
+  SELECT id,name,avatar FROM users WHERE id=?
+  `,req.params.userId)
+  var userPosts = await db.all('SELECT * FROM posts WHERE userId=?',req.params.userId)
+  var userComments = await db.all('SELECT comments.*,title as postTitle FROM comments JOIN posts ON comments.postId=posts.id WHERE comments.userId=?',req.params.userId)
+  res.json({
+    user,
+    userPosts,
+    userComments
+})
+})
+//==================================
+
 
 //发帖
 app.route('/add-post')
