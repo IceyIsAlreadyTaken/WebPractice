@@ -1,8 +1,10 @@
 # Pixel Painter
 
-canvas
-websocket
-express
-socket.io
-Buffer
-pixel manipulation
+#Tech used
+
+* canvas
+* websocket
+* express
+* socket.io
+* Buffer
+* pixel manipulation
