@@ -101,6 +101,8 @@
       this.ws = ws
 
       var canvas = this.$refs.canvas
+      canvas.style.imageRendering = 'pixelated' //去掉亚像素
+
       var ctx = canvas.getContext('2d')
       this.ctx = ctx
 
