@@ -173,7 +173,7 @@ function condensedArray2Tree(ary) {
   return root
 }
 
-//将LC树转换成数组
+//将LeetCode树转换成数组
 function tree2aryLC(root) {
   if (!root) {
     return []

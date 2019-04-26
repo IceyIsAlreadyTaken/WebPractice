@@ -30,3 +30,18 @@ CRLF  回车符换行符
 用 png 压缩进行无损压缩
 npm jimp
 莱娜图 lenna 
+
+
+
+
+===================================
+git reset HEAD src/pixel.png
+git status
+git diff
+
+git lab 免费私有仓库
+
+git log
+
+===================================\
+source tree
