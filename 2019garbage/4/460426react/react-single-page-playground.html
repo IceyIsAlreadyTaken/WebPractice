@@ -4,22 +4,89 @@
     <meta charset="UTF-8" />
     <title>Hello World</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <!-- 为全局引入 react 变量  -->
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- 为全局引入 ReactDOM 变量 -->
     
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <!-- babel 为自动在全局找到 text/bable 标签把它转换为 ES 低版本代码  放在 head 中-->
+    <!-- sourcemap 让我们在调试时可以直接调试转换前的代码 -->
   </head>
   <body>
+    
     <div id="root"></div>
     <script type="text/babel">
-      class  Counter extends React.Component{ //基类
+    //es2015 - es6
+      class  Counter extends React.Component { //组件  
+        //React.Cpmponent 是所有组件的基类，组件继承自它就可以获得它身上的所有功能了
         constructor(props) {
-          super(props)
-          
+          super(props)  //es6 语法 要
+          console.log(props) //props 是啥
+          this.state = {  //内部状态
+            count:props.start ? props.start : 0
+          }
+          // this.dec = this.dec.bind(this)
+          // this.inc = this.inc.bind(this)
+          //把原型上的方法读出来绑定上对象挂到实例身上
+          //这样下边的render 中的就可以直接写成 this.dec
         }
-      }                        
+
+        dec = () => {
+          this.setState({  //setState 到底干了什么事儿？
+            count:this.state.count - 1  //这个对象会被合并到 this.state
+          })
+        }
+        inc = () => {
+          this.setState({
+            count:this.state.count + 1
+          })
+        }
+
+        //4.
+        // inc = () => {
+        //   this.setState({
+        //     count:this.state.count + 1
+        //   })
+        // }
+
+
+
+
+        render(){  
+          //返回的是你对你想要渲染内容的描述
+          //数据变化就重新运行 render 函数，运行完得到新的 dom 结构才会继续运行
+          //console.log('render 重新运行')
+
+          //注意 return 中 this 值的问题
+          // 多种写法
+          // 1.this.dec.bind(this)
+          // 2.::this.dec
+          // 3.this.dec 在构造函数绑定后 可以直接用
+          // 4. inc 下边写成箭头函数的形式，然后 inc 就会出现在构造函数中，运行一次，this就是实例
+          var vdom =  (
+            <div>
+              <button onClick={this.dec}>-</button>
+              <span>{this.state.count}</span>
+              <button onClick={this.inc}>+</button>
+            </div>
+          )
+          console.log(vdom)//react 的虚拟 dom
+          //虚拟 dom 做对比 把-在浏览器改成其他按钮，再点击-+发现按键没有动说明是虚拟 dom 对比
+          return vdom
+        }
+      }   
+      //react 自身的编译器把这个 retrun 转换成下边这一坨，让用户更好写代码，防止迷失在里边   
+      // return React.createElement('div',null,[
+      //       React.createElement('button',{onClick:this.dec.bind(this)},'-')
+      //       React.createElement('span',null,[this.state.count])
+      //       React.createElement('button',{onClick:this.dec.bind(this)},'+')
+      //     ])                  
       ReactDOM.render(
-        <h1>Hello, world!</h1>,
+        <div>
+          <Counter start={5}/>
+          <Counter start={2}> foo </Counter>
+        </div>,
         document.getElementById('root')
       );
 

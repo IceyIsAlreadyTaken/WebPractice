@@ -4,13 +4,14 @@
 //react 本身是 web components 的实现
 
 //react 的代码是需要编译的  JSX
-//也有生成一整套脚手架的 cli
+//也有生成一整套脚手架的 cli react 
 
 
 // react 只是创建一个虚拟组建树  表达的是个 UI
 // 可以渲染到任何平台上边包括浏览器
+// react cli 把 react 画到 控制台上边
 
-//不同平台 实现页面的工具
+//不同平台 实现页面UI的工具
 // .NET  XAML
 //android xml
 //java   swing  spring
@@ -19,9 +20,9 @@
 
 //babel 把 ES6789 转换到 ES34
 //大多情况是把 代码转好再把代码上线
-//极少数情况是把代码在线转换
+//极少数情况是把代码在线转换  babel-standalone 就是为了满足这种需求的
 //babel-standalone 找到所有 script 名为 babel 的标签 ，把 react 的代码转换成 浏览器能够运行的代码
 
 
 //sourcemap 记录生成的代码由源代码的哪一部分生成
-//当看不明白莫名函数 或者语法糖的时候去  babel 里试一下
+//当看不明白的莫名函数 或者语法糖的时候去  babel 里试一下
