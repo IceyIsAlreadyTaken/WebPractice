@@ -11,11 +11,23 @@
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <!-- babel 为自动在全局找到 text/bable 标签把它转换为 ES 低版本代码  放在 head 中-->
+    <!-- sourcemap 让我们在调试时可以直接调试转换前的代码 -->
   </head>
   <body>
+    
     <div id="root"></div>
     <script type="text/babel">
-      
+    function tick() {
+      const element = (
+        <div>
+          <h1>Hello, world!</h1>
+          <h2>It is {new Date().toLocaleTimeString()}.</h2>
+        </div>
+      );
+      ReactDOM.render(element, document.getElementById('root'));
+    }
+
+    setInterval(tick, 1000);
 
     </script>
     

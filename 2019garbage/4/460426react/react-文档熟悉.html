@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <!-- 为全局引入 react 变量  -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- 为全局引入 ReactDOM 变量 -->
+    
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <!-- babel 为自动在全局找到 text/bable 标签把它转换为 ES 低版本代码  放在 head 中-->
+    <!-- sourcemap 让我们在调试时可以直接调试转换前的代码 -->
+  </head>
+  <body>
+    
+    <div id="root"></div>
+    <script type="text/babel">
+      class Repeat extends React.Component {
+        constructor(props) {
+          super(props)
+          this.props = props
+        }
+
+        componentWillMount(){ //组件挂载前
+          debugger
+        }
+
+        componentDidMount() { //组件挂载后
+          debugger
+        }
+       
+        render() { //组件挂载后
+          return 
+        }
+      }
+      
+      //时钟组件
+      class Clock extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = {
+            date: new Date()
+          }
+        }
+
+        componentDidMount() { //这时 react 是检测不到数据变化的
+          console.log('interval start!')
+          this.intervalId = setInterval(() => {
+            console.log('setInterval...')
+            this.setState({  //setState 是重新调用一遍 render
+              date:new Date()
+            })
+          },1000)
+        }
+
+        componentWillUnmount() {
+          clearInterval(this.intervalId)
+          console.log('interval cleared!')
+        }
+        render() {
+          return <h2>当前时间： {this.state.date.toLocaleTimeString()}</h2>
+        }
+      }
+
+      //加上开关的 组件
+      class App extends React.Component {
+        state = {
+          show:true
+        }
+
+        toggle = () => {
+          this.setState({
+            show:!this.state.show
+          })
+        }
+
+        render() {
+          return (
+            <div>
+              <button onClick={this.toggle}> Toggle Clock Display </button>
+              {this.state.show && <Clock />} //⭐️
+            </div>
+          )
+        }
+
+      }
+
+      //计数器
+      class  Counter extends React.Component { 
+        state = {
+          count:0
+        }
+        inc = () => {
+          // this.setState({
+          //   count:this.state.count + 1
+          // })
+
+          //以函数的方式 
+          //传进来的 state 就是 外部 state 
+          this.setState(state => {
+            console.log('return 前',state == this.state)
+            return {
+              count:state.count + 1
+            }
+          })
+
+          //再调用一次后 这个 state 可以累积的增加
+          this.setState(state => { //state 值是复制出来的
+            console.log('第二个return 前',state == this.state) 
+            return {
+              count:state.count + 1
+            }
+          })
+        }
+
+        inc3 = () => {
+          this.inc()
+          this.inc()
+          this.inc()
+        }
+
+        //为什么设置 点击按钮后只加了 1
+        //因为加 1 后 不会立即增加，是异步的，此时的 count 还是 0
+        //对于每一个 inc()运行都是 在 0上 + 1 所以最后就是 1
+        render() {
+          return <button onClick={this.inc}>{this.state.count} </button>
+        }
+      }  
+
+
+      //代码事例状态组件
+      class LoginControl extends React.Component {
+        constructor(props) {
+          super(props);
+          this.handleLoginClick = this.handleLoginClick.bind(this);
+          this.handleLogoutClick = this.handleLogoutClick.bind(this);
+          this.state = {isLoggedIn: false};
+        }
+
+        handleLoginClick() {
+          this.setState({isLoggedIn: true});
+        }
+
+        handleLogoutClick() {
+          this.setState({isLoggedIn: false});
+        }
+
+        render() {
+          const isLoggedIn = this.state.isLoggedIn;
+
+          let button = null;
+          if (isLoggedIn) {
+            button = <LogoutButton onClick={this.handleLogoutClick} />;
+          } else {
+            button = <LoginButton onClick={this.handleLoginClick} />;
+          }
+
+          return (
+            <div>
+              <Greeting isLoggedIn={isLoggedIn} />
+              {button}
+            </div>
+          );
+        }
+      }
+
+
+      function UserGreeting(props) {
+        return <h1>Welcome back!</h1>;
+      }
+
+      function GuestGreeting(props) {
+        return <h1>Please sign up.</h1>;
+      }
+
+      function Greeting(props) {
+        const isLoggedIn = props.isLoggedIn;
+        if (isLoggedIn) {
+          return <UserGreeting />;
+        }
+        return <GuestGreeting />;
+      }
+
+      function LoginButton(props) {
+        return (
+          <button onClick={props.onClick}>
+            Login
+          </button>
+        );
+      }
+
+      function LogoutButton(props) {
+        return (
+          <button onClick={props.onClick}>
+            Logout
+          </button>
+        );
+      }
+      
+      ReactDOM.render(
+        <div>
+          <App/>
+          <Counter/>
+          <LoginControl />
+        </div>,
+        document.getElementById('root')
+      );
+
+    </script>
+    
+  </body>
+</html>
