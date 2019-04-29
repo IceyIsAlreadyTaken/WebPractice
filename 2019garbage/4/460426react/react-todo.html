@@ -18,7 +18,7 @@
 <body>
   <div id ="root"></div>
 <script type="text/babel">
-  class TodoApp extends React.Componet {
+  class TodoApp extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
@@ -37,39 +37,49 @@
       }
     }
 
-    isAllSelected() {
+    //全选框
+    isAllSelected() { 
+      console.log('isAllSelected全选框函数')
       return this.state.todos.every(it => it.done == true)
     }
-
+ 
+    //全选框
     toggleSelectAll = () => {
-      var tmp = this.state.todos
+      console.log('toggleselectall')
       if (this.isAllSelected()) {
-        tmp.forEach(todo => todo.done = false)
         this.setState({
-          todos:tmp
+          todos:this.state.todos.map(todo => ({
+            ...todo,
+            done:false
+          }))
         })
       } else {
-        tmp.forEach(todo => todo.done = true)
         this.setState({
-          todos:tmp
+          todos:this.state.todos.map(todo => ({
+            ...todo,
+            done:true
+          }))
         })
       }
     }
 
+    //回车增加条目
     addTodo = (e) => {
       if (e.keyCode == 13) {
         let todoText = e.target.value.trim()
         if (todoText) {  //react 中的state数组增加内容要这样写
           this.setState({
             todos:[...this.state.todos,{
-              done:flase,
-              conotent:todoText
+              done:false,
+              content:todoText
             }]
           })
+          e.target.value = ''
         }
       }
     }
 
+    //事件状态
     todoItemClasses(todo) {
       if (todo.done) {
         return 'completed'
@@ -78,28 +88,123 @@
       }
     }
 
+    toggleTodoStatus(e,index) { //toggle 拴紧
+      var status = e.target.checked
+      this.setState({
+        todos:this.state.todos.map((todo,idx) => {
+          if (idx === index) {
+            return {
+              ...todo,
+              done:status,
+            }
+          } else {
+            return todo
+          }
+        })
+      })
+    }
+
+    delTodo(todo) {
+      this.setState({
+        todos:this.state.todos.filter(it => it !== todo)
+      })
+    }
+
+    getShowingTodos() {
+      if (this.state.showingCategory == 'all') {
+        return this.state.todos
+      } else if (this.state.showingCategory == 'active') {
+        return this.state.todos.filter(it => it.done == false)
+      } else {
+        return this.state.todos.filter(it => it.done == true)
+      }
+    }
+
+    changeTodoText(e,todo) {
+      this.setState({
+        todos:this.state.todos.map(it => {
+          if (it == todo) {
+            return {
+              ...todo,
+              content:e.target.value
+            }
+          } else {
+            return it 
+          } 
+        })
+      })
+    }
+
+    setEditingIndex = (index) => {
+      this.setState({
+        editingIndex:index
+      })
+      setTimeout(() => {
+        console.log(this.refs.editTodo)
+        this.refs.editTodo.focus()
+      })
+    }
+    //ref是用来做什么的
+
     renderTodos() {
-      return this.state.todos.map(todo => (
-        <li className={this.todoItemClasses(todo)} key={todo.content}>
-          <input type="checkbox" value={todo.done} />
-          <span onDblclick={edit(index,$event)} className={todo-content}>{todo.content}</span>
-          <input ref="editTodo" v-show="index == editingIndex" type="text" value={todo.content} blur="editingIndex = -1" />
-          <span click="delTodo(index)">&times;</span>
+      return this.getShowingTodos().map((todo,index) => (
+        <li className={this.todoItemClasses(todo)} key={index}>
+          <input type="checkbox" checked={todo.done} onChange={(e) => this.toggleTodoStatus(e,index)}/>
+          {this.state.editingIndex == index ?
+            <input ref="editTodo" type="text" defaultValue={todo.content} 
+              onChange={(e) => this.changeTodoText(e,todo)} 
+              onBlur={() => this.setState({editingIndex: -1})} 
+            />
+            :
+            <span onDoubleClick={() => this.setEditingIndex(index)} className="todo-content">{todo.content}</span>
+          }
+          <span onClick={() => this.delTodo(todo)}>&times;</span>
         </li>
       ))
     }
 
+    clearCompleted = () => {
+      this.setState({
+        todos:this.state.todos.filter(it => it.done == false)
+      })
+    }
+
+    leftTodosCount() {
+      return this.state.todos.filter(it => it.done == false).length
+    }
+
+    showClearButton() {
+      return this.state.todos.some(it => it.done == true)
+    }
+
+    setShowingCategory = (cate) => {
+      this.setState({
+        showingCategory:cate
+      })
+    }
+    
     render() {
+      console.log('render函数')
       return (
         <div id="app">
           <div>
-            <input type="checkbox" onClick={this.toggleSelectAll} checked={this.isAllSelected()} />
-            <input type="text" onKeyup={this.addTodo}/>
+            <input type="checkbox" onChange={this.toggleSelectAll} checked={this.isAllSelected()} />
+            <input type="text" onKeyUp={this.addTodo}/>
           </div>
           <ul> 
             {this.renderTodos()}
           </ul>
-          
+          <div>
+            <span> {this.leftTodosCount()} item(s) left </span>
+            <span>
+              <label><input type="radio" onChange = {() => this.setShowingCategory("all")} checked={this.state.showingCategory == 'all'} /> all </label>
+              <label><input type="radio" onChange = {() => this.setShowingCategory("active")} checked={this.state.showingCategory == 'active'} /> active </label> 
+              <label><input type="radio" onChange = {() => this.setShowingCategory("completed")} checked={this.state.showingCategory == 'completed'} /> completed </label>
+            </span>
+            {
+              this.showClearButton() &&  <button onClick={this.clearCompleted}>Clear completed</button>//传给 button 不能使用原型上的函数为啥
+            }
+          </div>
         </div>
       )
     }
