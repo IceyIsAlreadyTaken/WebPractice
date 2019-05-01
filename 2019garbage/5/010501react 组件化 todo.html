@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>react-todo</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <!-- 为全局引入 react 变量  -->
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <!-- 为全局引入 ReactDOM 变量 -->
+  
+  <!-- Don't use this in production: -->
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <!-- babel 为自动在全局找到 text/bable 标签把它转换为 ES 低版本代码  放在 head 中-->
+  <!-- sourcemap 让我们在调试时可以直接调试转换前的代码 -->
+</head>
+<body>
+  <div id ="root"></div>
+<script type="text/babel">
+  // 组件之间的通信
+  
+
+  class TodoApp extends React.Component {
+    state = {
+      showingCategory:'all',
+      todos:[{
+        done:false,
+        content:'eat'
+      },{
+        done:true,
+        content:'drink'
+      }]
+    }
+
+    clearCompleted = () => {
+      this.setState({
+        todos:this.state.todos.filter(it => it.done == false)
+      })
+    }
+    
+    switchCategory = (category) => {
+      this.setState({
+        showingCategory:category
+      })
+    }
+
+    getShowingTodos() {
+      console.log(this.state)
+      switch(this.state.showingCategory) {
+        case 'all':
+          return this.state.todos
+        case 'active' :
+          return this.state.todos.filter(it => it.done == false)
+        case 'completed':
+          return this.state.todos.filter(it => it.done == true)
+      } 
+    }
+
+
+    deleteTodo = (todo) => {
+      this.setState({
+        todos:this.state.todos.filter(it => it !== todo)
+      })
+    }
+
+    render() {
+      return (
+        <div>
+         
+          <TodoList onDeleteTodo={this.deleteTodo} todos={this.getShowingTodos()}/>
+          <TodoInfo 
+            onClearCompleted={this.clearCompleted} 
+            onSwitchCategory={this.switchCategory} 
+            todos={this.state.todos}
+            showingCategory={this.state.showingCategory}/>
+        </div>
+      )
+    }
+  }
+
+  //class TodoList extends React.Component{//可以改成函数组件
+  //没有内部状态的都可以转成这种函数式
+  function TodoList(props) {
+    return (
+      <ul>
+        {props.todos.map((it,index) => (<TodoItem onDelete={props.onDeleteTodo} key={index} todo={it} />))}
+      </ul>
+    )
+  }
+      
+  //注意 todoapp 使用了 todolist  ，todolist 使用了 todoitem ，todoitem 触发的时间调用函数要从 todoapp 一层一层传下来
+  //class TodoItem extends React.Component{
+  function TodoItem(props){
+    return (
+      <li>
+        <input type="checkbox"  checked={props.todo.done}></input>
+        {}  
+        <span>{props.todo.content}</span>
+        <button onClick={() => props.onDelete(props.todo)}>&times;</button>    
+      </li>
+    )
+  }
+
+
+
+  class TodoInfo extends React.Component{
+    render() {
+      return (
+        <div>
+          <span>{this.props.todos.filter(it => it.done === false).length} item(s) left</span>
+          <span>
+            <input type="radio" checked={this.props.showingCategory == 'all'}    onChange={() => this.props.onSwitchCategory('all')} />ALL
+            <input type="radio" checked={this.props.showingCategory == 'active'}    onChange={() => this.props.onSwitchCategory('active')} />ACTIVE
+            <input type="radio" checked={this.props.showingCategory == 'completed'}    onChange={() => this.props.onSwitchCategory('completed')} />COMPLETED
+          </span>
+          {
+            this.props.todos.some(it => it.done) &&
+            <button onClick={this.props.onClearCompleted}>Clear Completed</button>
+          }
+        </div>
+      )
+    }
+  }
+
+  ReactDOM.render(
+      <div>
+        <TodoApp/>
+      </div>,
+      document.getElementById('root')
+    );
+</script>
+</body>
+</html>

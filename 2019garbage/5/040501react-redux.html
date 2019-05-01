@@ -1,0 +1,70 @@
+npm  redux
+react-redux
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>react-todo</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <!-- 为全局引入 react 变量  -->
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <!-- 为全局引入 ReactDOM 变量 -->
+  <script src="https://unpkg.com/redux@4.0.1/dist/redux.js"></script>
+  <!-- 引用两个 redux 以及 react-redux -->
+  <script src="https://unpkg.com/react-redux@7.0.3/dist/react-redux.js"></script>
+  
+  <!-- Don't use this in production: -->
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <!-- babel 为自动在全局找到 text/bable 标签把它转换为 ES 低版本代码  放在 head 中-->
+  <!-- sourcemap 让我们在调试时可以直接调试转换前的代码 -->
+</head>
+<body>
+  <div id ="root"></div>
+<script type="text/babel">
+  var store = Redux.createStore(function (state,payLoad) {
+    if (mutations[payload.type]) {
+      return mutations[payload.type](state,payload)
+    } else {
+      return {count:0}
+  })// 后边为初始状态
+  //每次通过 state 和 payload 返回一个新的状态
+  
+
+  ReactRedux.connect(state => {
+    return {
+      count:state.count
+    }
+  },dispatch => {
+    return {
+      inc:() => dispatch({type:'inc'})
+      dec:() => dispatch({type:'dec'})
+    }
+  })(class Counter extends React.Component { //接受到前两个函数返回的对象合并的结果
+      constructor(props) {
+        super(props)
+        //super 会把 props 挂载到 上边不用再写这个this.props = props
+        console.log(props)
+      }
+      render() {
+        return (
+          <div>
+            <button onClikc={this.props.dec}>-</button>
+            <span>{this.props.count}</span>
+            <button onClick={this.props.inc}>+</button>
+          </div>
+        )
+      }
+    })
+
+
+  ReactDOM.render(
+      <div>
+        <App/>
+      </div>,
+      document.getElementById('root')
+    );
+</script>
+</body>
+</html>

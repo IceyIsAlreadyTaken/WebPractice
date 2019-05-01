@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>react-todo</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <!-- 为全局引入 react 变量  -->
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <!-- 为全局引入 ReactDOM 变量 -->
+  
+  <!-- Don't use this in production: -->
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <!-- babel 为自动在全局找到 text/bable 标签把它转换为 ES 低版本代码  放在 head 中-->
+  <!-- sourcemap 让我们在调试时可以直接调试转换前的代码 -->
+</head>
+<body>
+  <div id ="root"></div>
+<script type="text/babel">
+  var Context = React.createContext()
+  
+
+  class App extends React.Component {
+    state = {
+      todos:[1,2,3,4,5]
+    }
+    addTodo = () => {
+      this.setState({
+        todos:[...this.state.todos,this.state.todos.length + 1]
+      })
+    }
+    render() {
+      return (
+        <div>
+          <Context.Provider value={this.state.todos}>
+            <button onClick={this.addTodo}>Add Todo</button>
+            <div>
+              <TodoList/>
+            </div>
+            <NumList/>
+          </Context.Provider>
+        </div>
+      )
+    }
+  }
+  function NumList() {
+    return (
+      <Context.Consumer>
+        {value => (
+          <div>{value.join(',')}</div>
+        )}
+      </Context.Consumer>
+    )
+  }
+
+  function TodoList(props) {
+    return (
+      <Context.Consumer>
+        {value => (
+          <ul>
+            {
+              value.map(it => <li key={it}>{it}</li>)
+            }
+          </ul>
+        )}
+      </Context.Consumer>
+
+    )
+  }
+
+
+
+
+  ReactDOM.render(
+      <div>
+        <App/>
+      </div>,
+      document.getElementById('root')
+    );
+</script>
+</body>
+</html>
