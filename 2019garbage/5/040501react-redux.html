@@ -12,8 +12,10 @@ react-redux
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
   <!-- 为全局引入 ReactDOM 变量 -->
   <script src="https://unpkg.com/redux@4.0.1/dist/redux.js"></script>
-  <!-- 引用两个 redux 以及 react-redux -->
+  <!-- redux仅仅是用了数据管理功能，引用 Redux -->
+
   <script src="https://unpkg.com/react-redux@7.0.3/dist/react-redux.js"></script>
+  <!-- react-redux  则是把数据管理功能和 react 集中在一起 从 store 取得数据，然后将数据注入到组件当中去   引用了 ReactRedux-->
   
   <!-- Don't use this in production: -->
   <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
@@ -23,25 +25,37 @@ react-redux
 <body>
   <div id ="root"></div>
 <script type="text/babel">
+// 模块化开发带来的好处就是可维护性，变量被拆分到不同的作用域当中
+var mutations = {
+  inc:function (state,payLoad) {
+    return {count:state.count + 1}
+  },
+  dec:function (state,payLoad) {
+    return {count:state.count - 1}
+  }
+ }
   var store = Redux.createStore(function (state,payLoad) {
-    if (mutations[payload.type]) {
-      return mutations[payload.type](state,payload)
+    if (mutations[payLoad.type]) {
+      return mutations[payLoad.type](state,payLoad)
     } else {
       return {count:0}
+    }
   })// 后边为初始状态
   //每次通过 state 和 payload 返回一个新的状态
-  
 
-  ReactRedux.connect(state => {
+  //stor.getState() //拿到数据
+
+  var Counter = ReactRedux.connect(state => {
     return {
       count:state.count
     }
   },dispatch => {
     return {
-      inc:() => dispatch({type:'inc'})
+      inc:() => dispatch({type:'inc'}),
       dec:() => dispatch({type:'dec'})
     }
-  })(class Counter extends React.Component { //接受到前两个函数返回的对象合并的结果
+  })(class Counter extends React.Component { 
+    //接受到前两个函数返回的对象合并的结果
       constructor(props) {
         super(props)
         //super 会把 props 挂载到 上边不用再写这个this.props = props
@@ -50,7 +64,7 @@ react-redux
       render() {
         return (
           <div>
-            <button onClikc={this.props.dec}>-</button>
+            <button onClick={this.props.dec}>-</button>
             <span>{this.props.count}</span>
             <button onClick={this.props.inc}>+</button>
           </div>
@@ -60,9 +74,9 @@ react-redux
 
 
   ReactDOM.render(
-      <div>
-        <App/>
-      </div>,
+      <ReactRedux.Provider store={store}>
+        <Counter/>
+      </ReactRedux.Provider>,
       document.getElementById('root')
     );
 </script>
