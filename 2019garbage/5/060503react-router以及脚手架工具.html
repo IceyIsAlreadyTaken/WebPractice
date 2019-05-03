@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>react-todo</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <!-- 为全局引入 react 变量  -->
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <!-- 为全局引入 ReactDOM 变量 -->
+  <script src="https://unpkg.com/redux@4.0.1/dist/redux.js"></script>
+  <!-- redux仅仅是用了数据管理功能，引用 Redux -->
+  <script src="https://unpkg.com/react-redux@7.0.3/dist/react-redux.js"></script>
+  <!-- react-redux  则是把数据管理功能和 react 集中在一起 从 store 取得数据，然后将数据注入到组件当中去   引用了 ReactRedux-->
+  <!-- Don't use this in production: -->
+  <!-- <script src="https://unpkg.com/react-router@5.0.0/umd/react-router.js"></script> -->
+  <!-- react-router 提供主要的功能 -->
+  <script src="https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.js"></script>
+  <!-- react-router-dom 提供浏览器的功能 -->
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <!-- babel 为自动在全局找到 text/bable 标签把它转换为 ES 低版本代码  放在 head 中-->
+  <!-- sourcemap 让我们在调试时可以直接调试转换前的代码 -->
+</head>
+<body>
+  <div id ="root"></div>
+  <script type="text/babel">
+    // import {BrowserRouter,Route,Link} from 'react-router-dom'
+    // var React = React
+    var {BrowserRouter,HashRouter,Route,Link,Switch} = ReactRouterDOM
+    //没有要求就用 HashRouter 什么都不用配
+
+    function Foo1() {
+      return <div>foo 111</div>
+    }
+    function Index() {
+      return (
+        <div>
+          <h2>home~~~~~</h2>
+        </div>
+      )
+    }
+
+    function Bar() {
+      return (
+        <div>
+          <h2> barrrr</h2>
+          <Link to="/bar/1">foo1111</Link>
+          <Route path="/bar/1" component={Foo1} />
+        </div>
+      )
+    }
+
+    function Baz() {
+      return <h2>zzzzzzzzzzz</h2>
+    }
+
+    function App() {
+      return (
+        <div>
+          <div>
+            <Link to="/">Index</Link>
+            <Link to="/bar/">bar</Link>
+            <Link to="/baz/">baz</Link>
+          </div>
+          <Route path="/" component={Index} />
+          <Route path="/bar/" component={Bar} />
+          <Route path="/baz/" component={Baz} />
+        </div>
+      )
+    }
+
+    ReactDOM.render(
+      <HashRouter>
+        <App />
+      </HashRouter>,
+      document.getElementById('root')
+    )
+
+    // withRouter ???编程式导航，编程指定跳转的路径
+
+    //push 将记录当前网址并且可以退回来
+    //replace 可以替代当前网址
+    // react 脚手架 create-react-app   
+    // yarn 是另一个 npm facebook 做的
+
+    //上线运行
+    // yarn build     进行压缩，混淆，优化等等
+    //webpack 配置好了都 而且不在项目中，都在 react-scripts 代码中
+  </script>
+</body>
+</html>

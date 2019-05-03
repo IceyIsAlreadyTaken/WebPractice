@@ -1,0 +1,20 @@
+<!-- 原来使用 immutable-js  不可变数据，把 -->
+<!-- 现在使用 immer -->
+<!-- react 更方便数数据管理 rematc,reselect,mobx -->
+
+<!-- UMD universal module definition 统一模块加载代码-->
+<script src="https://unpkg.com/immer@3.1.1/dist/immer.umd.js"></script>
+<script>
+  var state = [
+    {
+      todo:'eat',
+      done:true
+    },{
+      todo:'drink',
+      done:false
+    }
+  ]
+  new State = immer.produce(state,draft => {
+    draft[0].done = !drafe[0].done
+  })
+</script>

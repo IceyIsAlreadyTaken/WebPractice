@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>react-todo</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <!-- 为全局引入 react 变量  -->
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <!-- 为全局引入 ReactDOM 变量 -->
+  <script src="https://unpkg.com/redux@4.0.1/dist/redux.js"></script>
+  <!-- redux仅仅是用了数据管理功能，引用 Redux -->
+
+  <script src="https://unpkg.com/react-redux@7.0.3/dist/react-redux.js"></script>
+  <!-- react-redux  则是把数据管理功能和 react 集中在一起 从 store 取得数据，然后将数据注入到组件当中去   引用了 ReactRedux-->
+  
+  <!-- Don't use this in production: -->
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <script src="https://unpkg.com/immer@3.1.1/dist/immer.umd.js"></script>
+  <!-- babel 为自动在全局找到 text/bable 标签把它转换为 ES 低版本代码  放在 head 中-->
+  <!-- sourcemap 让我们在调试时可以直接调试转换前的代码 -->
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    // 模块化开发带来的好处就是可维护性，变量被拆分到不同的作用域当中
+
+    //必须要返回一个对象
+    //mutations 数据变化
+    //  var produce = immer.produce
+    var mutations = {
+      addTodo:function (state,payload) {//增加条目
+        return immer.produce(state,state => {
+          state.todos.push({
+            done:false,
+            content:payload.todoText
+          })
+        })
+      },
+      delTodo:function (state,payload) {//删除条目
+        return immer.produce(state,state => {
+          state.todos = state.todos.filter(it => it!== payload.todo)
+        })
+      },
+      switchCategory(state,payload) {//切换状态
+        return {
+          ...state,
+          showingCategory:payload.category
+        }
+      },
+      toggleSelectAll(state,payload) {//勾选全部
+        return produce(state,state => {
+          if (state.tods.every(it => it.done)) {
+            state.todos.forEach(it => it.done = false)
+          } else {
+            state.todos.forEach(it => it.done = true)
+          }
+        })
+      },
+      togglerTodoStatus(state,payload) {
+        return {
+          ...state,
+          todos:state.todos.map(it => {
+            if (it == payload.todo) {
+              return {
+                ...payload.todo,
+                done:!payload.todo.done,
+              }
+            } else {
+              return it
+            }
+          })
+        }
+      }
+    }
+
+    //创建 store 保存数据
+    var todoStore = Redux.createStore(function (state,payload) {
+      if (mutations[payload.type]) {
+        return mutations[payload.type](state,payload)
+      } else {
+        return {
+          showingCategory:'all',
+          todos:[{
+            done:false,
+            content:'eat',
+          },{
+            done:true,
+            content:'drink'
+          }]
+        }
+      }
+    })
+
+
+    var TodoApp = ReactRedux.connect(state => {
+        return {}
+      },dispatch => {
+        return {}
+      })(function TodoApp(props) {  //如果没有内部状态的话都可以写成 function 形式，props 都是由 redux 传过来的
+        return (
+          <div>
+            <TodoInput/>
+            <TodoList/>
+            <TodoInfo/>
+          </div>
+        )
+      })
+
+
+    var TodoInput = ReactRedux.connect(state => {
+      return {
+        isAllDone:state.todos.every(it =>it.done)
+      }
+    },dispatch => {
+      return {
+        toggleSelectAll:() => dispatch({type:'toggleSelectAll'}),
+        addTodo: e => {
+          if (e.keyCode == 13) {
+            var todoText = e.target.value
+            dispatch({
+              type:'addTodo',
+              todoText,
+            })
+          }
+        }
+      }
+    })(class TodoInput extends React.Component {
+      render() {
+        return (
+          <div> 
+            <input type="checkbox" onChange={this.props.toggleSelectAll} checked={this.props.isAllDone}/>
+            <input type="text" onKeyUp={this.props.addTodo}/>
+          </div>
+        )
+      }
+    })
+      
+
+    //todolist 组件
+    var TodoList = ReactRedux.connect(state => {
+      var showingTodos
+      if (state.showingCategory == 'all') {
+        showingTodos = state.todos
+      } else if (state.showingCategory == 'active') {
+        showingTodos = state.todos.filter(it => !it.done)
+      } else if (state.showingCategory == 'completed') {
+        showingTodos = state.todos.filter(it => it.done)
+      }
+      return {
+        showingTodos:showingTodos
+      }
+    },dispatch => {
+      return {
+        delTodo:todo => dispatch({type:'delTodo',todo}),
+        toggleTodoStatus:todo => {
+          dispatch({type:'toggleTodoStatus',todo})
+        }
+      }
+    })(function TodoList(props) {
+      return (
+        <ul>
+          {props.showingTodos.map((todo,index) => {
+            <TodoItem key={index} delTodo={props.delTodo} onToggleStates={props.toggleTodoStatus} todo={todo} />
+          })}
+        <ul/>
+      )
+    })
+
+
+    //todoitem 组件
+    //跟 redux 配合以后里边的很多组件确实是函数式组件
+    //返回为真下边组件刷新，返回为假下边不更新
+    class TodoItem extends React.Component {
+      shouldComponentUpdate(nextProps){
+        if (nextProps.todo == this.props.todo) {
+          return false
+        } else {
+          return true
+        }
+      }
+      render() {
+        console.log('todo item render')
+        return (
+          <li>
+            <input type="checkbox" 
+            checked={this.props.todo.done} 
+            onChange={() => this.props.onToggleStatus(this.props.todo)}/>
+            <span>{this.props.todo.content}</span>
+            <button onClick={() => this.props.onDelete(this.props.todo)}>&times;</button>
+          </li>
+        )
+      }
+    }
+
+
+    var TodoInfo = ReactRedux.connect(state => {
+      return {
+        leftCount:state.todos.filter(it => !it.done).length,
+        showingCategory:state.showingCategory,
+      }
+    },dispatch => {
+      return {
+        switchCategory:(category) => dispatch({type:'switchCategory',category})
+      }
+    })(function TodoInfo(props) {
+      return (
+        <div>
+          <span>{props.leftCount} item(s) left</span>
+          <span>
+            <input type="radio" onChange={() => props.toggleCategory('all')checked={props.showingCategory == 'all'}/>
+            <input type="radio" onChange={() => props.toggleCategory('active')checked={props.showingCategory == 'active'}/>
+            <input type="radio" onChange={() => props.toggleCategory('completed')checked={props.showingCategory == 'completed'}/>
+          <span/>
+        </div>
+      )
+    })
+  
+
+
+    ReactDOM.render(
+      <ReactRedux.Provider store={todoStore}>
+        <TodoApp/>
+      </ReactRedux.Provider>,
+      document.getElementById('root')
+    );
+  </script>
+</body>
+</html>
