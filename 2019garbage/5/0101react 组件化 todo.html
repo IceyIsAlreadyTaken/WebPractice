@@ -19,8 +19,6 @@
   <div id ="root"></div>
 <script type="text/babel">
   // 组件之间的通信
-  
-
   class TodoApp extends React.Component {
     state = {
       showingCategory:'all',
@@ -94,7 +92,7 @@
   function TodoItem(props){
     return (
       <li>
-        <input type="checkbox"  checked={props.todo.done}></input>
+        <input type="checkbox"  onChange={props.todo.done}></input>
         {}  
         <span>{props.todo.content}</span>
         <button onClick={() => props.onDelete(props.todo)}>&times;</button>    

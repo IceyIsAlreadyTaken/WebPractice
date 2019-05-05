@@ -197,9 +197,22 @@
           <div>
             <span> {this.leftTodosCount()} item(s) left </span>
             <span>
-              <label><input type="radio" onChange = {() => this.setShowingCategory("all")} checked={this.state.showingCategory == 'all'} /> all </label>
-              <label><input type="radio" onChange = {() => this.setShowingCategory("active")} checked={this.state.showingCategory == 'active'} /> active </label> 
-              <label><input type="radio" onChange = {() => this.setShowingCategory("completed")} checked={this.state.showingCategory == 'completed'} /> completed </label>
+              <label>
+                <input type="radio" 
+                  onChange = {() => this.setShowingCategory("all")} 
+                  checked={this.state.showingCategory == 'all'} 
+                  /> all 
+              </label>
+              <label>
+                <input type="radio" 
+                  onChange = {() => this.setShowingCategory("active")} 
+                  checked={this.state.showingCategory == 'active'} 
+                  /> active </label> 
+              <label>
+                <input type="radio" 
+                onChange = {() => this.setShowingCategory("completed")} 
+                checked={this.state.showingCategory == 'completed'} 
+                  /> completed </label>
             </span>
             {
               this.showClearButton() &&  <button onClick={this.clearCompleted}>Clear completed</button>//传给 button 不能使用原型上的函数为啥

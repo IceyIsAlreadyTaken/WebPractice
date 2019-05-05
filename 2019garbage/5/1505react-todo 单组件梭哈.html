@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>react-todo</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <!-- 为全局引入 react 变量  -->
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <!-- 为全局引入 ReactDOM 变量 -->
+  
+  <!-- Don't use this in production: -->
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <!-- babel 为自动在全局找到 text/bable 标签把它转换为 ES 低版本代码  放在 head 中-->
+  <!-- sourcemap 让我们在调试时可以直接调试转换前的代码 -->
+</head>
+<body>
+  <div id ="root"></div>
+<script type="text/babel">
+  class TodoApp extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        editingIndex:-1,    //记录当前编辑的条目
+        showingCategory:'all',
+        todoText:'',
+        todos:[{
+          content:'eat',
+          done:false,
+        },{
+          content:'sleep',
+          done:false,
+        },{
+          content:'work',
+          done:false,}],
+      }
+    }
+
+    //删除 todo
+    deleteTodo = (e,todo) => {
+      console.log(e,todo)
+      this.setState({
+        todos:this.state.todos.filter(it => it !== todo)
+      })
+    }
+
+    //增加条目
+    addTodo = (e) => {
+      console.log(e.keyCode) //为什么 keycode 看不到？
+      var content = e.target.value.trim()
+      if (e.keyCode == 13 && content) {
+        this.setState({
+          todos:[...this.state.todos,{
+            content,
+            done:false,
+          }]
+        })
+        e.target.value = ''
+      }
+    }
+
+    toggleTodoStatus = (todo) => {
+      // todo.done = !todo.done
+      // this.forceUpdate()
+      this.setState({
+        todos:this.state.todos.map(it => {
+          if (it == todo) {
+            return {
+              content:it.content,
+              done:!it.done
+            }
+          } else {
+            return it
+          }
+        })
+      })
+    }
+
+    isAllSelect = () => {
+      return this.state.todos.every(it => it.done)
+    }
+
+    selectAll = () => {
+      if (this.isAllSelect()) {
+        this.setState({
+          todos:this.state.todos.map(todo => {
+            return {
+              ...todo,
+              done:false
+            }
+          })
+        })
+      } else {
+        this.setState({
+          todos:this.state.todos.map(todo => {
+            return {
+              ...todo,
+              done:true
+            }
+          })
+        })
+      }
+    }
+    
+    activeCount = () => {
+      return this.state.todos.filter(it => it.done == false).length
+    }
+
+    hasCompleted = () => {
+      return this.state.todos.some(it => it.done)
+    }
+
+    clearCompleted = () => {
+      this.setState({
+        todos:this.state.todos.filter(it => !it.done)
+      })
+    }
+
+    dblevent = (index) => {
+      this.setState({
+        editingIndex:index
+      })
+      setTimeout(() => {  ////////////为什么这么写？⭐️
+        this.refs.editTodo.focus()
+      })
+    }
+
+    editcontent = (e,index) => {
+      console.log('onchange')
+      this.setState({
+        todos:this.state.todos.map((todo,idx) => {
+          if (idx == index) {
+            return {
+              content:e.target.value,
+              done:todo.done
+            }
+          } else {
+            return todo
+          }
+        })
+      })
+    }
+
+    setShowingCategory = (cate) => {
+      this.setState({
+        showingCategory:cate
+      })
+    }
+
+    getShowingTodos = () => {
+      if (this.state.showingCategory == 'all') {
+        return this.state.todos
+      } else if (this.state.showingCategory == 'active') {
+        return this.state.todos.filter(it => it.done == false)
+      } else {
+        return this.state.todos.filter(it => it.done == true)
+      }
+    }
+    //注意 key 值不同的坑的坑
+    render(){
+      return (
+        <div>
+          <input type="checkbox" 
+            checked={this.isAllSelect()}
+            onChange = {this.selectAll}
+            />
+          <input type="text" onKeyUp={(e) => this.addTodo(e)}/>
+          <ul>
+            {
+              this.getShowingTodos().map((todo,index) => {
+                return (
+                  <li key={index}> 
+                    <input type="checkbox" 
+                      checked={todo.done} 
+                      onChange={() => {this.toggleTodoStatus(todo)}}
+                      />
+                    {
+                      this.state.editingIndex == index ?
+                      <input 
+                        type="text" 
+                        value={todo.content}
+                        onChange={(e) => this.editcontent(e,index)}
+                        onBlur = {() => this.setState({editingIndex:-1})}
+                        ref = "editTodo"
+                        />
+                      :
+                      <span 
+                        onDoubleClick={() => {this.dblevent(index)}}>{todo.content}</span>
+                    }
+                    <button 
+                      onClick={(e) => this.deleteTodo(e,todo)}
+                      >
+                      &times;
+                    </button>
+                  </li>)
+              })
+            }
+          </ul>
+          <div>
+            <span>
+              剩余{this.activeCount()}</span>
+            <label>
+              <input type="radio"
+                checked={this.state.showingCategory == 'all'}
+                onChange = {() => this.setShowingCategory("all")}
+              />全部
+            </label>
+            <label>
+              <input type="radio"
+                checked={this.state.showingCategory == 'active'}
+                onChange = {() => this.setShowingCategory("active")}
+              />未完成
+            </label>
+            <label>
+              <input type="radio"
+              checked={this.state.showingCategory == 'completed'}
+              onChange = {() => this.setShowingCategory("completed")}
+              />已完成
+            </label>
+            {
+              this.hasCompleted() ?
+              <button onClick={this.clearCompleted}>清除完成</button>
+              :
+              null
+            }
+          </div>
+        </div> 
+      )
+    }
+  }
+
+ 
+ 
+   
+
+  ReactDOM.render(
+      <div>
+        <TodoApp/>
+      </div>,
+      document.getElementById('root')
+    );
+</script>
+</body>
+</html>
