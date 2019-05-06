@@ -2,9 +2,9 @@ import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
 
-class TodoApp extends React.Component {
+class TodoApp extends React.Component { 
   constructor(props){
-    super(props)
+    super(props) //只要写了 extends 就要用 super
     this.state = {
       showingCategory:'all',
       todos:[{

@@ -157,13 +157,16 @@
         return this.state.todos.filter(it => it.done == true)
       }
     }
+
+
+
     //注意 key 值不同的坑的坑
     render(){
       return (
         <div>
           <input type="checkbox" 
             checked={this.isAllSelect()}
-            onChange = {this.selectAll}
+            onChange={this.selectAll}
             />
           <input type="text" onKeyUp={(e) => this.addTodo(e)}/>
           <ul>
@@ -229,10 +232,6 @@
       )
     }
   }
-
- 
- 
-   
 
   ReactDOM.render(
       <div>
