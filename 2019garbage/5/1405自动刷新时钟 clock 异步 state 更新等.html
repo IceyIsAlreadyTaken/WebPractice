@@ -24,6 +24,11 @@
         }
       }
 
+      // 相当于直接赋值到 constructor 上边
+      // state = {
+      //   data:new Date()
+      // }
+
       componentDidMount() {
         console.log(11111111)
         this.timerID = setInterval(
@@ -61,9 +66,14 @@
       }
 
       toggle = (e) => {
-        console.log(e)
-        this.setState({
-          show:!this.state.show
+        console.log(e,e.nativeEvent) //只能同步读取合成事件，异步读的话就都读不到了
+        this.setState(state => {
+          debugger //state 是个异步的过程
+          //当 setstate 在 settimeout 中的回调里时就是同步的
+          //把对象合并上去，就是调的 lodash 上的 merge 函数
+          return {
+            show:!this.state.show
+          }
         })
       }
 

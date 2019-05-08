@@ -1,6 +1,9 @@
 import React from 'react';
+import TodoStart from './TodoStart.js'
+import TodoList from './TodoList.js'
+import TodoInfo from './TodoInfo.js'
 //import logo from './logo.svg';
-import './App.css';
+//import './App.css';
 
 class TodoApp extends React.Component { 
   constructor(props){
@@ -38,101 +41,120 @@ class TodoApp extends React.Component {
   }
 
   itemCheck = (todo) =>{
+    //console.log('??????????')
+    this.setState({
+      todos:this.state.todos.map(it => {
+        if (it == todo) {
+          console.log(it.done)
+          return {
+            ...todo,
+            done:!it.done
+          }
+        } else {
+          return it
+        }
+      })
+    })
+  }
+
+  //全选按钮 选择全部
+  allSelected = () => { 
+    console.log('?????')
+    if (this.isAllSelected()) {
+      this.setState({
+        todos:this.state.todos.map(todo => 
+          ({
+            ...todo,
+            done:false
+          })
+        )
+      })
+    } else {
+      this.setState({
+        todos:this.state.todos.map(todo => 
+          ({
+            ...todo,
+            done:true
+          })
+        )
+      })
+    }
+  }
+
+  //全选按钮判断 是否全部选择
+  isAllSelected = () => { 
+    //console.log('isAllselected???',this.state
+    return this.state.todos.every(it => it.done === true)
+  }
+
+  //删除条目
+  delTodo = (todo) => {
     this.setState({
       todos:this.state.todos.filter(it => it !== todo)
     })
   }
 
-  //全选按钮 选择全部
-  selectAll = () => { 
+  //增加条目
+  addTodo = (e) => {
+    if (e.keyCode == 13) {
+      let todoText = e.target.value.trim()
+      if (todoText) {
+        this.setState({
+          todos:[...this.state.todos,{
+            done:false,
+            content:todoText
+          }]
+        })
+        e.target.value =''
+      }
+    }
+  }
+
+  //剩余未完成计数
+  activeCount = () => {
+    return this.state.todos.filter(it => it.done == false).length
+  }
+
+  //设置展示种类
+  setShowingCategory = (category) => {
     this.setState({
-      todos:this.state.todos.map(todo => ({...todo,done:!this.isAllSelected()}))
+      showingCategory:category
     })
   }
 
-  //全选按钮判断 是否全部选择
-  isAllSelected = () => { 
-    //console.log('isAllselected???',this.state)
-    return this.state.todos.every(it => it.done === true)
+  //清除
+  clearCompleted = () => {
+    this.setState({
+      todos:this.state.todos.filter(it => !it.done)
+    })
   }
+
   render() {
-    //console.log('render 函数')
+    //render 的时候不能调用 setState
+    //console.log(this.selectAll)
     return (
       <div>
         <TodoStart 
-          isAllSelected={this.isAllSelected} 
-          selcetAll={this.isAllSelected}
+          isAllSelected={this.isAllSelected()} 
+          allSelected={this.allSelected}
+          addTodo={this.addTodo}
           />
 
         <TodoList 
           todos={this.getShowingTodos()} 
-          onchange={this.itemCheck}
+          itemCheck={this.itemCheck}
+          delTodo={this.delTodo}
           />
 
-        
-      </div>
-    )
-  }
-}
-// <TodoInfo
-        //   onClearCompleted={this.clearCompleted()}
-        // />
-
-
-
-class TodoStart extends React.Component {
-  render() {
-    return (
-      <div>
-        <input type="checkbox" 
-          checked={this.props.isAllSelected()} 
-          onChange={this.props.selectAll}
-          />全选
-        <input type="text" placeholder="请输入文字"/>
+        <TodoInfo
+          activeCount={this.activeCount}
+          showingCategory={this.state.showingCategory}
+          setShowingCategory={this.setShowingCategory}
+          onClearCompleted={this.clearCompleted}/>
       </div>
     )
   }
 }
 
-class TodoList extends React.Component {
-  render() {
-    return (
-      <ul>
-      {this.props.todos.map((todo,index) => (
-        <TodoItem todo={todo} key={index} onchange={this.props.onchange(todo)}></TodoItem>)
-        )}
-      </ul>
-    )
-  }
-}
-
-class TodoItem extends React.Component {
-  render() {
-    return (
-      <li>
-        <input type="checkbox" onChange={this.props.onchange}/>
-        <span>{this.props.todo.content}</span>
-        <button>&times;</button>
-      </li>
-    )
-  }
-}
-
-// class TodoInfo extends React.Component{ //要改上层组件的状态
-//   render() {
-//     return (
-//       <div>
-//         <span>item(s) left</span>
-//         <span>
-//           <input type="radio"/>全部
-//           <input type="radio"/>未完成
-//           <input type="radio"/>已完成
-//         </span>
-//         <button onClick={this.props.onClearCompleted}>清除</button>
-//       </div>
-//     )
-//   }
-    
-// }
 
 export default TodoApp;
