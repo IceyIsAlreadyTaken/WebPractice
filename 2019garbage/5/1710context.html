@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>react-todo</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <!-- 为全局引入 react 变量  -->
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <!-- 为全局引入 ReactDOM 变量 -->
+  
+  <!-- Don't use this in production: -->
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <!-- babel 为自动在全局找到 text/bable 标签把它转换为 ES 低版本代码  放在 head 中-->
+  <!-- sourcemap 让我们在调试时可以直接调试转换前的代码 -->
+</head>
+<body>
+  <div id ="root"></div>
+<script type="text/babel">
+  const ThemeContext = React.createContext('light')
+
+  class App extends React.Component {
+    render(){
+      return (
+        <ThemeContext.Provider value = "dark">
+          <Toolbar/>
+        </ThemeContext.Provider>
+      )
+    }
+  }
+
+  function Toobal(props) {
+    return (
+      <div>
+        <ThemedButton />
+      </div>
+    )
+  }
+
+  class ThemedButton extends React.Component {
+    static contextType = ThemeContext;
+    render() {
+      console.log(this.context)
+      renturn <Button theme={this.context}/>
+    }
+  }
+
+  ReactDOM.render(
+      <div>
+        <App/>
+      </div>,
+      document.getElementById('root')
+    );
+</script>
+</body>
+</html>
