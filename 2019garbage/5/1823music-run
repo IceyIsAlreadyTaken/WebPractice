@@ -1,4 +1,4 @@
 redis 开启   在文件夹中运行 redis-server
 开启 sql 数据库
 运行后台
-npm run dev
+npm run dev 
