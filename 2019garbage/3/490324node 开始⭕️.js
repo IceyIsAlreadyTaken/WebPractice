@@ -22,3 +22,13 @@
 //linux发行版 ubuntu
 
 //状态码退出为0 正常退出，其他数字为错误退出
+
+
+
+//cmatrix 黑客帝国特效
+
+//帮助中切换开发者工具，这个是集成了 Node 以及浏览器的工具
+fs = require('fs')
+fs.readFileSync('/Users/zhaiyuanhang/Documents/郑州大学2018—2019学年校历.jpg')
+
+//选中文件 option + command + c 复制文件路径

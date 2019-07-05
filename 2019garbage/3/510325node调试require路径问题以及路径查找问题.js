@@ -48,3 +48,16 @@ setInterval(() => {
 
 
 //node有现有的模块帮你处理路径
+
+
+
+
+
+function require(path) {
+      try {
+        exports.requireDepth += 1;
+        return mod.require(path);
+    } finally {
+        exports.requireDepth -= 1;
+    }
+  }'
