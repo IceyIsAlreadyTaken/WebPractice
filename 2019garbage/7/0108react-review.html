@@ -64,23 +64,23 @@
         // }
 
         render() { 
-          return (
-            <span>
-              <button onClick={this.dec.bind(this)}>-</button>
-              <span>{this.state.count}{console.log(this)}</span>
-              <button onClick={this.inc.bind(this)}>+</button>
-            </span>
+          return React.createElement('span',null,
+            React.createElement('button',{
+              onClick:this.dec,
+            },'-'),
+            React.createElement('span',null,
+              this.state.count
+            ),
+            React.createElement('button',{
+              onClick:this.inc
+            },'+')
           )
-          // return React.createElement('span',null,
-          //   React.createElement('button',{
-          //     onClick:this.dec,
-          //   },'-'),
-          //   React.createElement('span',null,
-          //     this.state.count
-          //   ),
-          //   React.createElement('button',{
-          //     onClick:this.inc
-          //   },'+')
+          // return (
+          //   <span>
+          //     <button onClick={this.dec.bind(this)}>-</button>
+          //     <span>{this.state.count}{console.log(this)}</span>
+          //     <button onClick={this.inc.bind(this)}>+</button>
+          //   </span>
           // )
         }
 
@@ -125,6 +125,8 @@
         //   ])
         // ])
 
+      
+      }
 
       ReactDOM.render(
         <Counter/>,
