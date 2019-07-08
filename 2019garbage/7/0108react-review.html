@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>todo-mobx</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script> 
+    <!-- React = require('react') -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- ReactDOM = require('react-dom') -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://unpkg.com/mobx/lib/mobx.umd.js"></script>  
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class Counter extends React.Component { //基类
+        constructor() {
+          super()
+          this.state = {
+            count:0
+          }
+          //构造函数中的this就是组件的实例对象
+          // this.dec = () => {
+          //   this.setState({
+          //     count:this.state.count - 1
+          //   })
+          // }
+          // this.inc = () => {
+          //   this.setState({
+          //     count:this.state.count + 1
+          //   })
+          // }
+          //写法繁琐
+        }
+
+        //相当于写到构造函数中的写法，前边加一个this.
+        //还未进入标准，babel已经支持
+
+        dec = () => {   
+            this.setState({
+              count:this.state.count - 1
+            })
+          }
+        
+          inc = () => {
+          this.setState({
+            count:this.state.count + 1
+          })
+        }
+
+        //坑点注意this的指向
+        // dec() {
+        //   console.log(this)
+        //   // debugger
+        //   this.setState({
+        //     count:this.state.count - 1 
+        //   })
+        // }
+
+        // inc() {
+        //   this.setState({
+        //     count:this.state.count + 1 
+        //   })
+        // }
+
+        render() { 
+          return (
+            <span>
+              <button onClick={this.dec.bind(this)}>-</button>
+              <span>{this.state.count}{console.log(this)}</span>
+              <button onClick={this.inc.bind(this)}>+</button>
+            </span>
+          )
+          // return React.createElement('span',null,
+          //   React.createElement('button',{
+          //     onClick:this.dec,
+          //   },'-'),
+          //   React.createElement('span',null,
+          //     this.state.count
+          //   ),
+          //   React.createElement('button',{
+          //     onClick:this.inc
+          //   },'+')
+          // )
+        }
+
+        // ================================================
+        // var a = <foo bar = "baz" val = {[1,2,3]}>
+        //           <bar></bar>
+        //           <baz></baz>
+        //         </foo>
+        // 每一个标签都会被转化为函数调用 
+        // React.creatElement('foo',{
+        //   bar:'baz',
+        //   val:[1,2,3],
+        // },[   //子元素放在中括号中
+        //   React.cerateElement('bar'),
+        //   React.createElement('baz')
+        // ])
+
+        // ================================================
+        // <p title={str}>
+        //   <span><a href="/">Home</a></span>
+        // </p>
+        // React.createElement('p',{
+        //   title:str
+        // },[
+        //   React.createELement('span',null,[
+        //     React.createElement('a',{
+        //       href:'/'
+        //     },['Home'])
+        //   ])
+        // ])
+
+        // ================================================
+        // <p title={str}>
+        //    <span><Counter/></span>
+        // <p>
+
+        // React.createElement('p',{
+        //   title:str
+        // },[
+        //   React.createElement('span',null,[
+        //     React.createElement(Counter)   ⭐️直接传 当前作用域的构造组件
+        //   ])
+        // ])
+
+
+      ReactDOM.render(
+        <Counter/>,
+        document.getElementById('root')
+        // 把h1放进div中
+      );
+
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+  </body>
+</html>

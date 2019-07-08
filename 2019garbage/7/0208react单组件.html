@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>todo-mobx</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script> 
+    <!-- React = require('react') -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- ReactDOM = require('react-dom') -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://unpkg.com/mobx/lib/mobx.umd.js"></script>  
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class TodoApp extends React.Component { //基类
+        constructor() {
+          super()
+          this.state = {
+            todos:[{
+              content:'eat',
+              active:true,
+            },{
+              content:'drink',
+              active:false,
+            },{
+              content:'code',
+              active:true,
+            },{
+              content:'熟悉react',
+              active:false
+            }]
+          }
+        }
+
+        render() { 
+          return (
+            <div id="todo-app">
+              <div>
+                <input type="checkbox" />
+                <input type="text" />
+              </div>
+              <ul>
+                {
+                  this.state.todos.map(it => (
+                    <li>
+                      <input type="checkbox" />
+                      <span>{it.content}</span>
+                      <button>&times;</button> 
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          )
+        }
+
+
+
+      ReactDOM.render(
+        <Counter/>,
+        document.getElementById('root')
+        // 把h1放进div中
+      );
+
+    </script>
+    
+  </body>
+</html>
