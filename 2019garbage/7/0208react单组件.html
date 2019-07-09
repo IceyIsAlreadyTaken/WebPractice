@@ -18,6 +18,7 @@
           super()
           this.state = {
             editingIndex:-1,
+            category:'all',
             todos:[{
               content:'eat',
               active:true,
@@ -168,6 +169,33 @@
           }
         }
 
+        //修改条目回车确认
+        afterReturn = (e) => {
+          console.log(e)
+          console.log(e.keyCode)
+          if (e.keyCode == 13) {
+            this.refs.edit.blur()
+          }
+        }
+
+        //设置分类
+        setCategory = (cate) => {
+          this.setState({
+            category:cate
+          })
+        }
+
+        //分类展示列表
+        showingTodos = () => {
+          if (this.state.category == 'all') {
+            return this.state.todos
+          } else if (this.state.category == 'active') {
+            return this.state.todos.filter(it => it.active == false)
+          } else {
+            return this.state.todos.filter(it => it.active == true)
+          }
+        }
+
         render() { 
           return (
             <div id="todo-app">
@@ -178,7 +206,7 @@
               </div>
               <ul>
                 {
-                  this.state.todos.map((todo,idx) => (
+                  this.showingTodos().map((todo,idx) => (
                     <li key={idx}> 
                       {/*  
                         坑点注意key值，条目出发双击事件后，如果key值不同，则不会进行对比，原来dom节点将会被删除，所以光标会从原来dom跳到新dam上边
@@ -192,7 +220,7 @@
                         <input type="text" value={todo.content} 
                           ref="edit"
                           onChange={(e) => this.setTodoContent(e,todo)}
-                          onKeyup={(e) => {console.log(e)}}
+                          onKeyUp={(e) => this.afterReturn(e)}
                           onBlur={(e) => this.afterBlur(todo)}
                         />
                       }
@@ -203,8 +231,38 @@
               </ul>
               <div>
                 <span>{this.itemLeft()} item(s) left</span>   
+
+                <label>
+                  <input type="radio"
+                  checked = {this.state.category == 'all'}
+                  onChange = {() => this.setCategory('all')}
+                  />All
+                </label>
+                <label>
+                  <input type="radio"
+                  checked = {this.state.category == 'active'}
+                  onChange = {() => this.setCategory('active')}
+                  />Active
+                </label>
+                <label>
+                  <input type="radio"
+                  checked = {this.state.category == 'completed'}
+                  onChange = {() => this.setCategory('completed')}
+                  />Completed
+                </label>
+
+
+
+
+
                 {/*this.hasCompleted() ||
                   <button onClick={this.clearCompleted}>Clear Completed</button>
+                */}
+                {/*
+                  (() => {
+                    if()
+                    return 
+                  })()
                 */}
                 {
                   this.hasCompleted() ? 
@@ -218,6 +276,14 @@
           )
         }
       }
+
+      //⭐️
+      // class TodoItem extends React.Component {
+      //   constructor(props) {
+      //     supre(props)
+      //     this.props === props 
+      //   }
+      // }
 
       ReactDOM.render(
         <TodoApp/>,
