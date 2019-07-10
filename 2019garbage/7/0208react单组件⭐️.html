@@ -13,8 +13,10 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
-      class TodoApp extends React.Component { //基类
-        constructor() {
+      class TodoApp extends React.Component { //基类 有extends就要就有super()
+        constructor() {   //props
+          //setState 一般是异步执行，如果在回调函数中执行，一般是当场立即执行完毕
+          //在回调中是不会批量进行的，运行完页面就更新
           super()
           this.state = {
             editingIndex:-1,
@@ -149,8 +151,8 @@
         setEditingIdx = (i) => {
           this.setState({
             editingIndex:i
-          })
-          setTimeout(() => {
+          })   
+          setTimeout(() => { 
             this.refs.edit.focus() 
           });
         }
@@ -231,7 +233,6 @@
               </ul>
               <div>
                 <span>{this.itemLeft()} item(s) left</span>   
-
                 <label>
                   <input type="radio"
                   checked = {this.state.category == 'all'}
@@ -250,10 +251,6 @@
                   onChange = {() => this.setCategory('completed')}
                   />Completed
                 </label>
-
-
-
-
 
                 {/*this.hasCompleted() ||
                   <button onClick={this.clearCompleted}>Clear Completed</button>
@@ -284,6 +281,8 @@
       //     this.props === props 
       //   }
       // }
+
+      //在大多数情况下，这没什么问题，但如果该回调函数作为 prop 传入子组件时，这些组件可能会进行额外的重新渲染。我们通常建议在构造器中绑定或使用 class fields 语法来避免这类性能问题。
 
       ReactDOM.render(
         <TodoApp/>,
