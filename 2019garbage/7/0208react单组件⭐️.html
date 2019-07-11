@@ -47,7 +47,7 @@
         //增加条目
         addTodo = (e) => {
           var content = e.target.value.trim()
-          if (e.keyCode == 13 && content) {
+          if (e.keyCode === 13 && content) {
             this.setState({
               todos:[
                 ...this.state.todos,
@@ -69,7 +69,7 @@
 
           this.setState({
             todos:this.state.todos.map(it => {
-              if (it == todo) {
+              if (it === todo) {
                 return {
                   content:it.content,
                   active:!it.active,
@@ -132,7 +132,7 @@
           var content = e.target.value.trim()
           this.setState({
             todos:this.state.todos.map(it => {
-              if (it == todo) {
+              if (it === todo) {
                 return {
                   ...todo,
                   content,
@@ -142,8 +142,8 @@
               }
             })
           })
-          if (e.target.value)
-          console.log(e.target)
+          //if (e.target.value)
+          //console.log(e.target)
           // this.refs.edit.focus()
         }
 
@@ -173,8 +173,8 @@
 
         //修改条目回车确认
         afterReturn = (e) => {
-          console.log(e)
-          console.log(e.keyCode)
+          //console.log(e)
+          //console.log(e.keyCode)
           if (e.keyCode == 13) {
             this.refs.edit.blur()
           }
@@ -189,9 +189,9 @@
 
         //分类展示列表
         showingTodos = () => {
-          if (this.state.category == 'all') {
+          if (this.state.category === 'all') {
             return this.state.todos
-          } else if (this.state.category == 'active') {
+          } else if (this.state.category === 'active') {
             return this.state.todos.filter(it => it.active == false)
           } else {
             return this.state.todos.filter(it => it.active == true)
@@ -235,19 +235,19 @@
                 <span>{this.itemLeft()} item(s) left</span>   
                 <label>
                   <input type="radio"
-                  checked = {this.state.category == 'all'}
+                  checked = {this.state.category === 'all'}
                   onChange = {() => this.setCategory('all')}
                   />All
                 </label>
                 <label>
                   <input type="radio"
-                  checked = {this.state.category == 'active'}
+                  checked = {this.state.category === 'active'}
                   onChange = {() => this.setCategory('active')}
                   />Active
                 </label>
                 <label>
                   <input type="radio"
-                  checked = {this.state.category == 'completed'}
+                  checked = {this.state.category === 'completed'}
                   onChange = {() => this.setCategory('completed')}
                   />Completed
                 </label>
@@ -290,6 +290,11 @@
         // 把h1放进div中
       );
 
+
+      //ref 三种用法
+      //1.传字符串
+      //2.创建 React.createRef() ,将dom 挂载到 this.refs.current上边
+      //3.传一个回调函数
     </script>
     
   </body>
