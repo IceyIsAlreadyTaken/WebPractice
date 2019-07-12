@@ -1,54 +1,65 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import TodoStart from './TodoStart.js'
 import TodoList from './TodoList.js'
 import TodoInfo from './TodoInfo.js'
+
 //import logo from './logo.svg';
 //import './App.css';
 
-class TodoApp extends React.Component { 
-  constructor(props){
+class TodoApp extends React.Component {
+  constructor(props) {
     super(props) //只要写了 extends 就要用 super
     this.state = {
-      showingCategory:'all',
-      todos:[{
-        done:false,
-        content:'eat'
-      },{
-        done:true,
-        content:'drink',
-      },{
-        done:false,
-        content:'sleep',
+      showingCategory: 'all',
+      todos: [{
+        done: false,
+        content: 'eat'
+      }, {
+        done: true,
+        content: 'drink',
+      }, {
+        done: false,
+        content: 'sleep',
       }]
     }
   }
+
+  getChildContext() {
+    return {
+      delTodo: this.delTodo,
+      doneChange: this.itemCheck
+    }
+  }
+
+
   //::写法
   getShowingTodos = () => {
-    switch(this.state.showingCategory){
+    switch (this.state.showingCategory) {
       case 'all':
         return this.state.todos
       case 'active':
         return this.state.todos.filter(it => it.done === false)
       case 'completed':
-      return this.state.todos.filter(it => it.done === true)
+        return this.state.todos.filter(it => it.done === true)
     }
   }
 
   clearCompleted = () => {
     this.setState({
-      todos:this.state.todos.filter(it => it.done === false)
+      todos: this.state.todos.filter(it => it.done === false)
     })
   }
 
-  itemCheck = (todo) =>{
-    //console.log('??????????')
+  itemCheck = (todo) => {
+    // console.log('??????????')
     this.setState({
-      todos:this.state.todos.map(it => {
+      todos: this.state.todos.map(it => {
         if (it == todo) {
           console.log(it.done)
           return {
             ...todo,
-            done:!it.done
+            done: !it.done
           }
         } else {
           return it
@@ -58,23 +69,23 @@ class TodoApp extends React.Component {
   }
 
   //全选按钮 选择全部
-  allSelected = () => { 
+  allSelected = () => {
     console.log('?????')
     if (this.isAllSelected()) {
       this.setState({
-        todos:this.state.todos.map(todo => 
+        todos: this.state.todos.map(todo =>
           ({
             ...todo,
-            done:false
+            done: false
           })
         )
       })
     } else {
       this.setState({
-        todos:this.state.todos.map(todo => 
+        todos: this.state.todos.map(todo =>
           ({
             ...todo,
-            done:true
+            done: true
           })
         )
       })
@@ -82,7 +93,7 @@ class TodoApp extends React.Component {
   }
 
   //全选按钮判断 是否全部选择
-  isAllSelected = () => { 
+  isAllSelected = () => {
     //console.log('isAllselected???',this.state
     return this.state.todos.every(it => it.done === true)
   }
@@ -90,7 +101,7 @@ class TodoApp extends React.Component {
   //删除条目
   delTodo = (todo) => {
     this.setState({
-      todos:this.state.todos.filter(it => it !== todo)
+      todos: this.state.todos.filter(it => it !== todo)
     })
   }
 
@@ -100,12 +111,12 @@ class TodoApp extends React.Component {
       let todoText = e.target.value.trim()
       if (todoText) {
         this.setState({
-          todos:[...this.state.todos,{
-            done:false,
-            content:todoText
+          todos: [...this.state.todos, {
+            done: false,
+            content: todoText
           }]
         })
-        e.target.value =''
+        e.target.value = ''
       }
     }
   }
@@ -118,42 +129,47 @@ class TodoApp extends React.Component {
   //设置展示种类
   setShowingCategory = (category) => {
     this.setState({
-      showingCategory:category
+      showingCategory: category
     })
   }
 
   //清除
   clearCompleted = () => {
     this.setState({
-      todos:this.state.todos.filter(it => !it.done)
+      todos: this.state.todos.filter(it => !it.done)
     })
   }
+
+
 
   render() {
     //render 的时候不能调用 setState
     //console.log(this.selectAll)
     return (
       <div>
-        <TodoStart 
-          isAllSelected={this.isAllSelected()} 
+        <TodoStart
+          isAllSelected={this.isAllSelected()}
           allSelected={this.allSelected}
           addTodo={this.addTodo}
-          />
+        />
 
-        <TodoList 
-          todos={this.getShowingTodos()} 
-          itemCheck={this.itemCheck}
-          delTodo={this.delTodo}
-          />
+        <TodoList
+          todos={this.getShowingTodos()}
+        />
 
         <TodoInfo
           activeCount={this.activeCount}
           showingCategory={this.state.showingCategory}
           setShowingCategory={this.setShowingCategory}
-          onClearCompleted={this.clearCompleted}/>
+          onClearCompleted={this.clearCompleted} />
       </div>
     )
   }
+}
+
+TodoApp.childContextTypes = {
+  doneChange: Proptypes.func,
+  delTodo: Proptypes.func
 }
 
 
